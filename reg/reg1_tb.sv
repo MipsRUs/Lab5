@@ -18,7 +18,7 @@
 //	2/25/2016		Created					TH, NS, LV, SC
 //
 /***************************************************************/
-module reg1tb;
+module reg1_tb;
 
 	logic ref_clk;
 	logic[31:0] DataI_A;
