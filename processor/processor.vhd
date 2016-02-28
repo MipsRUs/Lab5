@@ -48,6 +48,45 @@ component mux
 	);
 end component;
 
+-- buffer_e
+component buffer_e
+	port (
+		ref_clk : IN std_logic;
+		WE : IN std_logic;
+		DataI: IN std_logic_vector(31 DOWNTO 0);
+		DataO: OUT std_logic_vector(31 DOWNTO 0)
+	
+	);
+end component;
+
+-- rom
+component rom
+	port(
+		addr: IN STD_LOGIC_VECTOR(31 downto 0); 
+		dataOut: OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+	);
+end component;
+
+-- adder 
+component adder
+	port(
+		a : in std_logic_vector(31 downto 0);
+		b : in std_logic_vector(31 downto 0);	
+		sum	: out std_logic_vector(31 downto 0)
+	);
+end component;
+
+-- reg1 ************************ NOT IMPLEMENTED NEED TO LOOK AT THIS AGAIN
+component reg1
+	PORT (
+		ref_clk : IN std_logic;
+		DataI : IN std_logic_vector(31 DOWNTO 0);
+		en:	  	  IN std_logic; --enable from stallD
+		clr:	  IN std_logic; -- clear enable from PCSrc
+		DataO : OUT std_logic_vector(31 DOWNTO 0)	
+	);
+end component;
+
 
 
 
@@ -60,12 +99,31 @@ signal PCPlus4F : std_logic_vector(31 DOWNTO 0);
 signal PC_adder_1 : std_logic_vector(31 DOWNTO 0);
 signal PC_in : std_logic_vector(31 DOWNTO 0);
 
+signal PCF : std_logic_vector(31 DOWNTO 0);
+signal IR_out : std_logic_vector(31 DOWNTO 0);
+
+-- value '4'
+signal adder_value_4 : std_logic_vector (31 DOWNTO 0) := "00000000000000000000000000000100";
+
+signal InstrD : std_logic_vector(31 DOWNTO 0);
+
+signal StallF : std_logic;
+signal StallD : std_logic;
+
 
 ------------------- begin --------------------- 
 begin
 
 	PCmuxx:	mux PORT MAP(in0=>PCPlus4F, in1=>PC_adder_1, sel=>PCSrcD, outb=>PC_in);
 
+	PC_reg: buffer_e PORT MAP(ref_clk=>ref_clk, WE=>StallF, DataI=>PC_in, DataO=>PCF);
+
+	IR: rom PORT MAP(addr=>PCF, dataOut=>IR_out);
+
+	PCadder: adder PORT MAP(a=>PCF, b=>adder_value_4, sum=>PCPlus4F);
+
+	Reg1: reg1 PORT MAP(ref_clk=>ref_clk, DataI=>IR_out, en=>stallD, clr=>PCSrcD,
+					DataO=>InstrD);
 
 
 
