@@ -1,7 +1,7 @@
 -------------------------------------------------------------------
 -- Copyright MIPS_R_US 2016 - All Rights Reserved
 --
--- File: reg3.vhd
+-- File: reg4.vhd
 -- Team: MIPS_R_US
 -- Members:
 --              Stefan Cao (ID# 79267250)
@@ -10,7 +10,7 @@
 --              Linda Vang (ID# 71434490)
 --
 -- Description:
---              buffer with clk, 7 inputs, and 6 outputs
+--              buffer with clk, 6 inputs, and 5 outputs
 --
 -- History:
 --     Date         Update Description              Developer
@@ -21,23 +21,23 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-ENTITY reg3 IS
+ENTITY reg4 IS
 PORT (
                 ref_clk : 		IN std_logic;
-                RegWriteE : 	IN std_logic;
-                MemtoRegE : 	IN std_logic;
+                RegWriteM : 	IN std_logic;
+                MemtoRegM : 	IN std_logic;
+				rd_in:			IN std_logic_vector(31 DOWNTO 0);
                 alu_in:			IN std_logic_vector(31 DOWNTO 0);
-                WriteDataE:		IN std_logic_vector(31 DOWNTO 0);
-                WriteRegE:		IN std_logic_vector(4 DOWNTO 0);
+                WriteRegM:		IN std_logic_vector(4 DOWNTO 0);
                 
-                RegWriteM : 	OUT std_logic;
-                MemtoRegM : 	OUT std_logic;
+                RegWriteW : 	OUT std_logic;
+                MemtoRegW : 	OUT std_logic;
+				rd_out:			OUT std_logic_vector(31 DOWNTO 0);				
                 alu_out:		OUT std_logic_vector(31 DOWNTO 0);
-                WriteDataM:		OUT std_logic_vector(31 DOWNTO 0);
-                WriteRegM:		OUT std_logic_vector(4 DOWNTO 0);				
+                WriteRegW:		OUT std_logic_vector(4 DOWNTO 0);				
         );
-end reg3;
-architecture behavior of reg3 is
+end reg4;
+architecture behavior of reg4 is
 begin
 
 end;
