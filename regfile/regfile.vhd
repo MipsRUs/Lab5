@@ -42,7 +42,7 @@ architecture behavior of regfile is
 
 subtype word is std_logic_vector(31 downto 0);
 type memory is array(0 to 2**5-1) of word;
-variable mem_var:memory;
+signal mem_var:memory;
 
 begin
 	regfile_write: process(ref_clk)
@@ -54,7 +54,7 @@ begin
 		end if;
 	end process;
 
-	regfile_read: process(raddr_1, rdata2) 
+	regfile_read: process(raddr_1, raddr_2) 
 	begin
 		if(to_integer(unsigned(raddr_1))=0) then
 			rdata_1 <= (others => '0');
