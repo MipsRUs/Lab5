@@ -19,6 +19,7 @@
 -------------------------------------------------------------------
 ENTITY reg2 IS 
 PORT (
+		ref_clk: 		IN std_logic;
 		RegWriteD:		IN std_logic;
 		MemtoRegD:		IN std_logic;
 		MemWriteD:		IN std_logic;

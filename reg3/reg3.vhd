@@ -22,21 +22,24 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 ENTITY reg3 IS
-PORT (
-                ref_clk : 		IN std_logic;
-                RegWriteE : 	IN std_logic;
-                MemtoRegE : 	IN std_logic;
-                alu_in:			IN std_logic_vector(31 DOWNTO 0);
-                WriteDataE:		IN std_logic_vector(31 DOWNTO 0);
-                WriteRegE:		IN std_logic_vector(4 DOWNTO 0);
-                
-                RegWriteM : 	OUT std_logic;
-                MemtoRegM : 	OUT std_logic;
-                alu_out:		OUT std_logic_vector(31 DOWNTO 0);
-                WriteDataM:		OUT std_logic_vector(31 DOWNTO 0);
-                WriteRegM:		OUT std_logic_vector(4 DOWNTO 0);				
+	PORT (
+		ref_clk : 		IN std_logic;
+		RegWriteE : 	IN std_logic;
+		MemtoRegE : 	IN std_logic;
+		MemtoWriteE: 	IN std_logic;
+		alu_in:			IN std_logic_vector(31 DOWNTO 0);
+		WriteDataE:		IN std_logic_vector(31 DOWNTO 0);
+		WriteRegE:		IN std_logic_vector(4 DOWNTO 0);
+
+		RegWriteM : 	OUT std_logic;
+		MemtoRegM : 	OUT std_logic;
+		MemWriteM : 	OUT std_logic;
+		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
+		WriteDataM:		OUT std_logic_vector(31 DOWNTO 0);
+		WriteRegM:		OUT std_logic_vector(4 DOWNTO 0)				
         );
-end reg3;
+	end reg3;
+
 architecture behavior of reg3 is
 begin
 

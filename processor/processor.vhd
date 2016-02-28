@@ -102,6 +102,7 @@ end component;
 -- reg2 ************************ NOT IMPLEMENTED NEED TO LOOK AT THIS AGAIN
 component reg2
 	PORT(
+		ref_clk:		IN std_logic;
 		RegWriteD:		IN std_logic;
 		MemtoRegD:		IN std_logic;
 		MemWriteD:		IN std_logic;
@@ -129,6 +130,27 @@ component reg2
 		SignImmE:		OUT std_logic_vector(15 downto 0)
 	);
 end component;
+
+-- reg3 ************************ NOT IMPLEMENTED NEED TO LOOK AT THIS AGAIN
+component reg3
+	PORT (
+		ref_clk : 		IN std_logic;
+		RegWriteE : 	IN std_logic;
+		MemtoRegE : 	IN std_logic;
+		MemtoWriteE: 	IN std_logic;
+		alu_in:			IN std_logic_vector(31 DOWNTO 0);
+		WriteDataE:		IN std_logic_vector(31 DOWNTO 0);
+		WriteRegE:		IN std_logic_vector(4 DOWNTO 0);
+
+		RegWriteM : 	OUT std_logic;
+		MemtoRegM : 	OUT std_logic;
+		MemWriteM : 	OUT std_logic;
+		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
+		WriteDataM:		OUT std_logic_vector(31 DOWNTO 0);
+		WriteRegM:		OUT std_logic_vector(4 DOWNTO 0)				
+	);
+end component;
+
 
 -- control ************************ NOT IMPLEMENTED NEED TO LOOK AT THIS AGAIN
 component control
@@ -207,6 +229,17 @@ component alu
 	);
 end component;
 
+-- ram
+component ram
+	port (
+		ref_clk : IN std_logic;
+		we : IN std_logic;
+		addr : IN std_logic_vector(31 DOWNTO 0); 
+		dataI : IN std_logic_vector(31 DOWNTO 0); 
+		dataO : OUT std_logic_vector(31 DOWNTO 0)
+	);
+end component;
+
 
 -----------------------------------------------
 -------------- signals ------------------------
@@ -244,6 +277,8 @@ signal RD2toMux2: std_logic_vector(31 DOWNTO 0);
 
 signal ALU_out;
 
+signal ram_data_out;
+
 signal RegWriteD: std_logic;
 signal MemtoRegD: std_logic;
 signal MemWriteD: std_logic;
@@ -267,6 +302,12 @@ signal WriteRegE: std_logic_vector(4 DOWNTO 0);
 signal WriteDataE: std_logic_vector(31 DOWNTO 0);
 signal SrcAE: std_logic_vector(31 DOWNTO 0);
 signal SrcBE: std_logic_vector(31 DOWNTO 0);
+
+signal RegWriteM: std_logic;
+signal MemtoRegM: std_logic;
+signal MemWriteM: std_logic;
+signal WriteDataM: std_logic_vector(31 DOWNTO 0);
+signal WriteRegM: std_logic_vector(4 DOWNTO 0);
 
 signal RegWriteW: std_logic;
 signal WriteRegW: std_logic_vector(4 DOWNTO 0);
@@ -325,7 +366,7 @@ begin
 
 	adderx: adder PORT MAP(a=>shift_out, b=>PCPlus4F, sum=>PCBranchD);
 
-	reg2x: reg2 PORT MAP(RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD,
+	reg2x: reg2 PORT MAP(ref_clk=>ref_clk, RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD,
 					MemWriteD=>MemWriteD, ALUControlD=>ALUControlD,
 					ALUSrcD=>ALUSrcD, RegDstD=>RegDstD, RD1=>RD1_out,
 					RD2=>RD2_out, RsD=>InstrD(25 DOWNTO 21), RtD=>InstrD(20 DOWNTO 16),
@@ -350,7 +391,18 @@ begin
 	ALUx: alu PORT MAP(Func_in=>ALUControlE, A_in=>SrcAE, B_in=>SrcBE, 
 					O_out=>ALU_out);
 
+	reg3x: reg3 PORT MAP(ref_clk=>ref_clk, RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
+					MemtoWriteE=>MemtoWriteE, alu_in=>ALU_out, WriteDataE=>WriteDataE,
+					WriteRegE=>RegWriteE, RegWriteM=>RegWriteM, MemtoRegM=>MemtoRegM, 
+					MemWriteM=>MemWriteM, alu_out=>ALUOutM, WriteDataM=>WriteDataM,
+					WriteRegM=>WriteRegM);
+
+	ramx: ram PORT MAP(ref_clk=>ref_clk, we=>MemWriteM, addr=>ALUOutM, 
+					dataI=>WriteDataM, dataO=>ram_data_out);
+
 	
+
+
 
 
 
