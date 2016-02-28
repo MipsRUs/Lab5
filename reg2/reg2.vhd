@@ -22,7 +22,7 @@ PORT (
 		RegWriteD:		IN std_logic;
 		MemtoRegD:		IN std_logic;
 		MemWriteD:		IN std_logic;
-		ALUControlD:	IN std_logic_vector(2 downto 0);
+		ALUControlD:	IN std_logic_vector(5 downto 0);
 		ALUSrcD: 		IN std_logic;
 		RegDstD:		IN std_logic;
 		RD1:			IN std_logic_vector(31 downto 0);

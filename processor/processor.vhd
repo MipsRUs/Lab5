@@ -48,6 +48,18 @@ component mux
 	);
 end component;
 
+-- mux4
+component mux4
+	port(   
+		in0: in std_logic_vector(31 downto 0);
+		in1: in std_logic_vector(31 downto 0);
+		in2: in std_logic_vector(31 downto 0);
+		in3: in std_logic_vector(31 downto 0);		
+		sel: in std_logic_vector(1 downto 0);
+		mux4out: out std_logic_vector(31 downto 0)
+	);
+end component;
+
 -- buffer_e
 component buffer_e
 	port (
@@ -89,10 +101,11 @@ end component;
 
 -- reg2 ************************ NOT IMPLEMENTED NEED TO LOOK AT THIS AGAIN
 component reg2
-	RegWriteD:		IN std_logic;
+	PORT(
+		RegWriteD:		IN std_logic;
 		MemtoRegD:		IN std_logic;
 		MemWriteD:		IN std_logic;
-		ALUControlD:	IN std_logic_vector(2 downto 0);
+		ALUControlD:	IN std_logic_vector(5 downto 0);
 		ALUSrcD: 		IN std_logic;
 		RegDstD:		IN std_logic;
 		RD1:			IN std_logic_vector(31 downto 0);
@@ -105,7 +118,7 @@ component reg2
 		RegWriteE:		OUT std_logic;
 		MemtoRegE:		OUT std_logic;
 		MemWriteE:		OUT std_logic;
-		ALUControlE:	OUT std_logic_vector(2 downto 0);
+		ALUControlE:	OUT std_logic_vector(5 downto 0);
 		ALUSrcE: 		OUT std_logic;
 		RegDstE:		OUT std_logic;
 		RD1toMux1:		OUT std_logic_vector(31 downto 0);
@@ -181,6 +194,19 @@ component equal_comparison
 	);
 end component;
 
+-- alu
+component alu
+	PORT (
+		Func_in : IN std_logic_vector (5 DOWNTO 0);
+		A_in : IN std_logic_vector (31 DOWNTO 0);
+		B_in : IN std_logic_vector (31 DOWNTO 0);
+		O_out : OUT std_logic_vector (31 DOWNTO 0)
+
+		-- ******************************************** COMMENTED OUT FOR NOW DON"T NOW IF IT NEEDS THIS
+		--Branch_out : OUT std_logic
+	);
+end component;
+
 
 -----------------------------------------------
 -------------- signals ------------------------
@@ -216,11 +242,12 @@ signal ForwardBD_mux_out: std_logic_vector(31 DOWNTO 0);
 signal RD1toMux1: std_logic_vector(31 DOWNTO 0);
 signal RD2toMux2: std_logic_vector(31 DOWNTO 0);
 
+signal ALU_out;
 
 signal RegWriteD: std_logic;
 signal MemtoRegD: std_logic;
 signal MemWriteD: std_logic;
-signal ALUControlD: std_logic_vector(2 DOWNTO 0);
+signal ALUControlD: std_logic_vector(5 DOWNTO 0);
 signal ALUSrcD: std_logic;
 signal RegDstD: std_logic;
 signal BranchD: std_logic;
@@ -228,7 +255,7 @@ signal BranchD: std_logic;
 signal RegWriteE: std_logic;
 signal MemtoRegE: std_logic;
 signal MemWriteE: std_logic;
-signal ALUControlE: std_logic_vector(2 DOWNTO 0);
+signal ALUControlE: std_logic_vector(5 DOWNTO 0);
 signal ALUSrcE: std_logic;
 signal RegDstE: std_logic;
 
@@ -237,8 +264,9 @@ signal RtE: std_logic_vector(20 DOWNTO 16);
 signal RdE: std_logic_vector(15 DOWNTO 11);
 signal SignImmE: std_logic_vector(15 DOWNTO 0);
 signal WriteRegE: std_logic_vector(4 DOWNTO 0);
-
-
+signal WriteDataE: std_logic_vector(31 DOWNTO 0);
+signal SrcAE: std_logic_vector(31 DOWNTO 0);
+signal SrcBE: std_logic_vector(31 DOWNTO 0);
 
 signal RegWriteW: std_logic;
 signal WriteRegW: std_logic_vector(4 DOWNTO 0);
@@ -247,9 +275,14 @@ signal ALUOutM: std_logic_vector(31 DOWNTO 0);
 
 signal ForwardAD: std_logic;
 signal ForwardBD: std_logic;
+signal ForwardAE: std_logic;
+signal ForwardBE: std_logic;
 signal StallF : std_logic;
 signal StallD : std_logic;
 signal FlushE: std_logic;
+
+
+signal emptyWire: std_logic_vector(31 DOWNTO 0);
 
 ------------------- begin --------------------- 
 begin
@@ -304,14 +337,26 @@ begin
 					SignImmE=>SignImmE);
 
 	RegDstEmuxx: mux PORT MAP(in0=>RtE, in1=>RdE, sel=>RegDstE, outb=>WriteRegE);
-		
+	
+	ForwardAEmuxx: mux4 PORT MAP(in0=>RD1toMux1, in1=>ResultW, in2=>ALUOutM, 
+					in3=>emptyWire, sel=>ForwardAE, mux4out=>SrcAE);	
+
+	ForwardBEmuxx: mux4 PORT MAP(in0=>RD2toMux2, in1=>ResultW, in2=>ALUOutM, 
+					in3=>emptyWire, sel=>ForwardBE, mux4out=>WriteDataE);
+
+	ALUSrcEmuxx: mux PORT MAP(in0=>WriteDataE, in1=>SignImmE, sel=>ALUSrcE, 
+					outb=>SrcBE);
+
+	ALUx: alu PORT MAP(Func_in=>ALUControlE, A_in=>SrcAE, B_in=>SrcBE, 
+					O_out=>ALU_out);
+
+	
 
 
 
 
 
 
-
-
+	outb <= ALU_out
 
 end behavior;
