@@ -213,13 +213,31 @@ signal EqualD: std_logic;
 signal ForwardAD_mux_out : std_logic_vector(31 DOWNTO 0);
 signal ForwardBD_mux_out: std_logic_vector(31 DOWNTO 0);
 
+signal RD1toMux1: std_logic_vector(31 DOWNTO 0);
+signal RD2toMux2: std_logic_vector(31 DOWNTO 0);
+
+
 signal RegWriteD: std_logic;
 signal MemtoRegD: std_logic;
 signal MemWriteD: std_logic;
-signal ALUControlD: std_logic;
+signal ALUControlD: std_logic_vector(2 DOWNTO 0);
 signal ALUSrcD: std_logic;
 signal RegDstD: std_logic;
 signal BranchD: std_logic;
+
+signal RegWriteE: std_logic;
+signal MemtoRegE: std_logic;
+signal MemWriteE: std_logic;
+signal ALUControlE: std_logic_vector(2 DOWNTO 0);
+signal ALUSrcE: std_logic;
+signal RegDstE: std_logic;
+
+signal RsE: std_logic_vector(25 DOWNTO 21);
+signal RtE: std_logic_vector(20 DOWNTO 16);
+signal RdE: std_logic_vector(15 DOWNTO 11);
+signal SignImmE: std_logic_vector(15 DOWNTO 0);
+signal WriteRegE: std_logic_vector(4 DOWNTO 0);
+
 
 
 signal RegWriteW: std_logic;
@@ -231,7 +249,7 @@ signal ForwardAD: std_logic;
 signal ForwardBD: std_logic;
 signal StallF : std_logic;
 signal StallD : std_logic;
-
+signal FlushE: std_logic;
 
 ------------------- begin --------------------- 
 begin
@@ -244,7 +262,7 @@ begin
 
 	PCadderx: adder PORT MAP(a=>PCF, b=>adder_value_4, sum=>PCPlus4F);
 
-	Reg1x: reg1 PORT MAP(ref_clk=>ref_clk, DataI=>IR_out, en=>stallD, clr=>PCSrcD,
+	reg1x: reg1 PORT MAP(ref_clk=>ref_clk, DataI=>IR_out, en=>stallD, clr=>PCSrcD,
 					DataO=>InstrD);
 
 	controlx: control PORT MAP(Op=>InstrD(31 DOWNTO 26), Funct=>InstrD(31 DOWNTO 0),
@@ -273,5 +291,27 @@ begin
 					outb=>ForwardBD_mux_out);
 
 	adderx: adder PORT MAP(a=>shift_out, b=>PCPlus4F, sum=>PCBranchD);
+
+	reg2x: reg2 PORT MAP(RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD,
+					MemWriteD=>MemWriteD, ALUControlD=>ALUControlD,
+					ALUSrcD=>ALUSrcD, RegDstD=>RegDstD, RD1=>RD1_out,
+					RD2=>RD2_out, RsD=>InstrD(25 DOWNTO 21), RtD=>InstrD(20 DOWNTO 16),
+					RdD=>InstrD(15 DOWNTO 11), SignImmD=>InstrD(15 DOWNTO 0),
+					FlushE=>FlushE, RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
+					MemWriteE=>MemWriteE, ALUControlE=>ALUControlE,
+					ALUSrcE=>ALUSrcE, RegDstE=>RegDstE, RD1toMux1=>RD1toMux1,
+					RD2toMux2=>RD2toMux2, RsE=>RsE, RtE=>RtE, RdE=>RdE,
+					SignImmE=>SignImmE);
+
+	RegDstEmuxx: mux PORT MAP(in0=>RtE, in1=>RdE, sel=>RegDstE, outb=>WriteRegE);
+		
+
+
+
+
+
+
+
+
 
 end behavior;
