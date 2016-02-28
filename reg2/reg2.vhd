@@ -22,7 +22,7 @@ PORT (
 		RegWriteD:		IN std_logic;
 		MemtoRegD:		IN std_logic;
 		MemWriteD:		IN std_logic;
-		ALUControlD:	IN std_logic;
+		ALUControlD:	IN std_logic_vector(2 downto 0);
 		ALUSrcD: 		IN std_logic;
 		RegDstD:		IN std_logic;
 		RD1:			IN std_logic_vector(31 downto 0);
@@ -35,9 +35,9 @@ PORT (
 		RegWriteE:		OUT std_logic;
 		MemtoRegE:		OUT std_logic;
 		MemWriteE:		OUT std_logic;
-		ALUControlE:	OUT std_logic;
+		ALUControlE:	OUT std_logic_vector(2 downto 0);
 		ALUSrcE: 		OUT std_logic;
-		RegDstD:		OUT std_logic;
+		RegDstE:		OUT std_logic;
 		RD1toMux1:		OUT std_logic_vector(31 downto 0);
 		RD2toMux2:		OUT std_logic_vector(31 downto 0);
 		RsE:			OUT std_logic_vector(25 downto 21);
