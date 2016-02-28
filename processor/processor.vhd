@@ -151,6 +151,24 @@ component reg3
 	);
 end component;
 
+-- reg4 ************************ NOT IMPLEMENTED NEED TO LOOK AT THIS AGAIN
+component reg4
+	PORT (
+		ref_clk : 		IN std_logic;
+		RegWriteM : 	IN std_logic;
+		MemtoRegM : 	IN std_logic;
+		MemWriteM : 	IN std_logic;
+		rd_in:			IN std_logic_vector(31 DOWNTO 0);
+		alu_in:			IN std_logic_vector(31 DOWNTO 0);
+		WriteRegM:		IN std_logic_vector(4 DOWNTO 0);
+
+		RegWriteW : 	OUT std_logic;
+		MemtoRegW : 	OUT std_logic;
+		rd_out:			OUT std_logic_vector(31 DOWNTO 0);				
+		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
+		WriteRegW:		OUT std_logic_vector(4 DOWNTO 0)				
+    );
+end component;
 
 -- control ************************ NOT IMPLEMENTED NEED TO LOOK AT THIS AGAIN
 component control
@@ -240,6 +258,28 @@ component ram
 	);
 end component;
 
+-- hazard_unit ************************ NOT IMPLEMENTED NEED TO LOOK AT THIS AGAIN
+component hazard_unit
+	PORT(
+		BranchD : IN std_logic;
+		RsD: IN std_logic_vector (4 DOWNTO 0);
+		RtD: IN std_logic_vector (4 DOWNTO 0);
+		RsE: IN std_logic_vector (4 DOWNTO 0);
+		RtE: IN std_logic_vector (4 DOWNTO 0);
+		WriteRegE: IN std_logic_vector (4 DOWNTO 0);
+		MemtoRegE: IN std_logic;
+		RegWriteE: IN std_logic;
+		RegWriteM: IN std_logic;
+		RegWriteW: IN std_logic;
+		StallF: OUT std_logic;
+		StallD: OUT std_logic;
+		ForwardAD: OUT std_logic;
+		ForwardBD: OUT std_logic;
+		FlushE: OUT std_logic;
+		ForwardAE: OUT std_logic;
+		ForwardBE: OUT std_logic
+	);
+end component;
 
 -----------------------------------------------
 -------------- signals ------------------------
@@ -310,6 +350,9 @@ signal WriteDataM: std_logic_vector(31 DOWNTO 0);
 signal WriteRegM: std_logic_vector(4 DOWNTO 0);
 
 signal RegWriteW: std_logic;
+signal MemtoRegW: std_logic;
+signal ReadDataW: std_logic_vector(31 DOWNTO 0);
+signal ALUOutW: std_logic_vector(31 DOWNTO 0);
 signal WriteRegW: std_logic_vector(4 DOWNTO 0);
 
 signal ALUOutM: std_logic_vector(31 DOWNTO 0);
@@ -400,14 +443,20 @@ begin
 	ramx: ram PORT MAP(ref_clk=>ref_clk, we=>MemWriteM, addr=>ALUOutM, 
 					dataI=>WriteDataM, dataO=>ram_data_out);
 
-	
+	reg4x: reg4 PORT MAP(ref_clk=>ref_clk, RegWriteM=>RegWriteM, MemtoRegM=>MemtoRegM,
+					MemWriteM=>MemWriteM, rd_in=>ram_data_out, alu_in=>ALUOutM,
+					WriteRegM=>WriteRegM, RegWriteW=>RegWriteW, MemtoRegW=>MemtoRegW, 	
+					rd_out=>ReadDataW, alu_out=>ALUOutW, WriteRegW=>WriteRegW);
 
+	MemtoRegWmuxx: mux PORT MAP(in0=>ALUOutW, in1=>ReadDataW, sel=>MemtoRegW, 
+					outb=>ResultW);
 
-
-
-
-
-
+	HazardUnitx: hazard_unit PORT MAP(BranchD=>BranchD, RsD=>RsD, RtD=>RtD,
+					RsE=>RsE, RtE=>RtE, WriteRegE=>WriteRegE, MemtoRegE=>MemtoRegE, 
+					RegWriteE=>RegWriteE, RegWriteM=>RegWriteM, RegWriteW=>RegWriteW, 
+					StallF=>StallF, StallD=>StallD, ForwardAD=>ForwardAD, 
+					ForwardBD=>ForwardBD, FlushE=>FlushE, ForwardAE=>ForwardAE, 
+					ForwardBE=>ForwardBE);
 
 	outb <= ALU_out
 

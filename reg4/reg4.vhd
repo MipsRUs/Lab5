@@ -23,18 +23,19 @@ use ieee.numeric_std.all;
 
 ENTITY reg4 IS
 PORT (
-                ref_clk : 		IN std_logic;
-                RegWriteM : 	IN std_logic;
-                MemtoRegM : 	IN std_logic;
-				rd_in:			IN std_logic_vector(31 DOWNTO 0);
-                alu_in:			IN std_logic_vector(31 DOWNTO 0);
-                WriteRegM:		IN std_logic_vector(4 DOWNTO 0);
-                
-                RegWriteW : 	OUT std_logic;
-                MemtoRegW : 	OUT std_logic;
-				rd_out:			OUT std_logic_vector(31 DOWNTO 0);				
-                alu_out:		OUT std_logic_vector(31 DOWNTO 0);
-                WriteRegW:		OUT std_logic_vector(4 DOWNTO 0);				
+		ref_clk : 		IN std_logic;
+		RegWriteM : 	IN std_logic;
+		MemtoRegM : 	IN std_logic;
+		MemWriteM : 	IN std_logic;
+		rd_in:			IN std_logic_vector(31 DOWNTO 0);
+		alu_in:			IN std_logic_vector(31 DOWNTO 0);
+		WriteRegM:		IN std_logic_vector(4 DOWNTO 0);
+
+		RegWriteW : 	OUT std_logic;
+		MemtoRegW : 	OUT std_logic;
+		rd_out:			OUT std_logic_vector(31 DOWNTO 0);				
+		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
+		WriteRegW:		OUT std_logic_vector(4 DOWNTO 0)				
         );
 end reg4;
 architecture behavior of reg4 is
