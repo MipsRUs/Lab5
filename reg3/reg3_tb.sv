@@ -23,31 +23,31 @@ module reg3_tb;
 	logic ref_clk;
 	logic RegWriteE;
 	logic MemtoRegE;
-	logic MemtoWriteE;
+	logic MemWriteE;
 	logic[31:0] alu_in;
 	logic[31:0] WriteDataE;
-	logic[31:0] WriteRegE;
+	logic[4:0] WriteRegE;
 
 	logic RegWriteM;
 	logic MemtoRegM;
 	logic MemtoWriteM;
 	logic[31:0] alu_out;
 	logic[31:0] WriteDataM;
-	logic[31:0] WriteRegM;
+	logic[4:0] WriteRegM;
   
 reg3 L1(
           .ref_clk(ref_clk)
          ,.RegWriteE(RegWriteE)
          ,.MemtoRegE(MemtoRegE)
-		 ,.MemtoWriteE(MemtoWriteE)
-		 ,.alu_in(alu_in)
+	 ,.MemWriteE(MemWriteE)
+	 ,.alu_in(alu_in)
          ,.WriteDataE(WriteDataE)
          ,.WriteRegE(WriteRegE)
 		 
-		 ,.RegWriteM(RegWriteM)
+	 ,.RegWriteM(RegWriteM)
          ,.MemtoRegM(MemtoRegM)
-		 ,.MemtoWriteM(MemtoWriteM)
-		 ,.alu_out(alu_out)
+	 ,.MemWriteM(MemWriteM)
+	 ,.alu_out(alu_out)
          ,.WriteDataM(WriteDataM)
          ,.WriteRegM(WriteRegM)		 
          );
@@ -58,44 +58,44 @@ initial begin
 	ref_clk = 1;
 	RegWriteE = 0;
 	MemtoRegE = 0;
-	MemtoWriteE = 0;
+	MemWriteE = 0;
  	alu_in = 		32'b00000000000000000000000000000000;
  	WriteDataE = 	32'b00000000000000000000000000000000;
- 	WriteRegE = 	32'b00000000000000000000000000000000;
+ 	WriteRegE = 	5'b00000;
 	
 
  	#2
 	RegWriteE = 1;
 	MemtoRegE = 0;
-	MemtoWriteE = 0;
+	MemWriteE = 0;
  	alu_in = 		32'b00000000000000000000000000000001;
  	WriteDataE = 	32'b00000000000000000000000000000010;
- 	WriteRegE = 	32'b00000000000000000000000000000011;
+ 	WriteRegE = 	5'b00011;
 	
  	#2 
 	RegWriteE = 1;
 	MemtoRegE = 1;
-	MemtoWriteE = 0;
+	MemWriteE = 0;
  	alu_in = 		32'b00000000000000000000000000000110;
  	WriteDataE = 	32'b00000000000000000000000000001100;
- 	WriteRegE = 	32'b00000000000000000000000000000110;
+ 	WriteRegE = 	5'b00110;
 
  	#2 
 	ref_clk = 0;
 	RegWriteE = 0;
 	MemtoRegE = 1;
-	MemtoWriteE = 0;
+	MemWriteE = 0;
  	alu_in = 		32'b00000000000000000000000000001000;
  	WriteDataE = 	32'b00000000000000000000000000000001;
- 	WriteRegE = 	32'b00000000000000000000000000000100;
+ 	WriteRegE = 	5'b00100;
 	
 	#2
 	RegWriteE = 0;
 	MemtoRegE = 0;
-	MemtoWriteE = 1;
+	MemWriteE = 1;
  	alu_in = 		32'b00000000000000000000000000000001;
  	WriteDataE = 	32'b00000000000000000000000000000001;
- 	WriteRegE = 	32'b00000000000000000000000000000001;
+ 	WriteRegE = 	5'b00001;
 
 	$finish;
 

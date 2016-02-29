@@ -39,17 +39,17 @@ PORT (
 end reg4;
 architecture behavior of reg4 is
 begin
-	process(ref_clk, RegWriteM, MemtoRegM, MemWriteM, rd_in, alu_in, WriteRegM)
-	variable temp_RegWriteM : 	IN std_logic;
-	variable temp_MemtoRegM : 	IN std_logic;
-	variable temp_rd_in:			IN std_logic_vector(31 DOWNTO 0);
-	variable temp_alu_in:			IN std_logic_vector(31 DOWNTO 0);
-	variable temp_WriteRegM:		IN std_logic_vector(4 DOWNTO 0);
+	process(ref_clk, RegWriteM, MemtoRegM, rd_in, alu_in, WriteRegM)
+	variable temp_RegWriteM : 	std_logic;
+	variable temp_MemtoRegM : 	std_logic;
+	variable temp_rd_in:			std_logic_vector(31 DOWNTO 0);
+	variable temp_alu_in:			std_logic_vector(31 DOWNTO 0);
+	variable temp_WriteRegM:		std_logic_vector(4 DOWNTO 0);
 	begin
 
 		if(ref_clk'event AND ref_clk='0') then 
-			temp_RegWriteM := std_logic(unsigned(RegWriteM));
-			temp_MemtoRegM := std_logic(unsigned(MemtoRegM));
+			temp_RegWriteM := RegWriteM;
+			temp_MemtoRegM := MemtoRegM;
 			temp_rd_in := std_logic_vector(unsigned(rd_in));
 			temp_alu_in := std_logic_vector(unsigned(alu_in));
 			temp_WriteRegM := std_logic_vector(unsigned(WriteRegM));

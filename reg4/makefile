@@ -17,9 +17,9 @@
 
 
 # change these parameters 
-PROJECT = reg1
-TB_TOP = reg1_tb
-TB_TOP_OPT = reg1_tb_opt
+PROJECT = reg4
+TB_TOP = reg4_tb
+TB_TOP_OPT = reg4_tb_opt
 
 
 all: $(PROJECT)
