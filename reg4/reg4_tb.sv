@@ -10,7 +10,7 @@
 //		Linda Vang (ID# 71434490)
 //
 // Description:
-//		This is test bench for reg1
+//		This is test bench for reg4
 //
 // History:
 //		Date		Update Description		Developer
@@ -18,7 +18,7 @@
 //	2/28/2016		Created					TH, NS, LV, SC
 //
 /***************************************************************/
-module reg3_tb;
+module reg4_tb;
 
 	logic ref_clk;
 	logic RegWriteM;
@@ -33,7 +33,7 @@ module reg3_tb;
 	logic[31:0] alu_out;
 	logic[4:0] WriteRegW;
   
-reg3 L1(
+reg4 L1(
 		  .ref_clk(ref_clk)
          ,.RegWriteM(RegWriteM)
          ,.MemtoRegM(MemtoRegM)
