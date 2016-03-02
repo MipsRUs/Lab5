@@ -522,7 +522,7 @@ begin
 					O_out=>ALU_out);
 
 	reg3x: reg3 PORT MAP(ref_clk=>ref_clk, RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
-					MemtoWriteE=>MemtoWriteE, alu_in=>ALU_out, WriteDataE=>WriteDataE,
+					MemWriteE=>MemWriteE, alu_in=>ALU_out, WriteDataE=>WriteDataE,
 					WriteRegE=>WriteRegE, RegWriteM=>RegWriteM, MemtoRegM=>MemtoRegM, 
 					MemWriteM=>MemWriteM, alu_out=>ALUOutM, WriteDataM=>WriteDataM,
 					WriteRegM=>WriteRegM);
