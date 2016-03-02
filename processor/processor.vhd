@@ -126,7 +126,7 @@ component reg2
 		RsD:			IN std_logic_vector(25 downto 21);
 		RtD:			IN std_logic_vector(20 downto 16);
 		RdD:			IN std_logic_vector(15 downto 11);
-		SignImmD:		IN std_logic_vector(15 downto 0);
+		SignImmD:		IN std_logic_vector(31 downto 0);
 		clr:			IN std_logic;
 		RegWriteE:		OUT std_logic;
 		MemtoRegE:		OUT std_logic;
