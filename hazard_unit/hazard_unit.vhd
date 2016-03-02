@@ -98,9 +98,9 @@ begin
 --lw stall
 	--lwstall = ((RsD == RtE) OR (RtD == RtE) AND MemtoRegE);
 	if(((RsD = RtE) OR (RtD = RtE)) AND (MemtoRegE='1')) then
-		lwstall <= '1';
+		lwstall := '1';
 	else 
-		lwstall <= '0';
+		lwstall := '0';
 	end if;
 
 --branch stall
