@@ -46,8 +46,8 @@ PORT(
 		-- '0' if not writing to mem, '1' if writing to mem
 		MemWriteD:		OUT std_logic;
 		
-		--
-		ALUControlD:	OUT std_logic;
+		--func for ALU
+		ALUControlD:	OUT std_logic_vector(5 DOWNTO 0);
 		
 		--selecting sign extend of raddr2
 		-- '0' if raddr2 result , '1' if sign extend result
@@ -57,7 +57,7 @@ PORT(
 		-- '0' if rtE, '1' if rdE
 		RegDstD:		OUT std_logic;
 		
-		--
+		-- '1' if branching, '0' if not branching
 		BranchD:		OUT std_logic
 		
 	);
