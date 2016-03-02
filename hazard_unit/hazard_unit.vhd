@@ -87,7 +87,7 @@ begin
 		ForwardAD <= '0';
 	end if;
 
-	if ((RtD /= "00000") AND (RtD = WriteRegM) AND (RegWriteM='1'))
+	if ((RtD /= "00000") AND (RtD = WriteRegM) AND (RegWriteM='1')) then
 		ForwardBD <= '1';
 	else 
 		ForwardBD <= '0';
@@ -107,9 +107,9 @@ begin
 	--branchstall = (BranchD AND RegWriteE AND (WriteRegE == RsD OR WriteRegE == RtD)) OR (BranchD AND MemtoRegM AND (WriteRegM == RsD OR WriteRegM == RtD));
 	if(((BranchD='1') AND (RegWriteE='1') AND ((WriteRegE = RsD) OR (WriteRegE = RtD))) OR 
 		((BranchD='1') AND (MemtoRegM='1') AND ((WriteRegM = RsD) OR (WriteRegM = RtD)))) then
-		branchstall <= '1';
+		branchstall := '1';
 	else 
-		branchstall <= '0';
+		branchstall := '0';
 	end if;
 
 --setting outputs
