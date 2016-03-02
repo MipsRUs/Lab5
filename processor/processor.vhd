@@ -169,7 +169,6 @@ component reg4
 		ref_clk : 		IN std_logic;
 		RegWriteM : 	IN std_logic;
 		MemtoRegM : 	IN std_logic;
-		MemWriteM : 	IN std_logic;
 		rd_in:			IN std_logic_vector(31 DOWNTO 0);
 		alu_in:			IN std_logic_vector(31 DOWNTO 0);
 		WriteRegM:		IN std_logic_vector(4 DOWNTO 0);
@@ -531,7 +530,7 @@ begin
 					dataI=>WriteDataM, dataO=>ram_data_out);
 
 	reg4x: reg4 PORT MAP(ref_clk=>ref_clk, RegWriteM=>RegWriteM, MemtoRegM=>MemtoRegM,
-					MemWriteM=>MemWriteM, rd_in=>ram_data_out, alu_in=>ALUOutM,
+					rd_in=>ram_data_out, alu_in=>ALUOutM,
 					WriteRegM=>WriteRegM, RegWriteW=>RegWriteW, MemtoRegW=>MemtoRegW, 	
 					rd_out=>ReadDataW, alu_out=>ALUOutW, WriteRegW=>WriteRegW);
 
