@@ -23,7 +23,7 @@ module processor_tb;
 
   logic ref_clk;
   logic reset;
-  logic out_b;
+  logic[31:0] out_b;
   
 processor L1(
           .ref_clk(ref_clk)
