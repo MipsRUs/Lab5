@@ -1,4 +1,4 @@
--------------------------------------------------------------------
+=-------------------------------------------------------------------
 -- Copyright MIPS_R_US 2016 - All Rights Reserved 
 --
 -- File: reg2.vhd
@@ -58,7 +58,7 @@ begin
 		variable MemWriteD_tmp:		std_logic := '0';
 		variable ALUControlD_tmp:	std_logic_vector(5 downto 0) := "000000";
 		variable ALUSrcD_tmp: 		std_logic := '0';
-		variable RegDstD_tmp:		std_logic : '0';
+		variable RegDstD_tmp:		std_logic := '0';
 		variable RD1_tmp:		std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
 		variable RD2_tmp:		std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
 		variable RsD_tmp:		std_logic_vector(25 downto 21) := "00000";
