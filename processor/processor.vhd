@@ -459,7 +459,7 @@ begin
 	reg1x: reg1 PORT MAP(ref_clk=>ref_clk, RD=>IR_out, PCPlus4F=>PCPlus4F, 
 					en=>stallD, clr=>PCSrcD, InstrD=>InstrD, PCPlus4D=>PCPlus4D);
 
-	controlx: control PORT MAP(instruction=>InstrD, Op=>InstrD(31 DOWNTO 26), Funct=>InstrD(31 DOWNTO 0),
+	controlx: control PORT MAP(instruction=>InstrD, Op=>InstrD(31 DOWNTO 26), Funct=>InstrD(5 DOWNTO 0),
 					RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD, MemWriteD=>MemWriteD,
 					ALUControlD=>ALUControlD, ALUSrcD=>ALUSrcD, RegDstD=>RegDstD,
 					BranchD=>BranchD);
