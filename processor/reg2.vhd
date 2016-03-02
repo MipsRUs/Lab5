@@ -53,18 +53,18 @@ end reg2;
 architecture behavior of reg2 is
 begin
 	process(ref_clk, RegWriteD, MemtoRegD, MemWriteD, ALUControlD, ALUSrcD, RegDstD, RD1, RD2, RsD, RtD, RdD, SignImmD, clr)
-		variable RegWriteD_tmp:		std_logic;
-		variable MemtoRegD_tmp:		std_logic;
-		variable MemWriteD_tmp:		std_logic;
-		variable ALUControlD_tmp:	std_logic_vector(5 downto 0);
-		variable ALUSrcD_tmp: 		std_logic;
-		variable RegDstD_tmp:		std_logic;
-		variable RD1_tmp:		std_logic_vector(31 downto 0);
-		variable RD2_tmp:		std_logic_vector(31 downto 0);
-		variable RsD_tmp:		std_logic_vector(25 downto 21);
-		variable RtD_tmp:		std_logic_vector(20 downto 16);
-		variable RdD_tmp:		std_logic_vector(15 downto 11);
-		variable SignImmD_tmp:		std_logic_vector(31 downto 0);
+		variable RegWriteD_tmp:		std_logic := '0';
+		variable MemtoRegD_tmp:		std_logic := '0';
+		variable MemWriteD_tmp:		std_logic := '0';
+		variable ALUControlD_tmp:	std_logic_vector(5 downto 0) := "000000";
+		variable ALUSrcD_tmp: 		std_logic := '0';
+		variable RegDstD_tmp:		std_logic : '0';
+		variable RD1_tmp:		std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
+		variable RD2_tmp:		std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
+		variable RsD_tmp:		std_logic_vector(25 downto 21) := "00000";
+		variable RtD_tmp:		std_logic_vector(20 downto 16) := "00000";
+		variable RdD_tmp:		std_logic_vector(15 downto 11) := "00000";
+		variable SignImmD_tmp:		std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
 	begin
 		if rising_edge(ref_clk) then
 			if(clr = '1') then

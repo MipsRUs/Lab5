@@ -35,8 +35,8 @@ end reg1;
 architecture behavior of reg1 is
 begin
 	process(ref_clk, RD, PCPlus4F, en)
-		variable tmpA : std_logic_vector(31 DOWNTO 0);
-		variable tmpB : std_logic_vector(31 DOWNTO 0);
+		variable tmpA : std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
+		variable tmpB : std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
 		
 	begin
 		if(ref_clk'event AND ref_clk='0') then
