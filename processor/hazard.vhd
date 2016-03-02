@@ -66,6 +66,9 @@ begin
 	else
 		ForwardBE = 00;
 	
+--ForwardAD and BD
+	ForwardAD = (RsD != 0) AND (RsD = WriteRegM) AND RegWriteM;
 	
+	ForwardBD = (RtD != 0) AND (RtD = WriteRegM) AND RegWriteM;
 	
 end behavior;
