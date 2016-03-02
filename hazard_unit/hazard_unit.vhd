@@ -62,7 +62,7 @@ begin
 --ForwardAE
 	if ((RsE /= "00000") AND (RsE = WriteRegM) AND (RegWriteM='1')) then
 		ForwardAE <= "10";
-	else if ((RsE /= "00000") AND (RsE = WriteRegW) AND (RegWriteW='1')) then
+	elsif ((RsE /= "00000") AND (RsE = WriteRegW) AND (RegWriteW='1')) then
 		ForwardAE <= "01";
 	else
 		ForwardAE <= "00";
@@ -71,7 +71,7 @@ begin
 --ForwardBE
 	if ((RtE /= "00000") AND (RtE = WriteRegM) AND (RegWriteM='1')) then
 		ForwardBE <= "10";
-	else if ((RtE /= "00000") AND (RtE = WriteRegW) AND (RegWriteW='1')) then
+	elsif ((RtE /= "00000") AND (RtE = WriteRegW) AND (RegWriteW='1')) then
 		ForwardBE <= "01";
 	else
 		ForwardBE <= "00";
@@ -122,7 +122,6 @@ begin
 		StallF <= '0';
 		StallD <= '0';
 		FlushE <= '0';
-
 	end if;
 
 	end process;
