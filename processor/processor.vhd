@@ -423,7 +423,7 @@ signal RegDstE: std_logic;
 signal RsE: std_logic_vector(25 DOWNTO 21);
 signal RtE: std_logic_vector(20 DOWNTO 16);
 signal RdE: std_logic_vector(15 DOWNTO 11);
-signal SignImmE: std_logic_vector(15 DOWNTO 0);
+signal SignImmE: std_logic_vector(31 DOWNTO 0);
 signal WriteRegE: std_logic_vector(4 DOWNTO 0);
 signal WriteDataE: std_logic_vector(31 DOWNTO 0);
 signal MemtoWriteE: std_logic;
