@@ -48,26 +48,30 @@ begin
 	regfile_write: process(ref_clk)
 	begin
 
-		-- write at falling edge
-		if(ref_clk'event AND ref_clk='0') then
+		-- write at rising edge
+		if(ref_clk'event AND ref_clk='1') then
 			if(we='1') then
 				mem_var(to_integer(unsigned(waddr))) <= wdata;
 			end if;
 		end if;
 	end process;
 
-	regfile_read: process(raddr_1, raddr_2) 
+	regfile_read: process(ref_clk,raddr_1, raddr_2) 
 	begin
-		if(to_integer(unsigned(raddr_1))=0) then
-			rdata_1 <= (others => '0');
-		else 
-			rdata_1 <= mem_var(to_integer(unsigned(raddr_1)));
-		end if;
 
-		if(to_integer(unsigned(raddr_2))=0) then 
-			rdata_2 <= (others => '0');
-		else 	
-			rdata_2 <= mem_var(to_integer(unsigned(raddr_2)));
+		-- read at falling edge
+		if (ref_clk'event AND ref_clk='0') then 
+			if(to_integer(unsigned(raddr_1))=0) then
+				rdata_1 <= (others => '0');
+			else 
+				rdata_1 <= mem_var(to_integer(unsigned(raddr_1)));
+			end if;
+
+			if(to_integer(unsigned(raddr_2))=0) then 
+				rdata_2 <= (others => '0');
+			else 	
+				rdata_2 <= mem_var(to_integer(unsigned(raddr_2)));
+			end if;
 		end if;
 	end process;
 
