@@ -64,7 +64,7 @@ begin
 		variable RsD_tmp:		std_logic_vector(25 downto 21);
 		variable RtD_tmp:		std_logic_vector(20 downto 16);
 		variable RdD_tmp:		std_logic_vector(15 downto 11);
-		variable SignImmD_tmp:		std_logic_vector(15 downto 0);
+		variable SignImmD_tmp:		std_logic_vector(31 downto 0);
 	begin
 		if rising_edge(ref_clk) then
 			if(clr = '1') then
