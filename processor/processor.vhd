@@ -276,8 +276,8 @@ component hazard_unit
 		ForwardAD: OUT std_logic;
 		ForwardBD: OUT std_logic;
 		FlushE: OUT std_logic;
-		ForwardAE: OUT std_logic;
-		ForwardBE: OUT std_logic
+		ForwardAE: OUT std_logic_vector (1 DOWNTO 0);
+		ForwardBE: OUT std_logic_vector (1 DOWNTO 0)
 	);
 end component;
 
@@ -359,8 +359,8 @@ signal ALUOutM: std_logic_vector(31 DOWNTO 0);
 
 signal ForwardAD: std_logic;
 signal ForwardBD: std_logic;
-signal ForwardAE: std_logic;
-signal ForwardBE: std_logic;
+signal ForwardAE: std_logic_vector(1 DOWNTO 0);
+signal ForwardBE: std_logic_vector(1 DOWNTO 0);
 signal StallF : std_logic;
 signal StallD : std_logic;
 signal FlushE: std_logic;
