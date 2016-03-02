@@ -51,9 +51,13 @@ architecture behavior of hazard_unit is
 
 begin
 
+	funct: process(BranchD, RsD, RtD, RsE, RtE, WriteRegE, WriteRegM, WriteRegW,
+			MemtoRegE, RegWriteEm, RegWriteM, RegWriteW)
+
 	variable lwstall : std_logic;
 	variable branchstall : std_logic;
 	
+	begin
 
 --ForwardAE
 	if ((RsE /= '0') AND (RsE = WriteRegM) AND (RegWriteM='1')) then
@@ -120,5 +124,7 @@ begin
 		FlushE <= '0';
 
 	end if;
+
+	end process;
 	
 end behavior;
