@@ -87,7 +87,7 @@ begin
 		ForwardAD <= '0';
 	end if;
 
-	if ((RtD /= "00000") AND (RtD = WriteRegM) AND (RegWriteM='1'));
+	if ((RtD /= "00000") AND (RtD = WriteRegM) AND (RegWriteM='1'))
 		ForwardBD <= '1';
 	else 
 		ForwardBD <= '0';
@@ -97,7 +97,7 @@ begin
 	-- SC 2016-03-01: commneted out
 --lw stall
 	--lwstall = ((RsD == RtE) OR (RtD == RtE) AND MemtoRegE);
-	if((RsD = RtE) OR (RtD = RtE) AND (MemtoRegE='1')) then
+	if(((RsD = RtE) OR (RtD = RtE)) AND (MemtoRegE='1')) then
 		lwstall <= '1';
 	else 
 		lwstall <= '0';
