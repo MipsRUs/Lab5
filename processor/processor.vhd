@@ -92,10 +92,12 @@ end component;
 component reg1
 	PORT (
 		ref_clk : IN std_logic;
-		DataI : IN std_logic_vector(31 DOWNTO 0);
+		RD : IN std_logic_vector(31 DOWNTO 0);
+		PCPlus4F: IN std_logic_vector(31 DOWNTO 0);
 		en:	  	  IN std_logic; --enable from stallD
 		clr:	  IN std_logic; -- clear enable from PCSrc
-		DataO : OUT std_logic_vector(31 DOWNTO 0)	
+		InstrD : OUT std_logic_vector(31 DOWNTO 0);
+		PCPlus4D : OUT std_logic_vector(31 DOWNTO 0)	
 	);
 end component;
 
@@ -287,6 +289,7 @@ end component;
 
 signal PCSrcD : std_logic;
 signal PCPlus4F : std_logic_vector(31 DOWNTO 0);
+signal PCPlus4D : std_logic_vector(31 DOWNTO 0);
 signal PCBranchD : std_logic_vector(31 DOWNTO 0);
 signal PC_in : std_logic_vector(31 DOWNTO 0);
 
@@ -379,8 +382,8 @@ begin
 
 	PCadderx: adder PORT MAP(a=>PCF, b=>adder_value_4, sum=>PCPlus4F);
 
-	reg1x: reg1 PORT MAP(ref_clk=>ref_clk, DataI=>IR_out, en=>stallD, clr=>PCSrcD,
-					DataO=>InstrD);
+	reg1x: reg1 PORT MAP(ref_clk=>ref_clk, RD=>IR_out, PCPlus4F=>PCPlus4F, 
+					en=>stallD, clr=>PCSrcD, InstrD=>InstrD, PCPlus4D=>PCPlus4D);
 
 	controlx: control PORT MAP(Op=>InstrD(31 DOWNTO 26), Funct=>InstrD(31 DOWNTO 0),
 					RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD, MemWriteD=>MemWriteD,
@@ -407,7 +410,7 @@ begin
 	ForwardBD_muxx: mux PORT MAP(in0=>RD2_out, in1=>ALUOutM, sel=>ForwardBD, 
 					outb=>ForwardBD_mux_out);
 
-	adderx: adder PORT MAP(a=>shift_out, b=>PCPlus4F, sum=>PCBranchD);
+	adderx: adder PORT MAP(a=>shift_out, b=>PCPlus4D, sum=>PCBranchD);
 
 	reg2x: reg2 PORT MAP(ref_clk=>ref_clk, RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD,
 					MemWriteD=>MemWriteD, ALUControlD=>ALUControlD,
