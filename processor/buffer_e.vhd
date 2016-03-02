@@ -36,7 +36,7 @@ architecture behavior of buffer_e is
 
 begin
 	process(ref_clk, WE, DataI)
-	variable temp : std_logic_vector(31 DOWNTO 0);
+	variable temp : std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
 	begin
 
 		-- SC 2016-02-20: Changed ref_clk='1' to ref_clk='0'
