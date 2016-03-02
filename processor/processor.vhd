@@ -60,6 +60,16 @@ component mux4
 	);
 end component;
 
+-- mux_5bit
+component mux_5bit
+	port( 
+		in0: in std_logic_vector(4 downto 0);
+		in1: in std_logic_vector(4 downto 0);
+		sel: in std_logic;
+		outb: out std_logic_vector(4 downto 0)
+	);
+end component;
+
 -- buffer_e
 component buffer_e
 	port (
@@ -497,7 +507,7 @@ begin
 					RD2toMux2=>RD2toMux2, RsE=>RsE, RtE=>RtE, RdE=>RdE,
 					SignImmE=>SignImmE);
 
-	RegDstEmuxx: mux PORT MAP(in0=>RtE, in1=>RdE, sel=>RegDstE, outb=>WriteRegE);
+	RegDstEmuxx: mux_5bit PORT MAP(in0=>RtE, in1=>RdE, sel=>RegDstE, outb=>WriteRegE);
 	
 	ForwardAEmuxx: mux4 PORT MAP(in0=>RD1toMux1, in1=>ResultW, in2=>ALUOutM, 
 					in3=>emptyWire, sel=>ForwardAE, mux4out=>SrcAE);	
@@ -536,6 +546,6 @@ begin
 					ForwardBD=>ForwardBD, FlushE=>FlushE, ForwardAE=>ForwardAE, 
 					ForwardBE=>ForwardBE);
 
-	outb <= ALU_out;
+	out_b <= ALU_out;
 
 end behavior;
