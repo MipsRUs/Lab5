@@ -1,7 +1,7 @@
 -------------------------------------------------------------------
 -- Copyright MIPS_R_US 2016 - All Rights Reserved 
 --
--- File: reg1.vhd
+-- File: buffer_2_woe.vhd
 -- Team: MIPS_R_US
 -- Members:
 -- 		Stefan Cao (ID# 79267250)
@@ -10,7 +10,7 @@
 --		Linda Vang (ID# 71434490)
 --
 -- Description:
---		buffer with clk, 3 inputs, and 2 outputs
+--		buffer with clk, 2 inputs, and 3outputs
 --
 -- History:
 --     Date	    Update Description	            Developer
@@ -22,32 +22,31 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 ENTITY reg1 IS 
-PORT (
-		ref_clk : IN std_logic;
-		DataI_A : IN std_logic_vector(31 DOWNTO 0);
-		DataI_B : IN std_logic_vector(31 DOWNTO 0);
-		en:	  	  IN std_logic; --enable from PCSrc
-		clr:	  IN std_logic; --enable stallD
-		DataO_A : OUT std_logic_vector(31 DOWNTO 0);
-		DataO_B: OUT std_logic_vector(31 DOWNTO 0)
-		
+	PORT (
+		ref_clk:	IN std_logic;
+		RD:			IN std_logic_vector(31 DOWNTO 0);
+		PCPlus4F:	IN std_logic_vector(31 DOWNTO 0);
+		en:			IN std_logic; --enable from stallD
+		clr:	  	IN std_logic; -- clear enable from PCSrc
+		InstrD:		OUT std_logic_vector(31 DOWNTO 0);
+		PCPlus4D: 	OUT std_logic_vector(31 DOWNTO 0)	
 	);
 end reg1;
 architecture behavior of reg1 is
 begin
-	process(ref_clk, DataI_A, DataI_B, clr,en)
-		variable temp_A : std_logic_vector(31 DOWNTO 0);
-		variable temp_B : std_logic_vector(31 DOWNTO 0);
+	process(ref_clk, RD, PCPlus4F, en)
+		variable tmpA : std_logic_vector(31 DOWNTO 0);
+		variable tmpB : std_logic_vector(31 DOWNTO 0);
 		
 	begin
 		if(ref_clk'event AND ref_clk='0') then
-			if(clr= '0' AND en = '1') then
-				temp_A := std_logic_vector(unsigned(DataI_A));
-				temp_B := std_logic_vector(unsigned(DataI_B));
+			if(en /= '1') then
+				tmpA := std_logic_vector(unsigned(RD));
+				tmpB := std_logic_vector(unsigned(PCPlus4F));
 			end if;
 		end if;
-		DataO_A <= temp_A;
-		DataO_B <= temp_B;
+		InstrD <= tmpA;
+		PCPlus4D <= tmpB;
 	end process;
 end;
  
