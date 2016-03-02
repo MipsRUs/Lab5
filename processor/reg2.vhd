@@ -47,7 +47,7 @@ PORT (
 		RsE:			OUT std_logic_vector(25 downto 21);
 		RtE:			OUT std_logic_vector(20 downto 16);
 		RdE:			OUT std_logic_vector(15 downto 11);
-		SignImmE:		OUT std_logic_vector(15 downto 0)
+		SignImmE:		OUT std_logic_vector(31 downto 0)
 	);
 end reg2;
 architecture behavior of reg2 is
