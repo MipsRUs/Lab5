@@ -117,7 +117,7 @@ component reg2
 		RtD:			IN std_logic_vector(20 downto 16);
 		RdD:			IN std_logic_vector(15 downto 11);
 		SignImmD:		IN std_logic_vector(15 downto 0);
-		FlushE:			IN std_logic;
+		clr:			IN std_logic;
 		RegWriteE:		OUT std_logic;
 		MemtoRegE:		OUT std_logic;
 		MemWriteE:		OUT std_logic;
@@ -419,7 +419,7 @@ begin
 					ALUSrcD=>ALUSrcD, RegDstD=>RegDstD, RD1=>RD1_out,
 					RD2=>RD2_out, RsD=>InstrD(25 DOWNTO 21), RtD=>InstrD(20 DOWNTO 16),
 					RdD=>InstrD(15 DOWNTO 11), SignImmD=>InstrD(15 DOWNTO 0),
-					FlushE=>FlushE, RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
+					clr=>FlushE, RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
 					MemWriteE=>MemWriteE, ALUControlE=>ALUControlE,
 					ALUSrcE=>ALUSrcE, RegDstE=>RegDstE, RD1toMux1=>RD1toMux1,
 					RD2toMux2=>RD2toMux2, RsE=>RsE, RtE=>RtE, RdE=>RdE,
