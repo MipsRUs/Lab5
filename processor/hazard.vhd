@@ -50,6 +50,11 @@ END hazard ;
 architecture behavior of hazard is
 
 begin
+
+	variable lwstall : std_logic;
+	variable branchstall : std_logic;
+	
+
 --ForwardAE
 	if ((RsE != 0) AND (RsE = WriteRegM) AND RegWriteM) then
 		ForwardAE = 10;
@@ -70,5 +75,14 @@ begin
 	ForwardAD = (RsD != 0) AND (RsD = WriteRegM) AND RegWriteM;
 	
 	ForwardBD = (RtD != 0) AND (RtD = WriteRegM) AND RegWriteM;
+	
+--lw stall
+	lwstall = ((RsD == RtE) OR (RtD == RtE) AND MemtoRegE);
+	
+--branch stall
+	branchstall = (BranchD AND RegWriteE AND (WriteRegE == RsD OR WriteRegE == RtD)) OR (BranchD AND MemtoRegM AND (WriteRegM == RsD OR WriteRegM == RtD));
+
+--setting outputs
+StallF = StallD = FlushE = (lwstall OR branchstall);
 	
 end behavior;
