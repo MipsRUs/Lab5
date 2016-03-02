@@ -392,6 +392,9 @@ signal ALU_out: std_logic_vector(31 DOWNTO 0);
 
 signal ram_data_out: std_logic_vector(31 DOWNTO 0);
 
+signal RsD : std_logic_vector(25 DOWNTO 21);
+signal RtD : std_logic_vector(20 DOWNTO 16);
+signal RdD: std_logic_vector(15 DOWNTO 11);
 signal RegWriteD: std_logic;
 signal MemtoRegD: std_logic;
 signal MemWriteD: std_logic;
@@ -413,6 +416,7 @@ signal RdE: std_logic_vector(15 DOWNTO 11);
 signal SignImmE: std_logic_vector(15 DOWNTO 0);
 signal WriteRegE: std_logic_vector(4 DOWNTO 0);
 signal WriteDataE: std_logic_vector(31 DOWNTO 0);
+signal MemtoWriteE: std_logic;
 signal SrcAE: std_logic_vector(31 DOWNTO 0);
 signal SrcBE: std_logic_vector(31 DOWNTO 0);
 
