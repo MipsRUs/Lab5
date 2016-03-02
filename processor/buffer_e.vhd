@@ -40,8 +40,9 @@ begin
 	begin
 
 		-- SC 2016-02-20: Changed ref_clk='1' to ref_clk='0'
- 		if(ref_clk'event AND ref_clk='0') then 
-			if(WE='1') then
+		-- EH 2016-03-01: changed from ref_clk'event and ref_clk'0' to rising_edge from TA reg_file example
+ 		if rising_edge(ref_clk) then
+			if(WE /= '1') then
 				temp := std_logic_vector(unsigned(DataI));
 			end if;
 
