@@ -56,7 +56,7 @@ begin
 	
 
 --ForwardAE
-	if ((RsE /= '0') AND (RsE = WriteRegM) AND RegWriteM) then
+	if ((RsE /= '0') AND (RsE = WriteRegM) AND (RegWriteM='1')) then
 		ForwardAE <= "10";
 	else if ((RsE /= '0') AND (RsE = WriteRegW) AND RegWriteW) then
 		ForwardAE <= "01";
