@@ -1,4 +1,4 @@
--------------------------------------------------------------------
+L:-------------------------------------------------------------------
 -- Copyright MIPS_R_US 2016 - All Rights Reserved 
 --
 -- File: processor.vhd
@@ -388,9 +388,9 @@ signal ForwardBD_mux_out: std_logic_vector(31 DOWNTO 0);
 signal RD1toMux1: std_logic_vector(31 DOWNTO 0);
 signal RD2toMux2: std_logic_vector(31 DOWNTO 0);
 
-signal ALU_out;
+signal ALU_out: std_logic_vector(31 DOWNTO 0);
 
-signal ram_data_out;
+signal ram_data_out: std_logic_vector(31 DOWNTO 0);
 
 signal RegWriteD: std_logic;
 signal MemtoRegD: std_logic;
@@ -532,6 +532,6 @@ begin
 					ForwardBD=>ForwardBD, FlushE=>FlushE, ForwardAE=>ForwardAE, 
 					ForwardBE=>ForwardBE);
 
-	outb <= ALU_out
+	outb <= ALU_out;
 
 end behavior;
