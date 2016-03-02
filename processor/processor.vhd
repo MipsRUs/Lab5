@@ -269,6 +269,8 @@ component hazard_unit
 		RsE: IN std_logic_vector (4 DOWNTO 0);
 		RtE: IN std_logic_vector (4 DOWNTO 0);
 		WriteRegE: IN std_logic_vector (4 DOWNTO 0);
+		WriteRegM: IN std_logic_vector (4 DOWNTO 0);
+		WriteRegW: IN std_logic_vector (4 DOWNTO 0);
 		MemtoRegE: IN std_logic;
 		RegWriteE: IN std_logic;
 		RegWriteM: IN std_logic;
