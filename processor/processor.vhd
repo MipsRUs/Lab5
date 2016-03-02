@@ -149,7 +149,7 @@ component reg3
 		ref_clk : 		IN std_logic;
 		RegWriteE : 	IN std_logic;
 		MemtoRegE : 	IN std_logic;
-		MemtoWriteE: 	IN std_logic;
+		MemWriteE: 	IN std_logic;
 		alu_in:			IN std_logic_vector(31 DOWNTO 0);
 		WriteDataE:		IN std_logic_vector(31 DOWNTO 0);
 		WriteRegE:		IN std_logic_vector(4 DOWNTO 0);
