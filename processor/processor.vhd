@@ -500,7 +500,7 @@ begin
 					MemWriteD=>MemWriteD, ALUControlD=>ALUControlD,
 					ALUSrcD=>ALUSrcD, RegDstD=>RegDstD, RD1=>RD1_out,
 					RD2=>RD2_out, RsD=>InstrD(25 DOWNTO 21), RtD=>InstrD(20 DOWNTO 16),
-					RdD=>InstrD(15 DOWNTO 11), SignImmD=>InstrD(15 DOWNTO 0),
+					RdD=>InstrD(15 DOWNTO 11), SignImmD=>SignImmD,
 					clr=>FlushE, RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
 					MemWriteE=>MemWriteE, ALUControlE=>ALUControlE,
 					ALUSrcE=>ALUSrcE, RegDstE=>RegDstE, RD1toMux1=>RD1toMux1,
