@@ -62,7 +62,7 @@ begin
 --ForwardAE
 	if ((RsE /= "00000") AND (RsE = WriteRegM) AND (RegWriteM='1')) then
 		ForwardAE <= "10";
-	else if ((RsE /= "00000") AND (RsE = WriteRegW) AND (RegWriteW='1')) then
+	elsif ((RsE /= "00000") AND (RsE = WriteRegW) AND (RegWriteW='1')) then
 		ForwardAE <= "01";
 	else
 		ForwardAE <= "00";
@@ -71,7 +71,7 @@ begin
 --ForwardBE
 	if ((RtE /= "00000") AND (RtE = WriteRegM) AND (RegWriteM='1')) then
 		ForwardBE <= "10";
-	else if ((RtE /= "00000") AND (RtE = WriteRegW) AND (RegWriteW='1')) then
+	elsif ((RtE /= "00000") AND (RtE = WriteRegW) AND (RegWriteW='1')) then
 		ForwardBE <= "01";
 	else
 		ForwardBE <= "00";
@@ -98,15 +98,15 @@ begin
 --lw stall
 	--lwstall = ((RsD == RtE) OR (RtD == RtE) AND MemtoRegE);
 	if(((RsD = RtE) OR (RtD = RtE)) AND (MemtoRegE='1')) then
-		lwstall <= '1';
+		lwstall := '1';
 	else 
-		lwstall <= '0';
+		lwstall := '0';
 	end if;
 
 --branch stall
 	--branchstall = (BranchD AND RegWriteE AND (WriteRegE == RsD OR WriteRegE == RtD)) OR (BranchD AND MemtoRegM AND (WriteRegM == RsD OR WriteRegM == RtD));
 	if(((BranchD='1') AND (RegWriteE='1') AND ((WriteRegE = RsD) OR (WriteRegE = RtD))) OR 
-		((BranchD='1') AND (MemtoRegM='1') AND ((WriteRegM = RsD) OR (WriteRegM = RtD)))) then
+		((BranchD='1') AND (MemtoRegE='1') AND ((WriteRegM = RsD) OR (WriteRegM = RtD)))) then
 		branchstall := '1';
 	else 
 		branchstall := '0';
@@ -122,7 +122,6 @@ begin
 		StallF <= '0';
 		StallD <= '0';
 		FlushE <= '0';
-
 	end if;
 
 	end process;
