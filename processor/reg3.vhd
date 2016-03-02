@@ -43,12 +43,12 @@ ENTITY reg3 IS
 architecture behavior of reg3 is
 begin
 	process(ref_clk, RegWriteE, MemtoRegE, MemWriteE, alu_in, WriteDataE, WriteRegE)
-	variable temp_RegWriteE : 	std_logic;
-	variable temp_MemtoRegE : 	std_logic;
-	variable temp_MemWriteE:	std_logic;
-	variable temp_alu_in:			std_logic_vector(31 DOWNTO 0);
-	variable temp_WriteDataE:		std_logic_vector(31 DOWNTO 0);
-	variable temp_WriteRegE:		std_logic_vector(4 DOWNTO 0);
+	variable temp_RegWriteE : 	std_logic := '0';
+	variable temp_MemtoRegE : 	std_logic := '0';
+	variable temp_MemWriteE:	std_logic := '0';
+	variable temp_alu_in:			std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
+	variable temp_WriteDataE:		std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
+	variable temp_WriteRegE:		std_logic_vector(4 DOWNTO 0) := "00000";
 	begin
 		if(ref_clk'event AND ref_clk='0') then 
 			temp_RegWriteE := RegWriteE;
