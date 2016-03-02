@@ -52,7 +52,7 @@ architecture behavior of hazard_unit is
 begin
 
 	funct: process(BranchD, RsD, RtD, RsE, RtE, WriteRegE, WriteRegM, WriteRegW,
-			MemtoRegE, RegWriteEm, RegWriteM, RegWriteW)
+			MemtoRegE, RegWriteE, RegWriteM, RegWriteW)
 
 	variable lwstall : std_logic;
 	variable branchstall : std_logic;
