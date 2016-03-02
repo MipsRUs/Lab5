@@ -457,7 +457,8 @@ begin
 					outb=>ResultW);
 
 	HazardUnitx: hazard_unit PORT MAP(BranchD=>BranchD, RsD=>RsD, RtD=>RtD,
-					RsE=>RsE, RtE=>RtE, WriteRegE=>WriteRegE, MemtoRegE=>MemtoRegE, 
+					RsE=>RsE, RtE=>RtE, WriteRegE=>WriteRegE, WriteRegM=>WriteRegM, 
+					WriteRegW=>WriteRegW, MemtoRegE=>MemtoRegE, 
 					RegWriteE=>RegWriteE, RegWriteM=>RegWriteM, RegWriteW=>RegWriteW, 
 					StallF=>StallF, StallD=>StallD, ForwardAD=>ForwardAD, 
 					ForwardBD=>ForwardBD, FlushE=>FlushE, ForwardAE=>ForwardAE, 
