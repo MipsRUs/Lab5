@@ -217,8 +217,8 @@ begin
 			--		Branch_out <= '0';
 			--	end if;
 			
-			--when others =>
-			--	O_out <= zero;
+			when others =>
+				O_out <= zero;
 			--	Branch_out <= '0';
 
 		end case;
