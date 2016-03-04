@@ -28,8 +28,9 @@ ENTITY alu IS
 		Func_in : IN std_logic_vector (5 DOWNTO 0);
 		A_in : IN std_logic_vector (31 DOWNTO 0);
 		B_in : IN std_logic_vector (31 DOWNTO 0);
-		O_out : OUT std_logic_vector (31 DOWNTO 0);
-		Branch_out : OUT std_logic
+		O_out : OUT std_logic_vector (31 DOWNTO 0)
+
+		--Branch_out : OUT std_logic
 	);
 END alu ;
 
@@ -54,45 +55,45 @@ begin
 			-- ADD
 			when "100000" =>
 				O_out <= std_logic_vector(signed(A_in) + signed(B_in));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 				
 			--ADDU
 			when "100001" => 
 				O_out <= std_logic_vector(unsigned(A_in) + unsigned(B_in));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 
 			-- SUB
 			when "100010" =>
 				O_out <= std_logic_vector(signed(A_in) - signed(B_in));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 			
 
 			-- SUBU
 			when "100011" =>
 				O_out <= std_logic_vector(unsigned(A_in) - unsigned(B_in));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 
 			-- AND
 			when "100100" =>
 				O_out <= A_in AND B_in;
-				Branch_out <= '0';
+				--Branch_out <= '0';
 
 			-- OR
 			when "100101" =>
 				O_out <= A_in OR B_in;
-				Branch_out <= '0';
+				--Branch_out <= '0';
 
 			-- XOR
 			when "100110" =>
 				O_out <= A_in XOR B_in;
-				Branch_out <= '0';
+				--Branch_out <= '0';
 
 			-- NOR
 			when "100111" =>
 				O_out <= A_in NOR B_in;
-				Branch_out <= '0';
+				--Branch_out <= '0';
 
 			-- SLT (signed)
 			when "101010" =>
@@ -101,7 +102,7 @@ begin
 				else 
 					O_out <= zero;
 				end if;
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 			-- SLT(unsigned)
 			when "101011" =>
@@ -110,7 +111,7 @@ begin
 				else 
 					O_out <= zero;
 				end if;
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 			-- LUI
 			--when "XXXXXX" =>
@@ -121,102 +122,104 @@ begin
 			when "000000" =>
 				O_out <= std_logic_vector(unsigned(B_in) sll 
 					to_integer(unsigned(A_in)));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 			--SRL
 			when "000010" =>
 				--O_out <= B_in srl A_in;
 				O_out <= std_logic_vector(unsigned(B_in) srl 
 					to_integer(unsigned(A_in)));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 			--SRA
 			when "000011" =>
 				--O_out <= B_in sra A_in;
 				O_out <= std_logic_vector(unsigned(B_in) ror 
 					to_integer(unsigned(A_in)));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 
 			--SLLV
 			when "000100" =>
 				--O_out <= B_in sll A_in;
 				O_out <= std_logic_vector(unsigned(B_in) sll 
 					to_integer(unsigned(A_in)));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 			--SRLV
 			when "000110" =>
 				--O_out <= B_in srl A_in;
 				O_out <= std_logic_vector(unsigned(B_in) srl 
 					to_integer(unsigned(A_in)));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 			--SRAV
 			when "000111" =>
 				--O_out <= B_in sra A_in;
 				O_out <= std_logic_vector(unsigned(B_in) srl 
 					to_integer(unsigned(A_in)));
-				Branch_out <= '0';
+				--Branch_out <= '0';
 				
 			--branch
 			--BLTZ
-			when "111000" =>
-				O_out <= A_in;
-				if(A_in < zero) then 
-					Branch_out <= '1';
-				else 
-					Branch_out <= '0';
-				end if;
+
+			-- SC 2016-03-03: COMMENTE OUT ALL THE BRANCHES FOR NOW BECAUSE DON'T HAVE IT YET
+			--when "111000" =>
+			--	O_out <= A_in;
+			--	if(A_in < zero) then 
+			--		Branch_out <= '1';
+			--	else 
+			--		Branch_out <= '0';
+			--	end if;
 
 				
-			--BGEZ
-			when "111001" =>
-				O_out <= A_in;
-				if(A_in >= zero) then 
-					Branch_out <= '1';
-				else 
-					Branch_out <= '0';
-				end if;
+			----BGEZ
+			--when "111001" =>
+			--	O_out <= A_in;
+			--	if(A_in >= zero) then 
+			--		Branch_out <= '1';
+			--	else 
+			--		Branch_out <= '0';
+			--	end if;
 				
-			--BEQ
-			when "111100" =>
-				O_out <= A_in;
-				if(A_in = B_in) then 
-					Branch_out <= '1';
-				else 
-					Branch_out <= '0';
-				end if;
+			----BEQ
+			--when "111100" =>
+			--	O_out <= A_in;
+			--	if(A_in = B_in) then 
+			--		Branch_out <= '1';
+			--	else 
+			--		Branch_out <= '0';
+			--	end if;
 				
-			--BNE
-			when "111101" =>
-				O_out <= A_in;
-				if(A_in /= B_in) then 
-					Branch_out <= '1';
-				else
-					Branch_out <= '0';
-				end if;
+			----BNE
+			--when "111101" =>
+			--	O_out <= A_in;
+			--	if(A_in /= B_in) then 
+			--		Branch_out <= '1';
+			--	else
+			--		Branch_out <= '0';
+			--	end if;
 				
-			--BLEZ
-			when "111110" =>
-				O_out <= A_in;
-				if(A_in <= zero) then 
-					Branch_out <= '1';
-				else 
-					Branch_out <= '0';
-				end if;
+			----BLEZ
+			--when "111110" =>
+			--	O_out <= A_in;
+			--	if(A_in <= zero) then 
+			--		Branch_out <= '1';
+			--	else 
+			--		Branch_out <= '0';
+			--	end if;
 			
-			--BGTZ
-			when "111111" =>
-				O_out <= A_in;
-				if(A_in > zero) then 
-					Branch_out <= '1';
-				else 	
-					Branch_out <= '0';
-				end if;
+			----BGTZ
+			--when "111111" =>
+			--	O_out <= A_in;
+			--	if(A_in > zero) then 
+			--		Branch_out <= '1';
+			--	else 	
+			--		Branch_out <= '0';
+			--	end if;
 			
-			when others =>
-				O_out <= zero;
-				Branch_out <= '0';
+			--when others =>
+			--	O_out <= zero;
+			--	Branch_out <= '0';
 
 		end case;
 	end process;
