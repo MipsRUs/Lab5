@@ -430,9 +430,6 @@ signal ALU_out: std_logic_vector(31 DOWNTO 0);
 
 signal ram_data_out: std_logic_vector(31 DOWNTO 0);
 
-signal RsD : std_logic_vector(25 DOWNTO 21);
-signal RtD : std_logic_vector(20 DOWNTO 16);
-signal RdD: std_logic_vector(15 DOWNTO 11);
 signal RegWriteD: std_logic;
 signal MemtoRegD: std_logic;
 signal MemWriteD: std_logic;
@@ -584,8 +581,9 @@ begin
 	MemtoRegWmuxx: mux PORT MAP(in0=>ALUOutW, in1=>ReadDataW, sel=>MemtoRegW, 
 					outb=>ResultW);
 
-	HazardUnitx: hazard_unit PORT MAP(BranchD=>BranchD, RsD=>RsD, RtD=>RtD,
-					RsE=>RsE, RtE=>RtE, WriteRegE=>WriteRegE, WriteRegM=>WriteRegM, 
+	HazardUnitx: hazard_unit PORT MAP(BranchD=>BranchD, RsD=>InstrD(25 DOWNTO 21), 
+					RtD=>InstrD(20 DOWNTO 16), RsE=>RsE, RtE=>RtE, 
+					WriteRegE=>WriteRegE, WriteRegM=>WriteRegM, 
 					WriteRegW=>WriteRegW, MemtoRegE=>MemtoRegE, 
 					RegWriteE=>RegWriteE, RegWriteM=>RegWriteM, RegWriteW=>RegWriteW, 
 					JumpD=>JumpD, StallF=>StallF, StallD=>StallD, ForwardAD=>ForwardAD, 
