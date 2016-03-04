@@ -50,7 +50,9 @@ begin
 	variable temp_WriteDataE:		std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
 	variable temp_WriteRegE:		std_logic_vector(4 DOWNTO 0) := "00000";
 	begin
-		if(ref_clk'event AND ref_clk='0') then 
+
+		-- SC 2016-03-03: changed ref_clk='1'
+		if(ref_clk'event AND ref_clk='1') then 
 			temp_RegWriteE := RegWriteE;
 			temp_MemtoRegE := MemtoRegE;
 			temp_MemWriteE := MemWriteE;

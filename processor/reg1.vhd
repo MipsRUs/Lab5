@@ -39,7 +39,8 @@ begin
 		variable tmpB : std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
 		
 	begin
-		if(ref_clk'event AND ref_clk='0') then
+		-- SC 2016-03-03: Changed ref_clk='1'
+		if(ref_clk'event AND ref_clk='1') then
 			if(en /= '1') then
 				tmpA := std_logic_vector(unsigned(RD));
 				tmpB := std_logic_vector(unsigned(PCPlus4F));

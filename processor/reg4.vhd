@@ -47,7 +47,8 @@ begin
 	variable temp_WriteRegM:		std_logic_vector(4 DOWNTO 0) := "00000";
 	begin
 
-		if(ref_clk'event AND ref_clk='0') then 
+		-- SC 2016-03-04: Changed ref_clk='1'
+		if(ref_clk'event AND ref_clk='1') then 
 			temp_RegWriteM := RegWriteM;
 			temp_MemtoRegM := MemtoRegM;
 			temp_rd_in := std_logic_vector(unsigned(rd_in));
