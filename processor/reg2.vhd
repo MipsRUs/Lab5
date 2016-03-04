@@ -68,18 +68,18 @@ begin
 	begin
 		if rising_edge(ref_clk) then
 			if(clr = '1') then
-				RegWriteD_tmp:= RegWriteD_tmp;
-				MemtoRegD_tmp:= MemtoRegD_tmp;
-				MemWriteD_tmp:= MemWriteD_tmp;
-				ALUControlD_tmp := ALUControlD_tmp;
-				ALUSrcD_tmp := ALUSrcD_tmp;
-				RegDstD_tmp := RegDstD_tmp;
-				RD1_tmp := std_logic_vector(unsigned(RD1_tmp));
-				RD2_tmp := std_logic_vector(unsigned(RD2_tmp));
-				RsD_tmp := std_logic_vector(unsigned(RsD_tmp));
-				RtD_tmp := std_logic_vector(unsigned(RtD_tmp));
-				RdD_tmp := std_logic_vector(unsigned(RdD_tmp));
-				SignImmD_tmp := std_logic_vector(unsigned(SignImmD_tmp));
+				RegWriteD_tmp = '0';
+				MemtoRegD_tmp = '0';
+				MemWriteD_tmp = '0';
+				ALUControlD_tmp = "000000";
+				ALUSrcD_tmp = '0';
+				RegDstD_tmp = '0';
+				RD1_tmp = "00000000000000000000000000000000";
+				RD2_tmp = "00000000000000000000000000000000";
+				RsD_tmp = "00000";
+				RtD_tmp = "00000";
+				RdD_tmp = "00000";
+				SignImmD_tmp = "00000000000000000000000000000000";
 			end if;
 			if(clr = '0') then
 				RegWriteD_tmp:= RegWriteD;
@@ -102,11 +102,11 @@ begin
         ALUSrcE <= ALUSrcD_tmp;
         RegDstE <= RegDstD_tmp;
 		RD1toMux1 <= RD1_tmp;
-		RD2toMux2 <= RD2;
-		RsE <= RsD;
-		RtE <= RtD;
-		RdE <= RdD;
-		SignImmE <= SignImmD;
+		RD2toMux2 <= RD2_tmp;
+		RsE <= RsD_tmp;
+		RtE <= RtD_tmp;
+		RdE <= RdD_tmp;
+		SignImmE <= SignImmD_tmp;
 		end if;
 	end process;
 end;	
