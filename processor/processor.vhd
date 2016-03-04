@@ -38,8 +38,8 @@ architecture behavior of processor is
 -------------- components -------------
 ---------------------------------------
 
--- concatentation
-component concatentation
+-- concatenation
+component concatenation
 	PORT (
 		A_in : IN std_logic_vector (27 DOWNTO 0);
 		B_in : IN std_logic_vector (31 DOWNTO 0);
@@ -537,7 +537,7 @@ begin
 	shiftleft_26bitx: shiftleft_26bit PORT MAP(A_in=>InstrD(25 DOWNTO 0), 
 					O_out=>shiftleft_26bit_out);
 
-	concatentationx: concatentation PORT MAP(A_in=>shiftleft_26bit_out, 
+	concatenationx: concatenation PORT MAP(A_in=>shiftleft_26bit_out, 
 					B_in=>PCPlus4D, O_out=>PCJumpD);
 
 	JumpDmuxx: mux PORT MAP(in0=>PCBranchD, in1=>PCJumpD, sel=>JumpD, outb=>JumpDmux_out);
