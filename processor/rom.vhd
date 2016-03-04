@@ -32,7 +32,7 @@ architecture behavior of rom is
 
 
 subtype byte is std_logic_vector(7 DOWNTO 0);
-type rom_type is array (0 to 31) of byte;
+type rom_type is array (0 to 39) of byte;
 constant mem_var : rom_type :=
 			("00110000","00100000","00000000","00000000",
 			 "00100000","00100010","00000000","00000010",
