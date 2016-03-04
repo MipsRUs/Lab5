@@ -64,7 +64,9 @@ ENTITY control IS
 		RegDstD: OUT std_logic;
 
 		-- '1' if branching, '0' if not branching
-		BranchD: OUT std_logic
+		BranchD: OUT std_logic;
+
+		JumpD: OUT std_logic;
 
 		-- '1' if jump instruction, else '0' 
 		--Jump: OUT std_logic;
@@ -301,6 +303,15 @@ begin
 						(instruction(31 DOWNTO 26) = "000111") 
 					)	else 
 				'0';
+
+	JumpD <= '1' when (
+
+						-- JUMP
+						(instruction(31 DOWNTO 26) = "000010")
+
+					)	else 
+				'0';
+
 
 
 	ALUControlD <= "100000" when (

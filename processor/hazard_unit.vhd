@@ -37,6 +37,7 @@ ENTITY hazard_unit IS
 		RegWriteE: IN std_logic;
 		RegWriteM: IN std_logic;
 		RegWriteW: IN std_logic;
+		JumpD: IN std_logic; -- added for jump
 		StallF: OUT std_logic;
 		StallD: OUT std_logic;
 		ForwardAD: OUT std_logic;
@@ -106,7 +107,8 @@ begin
 --branch stall
 	--branchstall = (BranchD AND RegWriteE AND (WriteRegE == RsD OR WriteRegE == RtD)) OR (BranchD AND MemtoRegM AND (WriteRegM == RsD OR WriteRegM == RtD));
 	if(((BranchD='1') AND (RegWriteE='1') AND ((WriteRegE = RsD) OR (WriteRegE = RtD))) OR 
-		((BranchD='1') AND (MemtoRegE='1') AND ((WriteRegM = RsD) OR (WriteRegM = RtD)))) then
+		((BranchD='1') AND (MemtoRegE='1') AND ((WriteRegM = RsD) OR (WriteRegM = RtD))) OR
+		(JumpD='1')) then
 		branchstall := '1';
 	else 
 		branchstall := '0';

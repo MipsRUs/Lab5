@@ -38,6 +38,32 @@ architecture behavior of processor is
 -------------- components -------------
 ---------------------------------------
 
+-- concatentation
+component concatentation
+	PORT (
+		A_in : IN std_logic_vector (27 DOWNTO 0);
+		B_in : IN std_logic_vector (31 DOWNTO 0);
+		O_out : OUT std_logic_vector (31 DOWNTO 0)
+	);
+end component;
+
+-- shiftleft_26bit
+component shiftleft_26bit
+	PORT (
+		A_in : IN std_logic_vector (25 DOWNTO 0);
+		O_out: OUT std_logic_vector (27 DOWNTO 0)
+	);
+end component;
+
+-- orgate
+component orgate
+	Port (
+		IN1 : in STD_LOGIC; 
+    	IN2 : in STD_LOGIC; 
+		OUT1 : out STD_LOGIC
+	); 
+end component;
+
 -- mux
 component mux
 	port( 
@@ -220,7 +246,9 @@ component control
 		RegDstD: OUT std_logic;
 
 		-- '1' if branching, '0' if not branching
-		BranchD: OUT std_logic
+		BranchD: OUT std_logic;
+
+		JumpD: OUT std_logic
 
 		-- '1' if jump instruction, else '0' 
 		--Jump: OUT std_logic;
@@ -352,6 +380,7 @@ component hazard_unit
 		RegWriteE: IN std_logic;
 		RegWriteM: IN std_logic;
 		RegWriteW: IN std_logic;
+		JumpD: IN std_logic; -- added for jump
 		StallF: OUT std_logic;
 		StallD: OUT std_logic;
 		ForwardAD: OUT std_logic;
@@ -411,6 +440,7 @@ signal ALUControlD: std_logic_vector(5 DOWNTO 0);
 signal ALUSrcD: std_logic;
 signal RegDstD: std_logic;
 signal BranchD: std_logic;
+signal JumpD: std_logic;
 
 signal RegWriteE: std_logic;
 signal MemtoRegE: std_logic;
@@ -451,6 +481,13 @@ signal StallF : std_logic;
 signal StallD : std_logic;
 signal FlushE: std_logic;
 
+signal andgate_out: std_logic;
+
+signal shiftleft_26bit_out: std_logic_vector(27 DOWNTO 0);
+
+signal PCJumpD: std_logic_vector(31 DOWNTO 0);
+
+signal JumpDmux_out: std_logic_vector(31 DOWNTO 0);
 
 signal emptyWire: std_logic_vector(31 DOWNTO 0);
 
@@ -482,7 +519,9 @@ begin
 
 	shiftleft_32bitx: shiftleft_32bit PORT MAP(A_in=>SignImmD, O_out=>shift_out);
 
-	andgatex: andgate PORT MAP(IN1=>BranchD, IN2=>EqualD, OUT1=>PCSrcD);
+	andgatex: andgate PORT MAP(IN1=>BranchD, IN2=>EqualD, OUT1=>andgate_out);
+
+	orgatex: orgate PORT MAP(IN1=>JumpD, IN2=> andgate_out, OUT1=>PCSrcD);
 
 	equal_comparisonx: equal_comparison PORT MAP(in0=>ForwardAD_mux_out, 
 					in1=>ForwardBD_mux_out, outb=>EqualD);
@@ -494,6 +533,14 @@ begin
 					outb=>ForwardBD_mux_out);
 
 	adderx: adder PORT MAP(a=>shift_out, b=>PCPlus4D, sum=>PCBranchD);
+
+	shiftleft_26bitx: shiftleft_26bitx PORT MAP(A_in=>InstrD(25 DOWNTO 0), 
+					O_out=>shiftleft_26bit_out);
+
+	concatentationx: concatentation PORT MAP(A_in=>shiftleft_26bit_out, 
+					B_in=>PCPlus4D, O_out=>PCJumpD);
+
+	JumpDmuxx: mux PORT MAP(in0=>PCBranchD, in1=>PCJumpD, sel=>JumpD, outb=>JumpDmux_out);
 
 	reg2x: reg2 PORT MAP(ref_clk=>ref_clk, RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD,
 					MemWriteD=>MemWriteD, ALUControlD=>ALUControlD,
@@ -541,7 +588,7 @@ begin
 					RsE=>RsE, RtE=>RtE, WriteRegE=>WriteRegE, WriteRegM=>WriteRegM, 
 					WriteRegW=>WriteRegW, MemtoRegE=>MemtoRegE, 
 					RegWriteE=>RegWriteE, RegWriteM=>RegWriteM, RegWriteW=>RegWriteW, 
-					StallF=>StallF, StallD=>StallD, ForwardAD=>ForwardAD, 
+					JumpD=>JumpD, StallF=>StallF, StallD=>StallD, ForwardAD=>ForwardAD, 
 					ForwardBD=>ForwardBD, FlushE=>FlushE, ForwardAE=>ForwardAE, 
 					ForwardBE=>ForwardBE);
 
