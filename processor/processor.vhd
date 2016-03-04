@@ -508,7 +508,7 @@ begin
 	controlx: control PORT MAP(instruction=>InstrD, Op=>InstrD(31 DOWNTO 26), Funct=>InstrD(5 DOWNTO 0),
 					RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD, MemWriteD=>MemWriteD,
 					ALUControlD=>ALUControlD, ALUSrcD=>ALUSrcD, RegDstD=>RegDstD,
-					BranchD=>BranchD, JumpD);
+					BranchD=>BranchD, JumpD=>JumpD);
 
 	regfilex: regfile PORT MAP(ref_clk=>ref_clk, we=>RegWriteW, raddr_1=>InstrD(25 DOWNTO 21),
 					raddr_2=>InstrD(20 DOWNTO 16), waddr=>WriteRegW, rdata_1=>RD1_out,
