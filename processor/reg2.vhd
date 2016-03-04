@@ -68,18 +68,18 @@ begin
 	begin
 		if rising_edge(ref_clk) then
 			if(clr = '1') then
-				RegWriteD_tmp = '0';
-				MemtoRegD_tmp = '0';
-				MemWriteD_tmp = '0';
-				ALUControlD_tmp = "000000";
-				ALUSrcD_tmp = '0';
-				RegDstD_tmp = '0';
-				RD1_tmp = "00000000000000000000000000000000";
-				RD2_tmp = "00000000000000000000000000000000";
-				RsD_tmp = "00000";
-				RtD_tmp = "00000";
-				RdD_tmp = "00000";
-				SignImmD_tmp = "00000000000000000000000000000000";
+				RegWriteD_tmp := '0';
+				MemtoRegD_tmp := '0';
+				MemWriteD_tmp := '0';
+				ALUControlD_tmp := "000000";
+				ALUSrcD_tmp := '0';
+				RegDstD_tmp := '0';
+				RD1_tmp := "00000000000000000000000000000000";
+				RD2_tmp := "00000000000000000000000000000000";
+				RsD_tmp := "00000";
+				RtD_tmp := "00000";
+				RdD_tmp := "00000";
+				SignImmD_tmp := "00000000000000000000000000000000";
 			end if;
 			if(clr = '0') then
 				RegWriteD_tmp:= RegWriteD;
