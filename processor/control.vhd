@@ -248,7 +248,8 @@ begin
 					)	else 
 				'0';
 
-	MemToRegD <= '0' when (
+	-- SC 2016-03-04: Changed MemToRegD <= '1'
+	MemToRegD <= '1' when (
 
 						-- LB
 						(instruction(31 DOWNTO 26) = "100000") OR
@@ -275,7 +276,7 @@ begin
 						-- SW
 						(instruction(31 DOWNTO 26) = "101011") 
 					)	else 
-				'1';
+				'0';
 
 	RegDstD <= '1' 	when (
 
