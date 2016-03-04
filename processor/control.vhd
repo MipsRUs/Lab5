@@ -66,7 +66,7 @@ ENTITY control IS
 		-- '1' if branching, '0' if not branching
 		BranchD: OUT std_logic;
 
-		JumpD: OUT std_logic;
+		JumpD: OUT std_logic
 
 		-- '1' if jump instruction, else '0' 
 		--Jump: OUT std_logic;
