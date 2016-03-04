@@ -534,7 +534,7 @@ begin
 
 	adderx: adder PORT MAP(a=>shift_out, b=>PCPlus4D, sum=>PCBranchD);
 
-	shiftleft_26bitx: shiftleft_26bitx PORT MAP(A_in=>InstrD(25 DOWNTO 0), 
+	shiftleft_26bitx: shiftleft_26bit PORT MAP(A_in=>InstrD(25 DOWNTO 0), 
 					O_out=>shiftleft_26bit_out);
 
 	concatentationx: concatentation PORT MAP(A_in=>shiftleft_26bit_out, 
