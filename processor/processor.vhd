@@ -332,11 +332,22 @@ component andgate
 	); 
 end component;
 
--- equal_comparison
-component equal_comparison
+-- SC 2016-03-04: Commneted out, using branch check that support all the branch instructions
+---- equal_comparison 
+--component equal_comparison
+--	port (
+--		in0 : IN std_logic_vector(31 DOWNTO 0);
+--		in1 : IN std_logic_vector(31 DOWNTO 0);
+--		outb : OUT std_logic
+--	);
+--end component;
+
+-- branch_check
+component branch_check
 	port (
-		in0 : IN std_logic_vector(31 DOWNTO 0);
-		in1 : IN std_logic_vector(31 DOWNTO 0);
+		A_in : IN std_logic_vector(31 DOWNTO 0);
+		B_in : IN std_logic_vector(31 DOWNTO 0);
+		ALUControl : IN std_logic_vector(5 DOWNTO 0);
 		outb : OUT std_logic
 	);
 end component;
@@ -520,8 +531,12 @@ begin
 
 	orgatex: orgate PORT MAP(IN1=>JumpD, IN2=> andgate_out, OUT1=>PCSrcD);
 
-	equal_comparisonx: equal_comparison PORT MAP(in0=>ForwardAD_mux_out, 
-					in1=>ForwardBD_mux_out, outb=>EqualD);
+	-- SC 2016-03-04: Commented out, using branch_check instead
+	--equal_comparisonx: equal_comparison PORT MAP(in0=>ForwardAD_mux_out, 
+	--				in1=>ForwardBD_mux_out, outb=>EqualD);
+
+	branch_checkx: branch_check PORT MAP(A_in=>ForwardAD_mux_out, B_in=>ForwardBD_mux_out,
+					ALUControl=>ALUControlD, outb=>EqualD);
 
 	ForwardAD_muxx: mux PORT MAP(in0=>RD1_out, in1=>ALUOutM, sel=>ForwardAD, 
 					outb=>ForwardAD_mux_out);
