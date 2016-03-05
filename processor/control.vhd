@@ -115,22 +115,6 @@ architecture behavior of control is
 
 begin
 	
-	-- Operand A
-	--rs <= instruction(25 DOWNTO 21);
-
-	-- Operand B
-	--rt <= instruction(20 DOWNTO 16);
-
-	-- write destination
-	--rd <= instruction(15 DOWNTO 11);
-
-	-- immediant, (rd+shamt+func)
-	--imm <= instruction(15 DOWNTO 0);
-
-	--shamt <= instruction(10 DOWNTO 6);
-
-	--jumpshiftleft <= instruction(25 DOWNTO 0);
-
 	-----------------------------------------------
 	--------------- Control Enables ---------------
 	-----------------------------------------------
@@ -374,38 +358,39 @@ begin
 				  			-- SLTIU
 				  			(instruction(31 DOWNTO 26) = "001011")
 				  		)	else 
-				  "111100" when (
 
-				  			-- BEQ
-				  			(instruction(31 DOWNTO 26) = "000100")
-				  		)	else
-				  "111101" when (
+				   -- SC 2016-03-04: Commented out, moved branching to branch_check.vhd
+				  --"111100" when (
+				  --			-- BEQ
+				  --			(instruction(31 DOWNTO 26) = "000100")
+				  --		)	else
+				  --"111101" when (
 
-				  			-- BNE
-				  			(instruction(31 DOWNTO 26) = "000101")
-				  		)	else 
-				  "111000" when (
+				  --			-- BNE
+				  --			(instruction(31 DOWNTO 26) = "000101")
+				  --		)	else 
+				  --"111000" when (
 
-				  			-- BLTZ
-				  			(instruction(31 DOWNTO 26) = "000001") AND
-				  			(instruction(20 DOWNTO 16) = "00000")	
-				  		)	else 
-				  "111001" when (
+				  --			-- BLTZ
+				  --			(instruction(31 DOWNTO 26) = "000001") AND
+				  --			(instruction(20 DOWNTO 16) = "00000")	
+				  --		)	else 
+				  --"111001" when (
 
-				  			-- BGEZ
-				  			(instruction(31 DOWNTO 26) = "000001") AND
-				  			(instruction(20 DOWNTO 16) = "00001")	
-				  		)	else 
-				  "111110" when (
+				  --			-- BGEZ
+				  --			(instruction(31 DOWNTO 26) = "000001") AND
+				  --			(instruction(20 DOWNTO 16) = "00001")	
+				  --		)	else 
+				  --"111110" when (
 
-				  			-- BLEZ
-				  			(instruction(31 DOWNTO 26) = "000110")	
-				  		)	else
-				  "111111" when (
+				  --			-- BLEZ
+				  --			(instruction(31 DOWNTO 26) = "000110")	
+				  --		)	else
+				  --"111111" when (
 
-				  			-- BGTZ
-				  			(instruction(31 DOWNTO 26) = "000111")
-				  		)	else 
+				  --			-- BGTZ
+				  --			(instruction(31 DOWNTO 26) = "000111")
+				  --		)	else 
 				  (instruction(5 DOWNTO 0));
 
 end behavior;
