@@ -36,16 +36,13 @@ architecture behavior of branch_check is
 begin
 	process(A_in, B_in, ALUControl)
 
-	variable zero : std_logic_vector (31 DOWNTO 0) 
-		:= "00000000000000000000000000000000";
-
 	begin
 
 		case ALUControl is
 
 		-- BLTZ
 		when "111000" =>
-			if(signed(A_in) < zero) then 
+			if(signed(A_in) < 0) then 
 				outb <= '1';
 			else 
 				outb <= '0';
@@ -53,7 +50,7 @@ begin
 
 		-- BGEZ
 		when "111001" =>
-			if(signed(A_in) >= zero) then 
+			if(signed(A_in) >= 0) then 
 				outb <= '1';
 			else 
 				outb <= '0';
@@ -77,7 +74,7 @@ begin
 
 		--BLEZ
 		when "111110" =>
-			if(signed(A_in) <= zero) then 
+			if(signed(A_in) <= 0) then 
 				outb <= '1';
 			else 
 				outb <= '0';
@@ -85,7 +82,7 @@ begin
 				
 		--BGTZ
 		when "111111" =>
-			if(signed(A_in) > zero) then 
+			if(signed(A_in) > 0) then 
 				outb <= '1';
 			else 	
 				outb <= '0';
