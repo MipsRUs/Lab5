@@ -45,7 +45,7 @@ begin
 
 		-- BLTZ
 		when "111000" =>
-			if(A_in < zero) then 
+			if(signed(A_in) < zero) then 
 				outb <= '1';
 			else 
 				outb <= '0';
@@ -53,7 +53,7 @@ begin
 
 		-- BGEZ
 		when "111001" =>
-			if(A_in >= zero) then 
+			if(signed(A_in) >= zero) then 
 				outb <= '1';
 			else 
 				outb <= '0';
@@ -61,7 +61,7 @@ begin
 
 		--BEQ
 		when "111100" =>
-			if(A_in = B_in) then 
+			if(signed(A_in) = signed(B_in)) then 
 				outb <= '1';
 			else 
 				outb <= '0';
@@ -69,7 +69,7 @@ begin
 
 		--BNE
 		when "111101" =>
-			if(A_in /= B_in) then 
+			if(signed(A_in) /= signed(B_in)) then 
 				outb <= '1';
 			else
 				outb <= '0';
@@ -77,7 +77,7 @@ begin
 
 		--BLEZ
 		when "111110" =>
-			if(A_in <= zero) then 
+			if(signed(A_in) <= zero) then 
 				outb <= '1';
 			else 
 				outb <= '0';
@@ -85,7 +85,7 @@ begin
 				
 		--BGTZ
 		when "111111" =>
-			if(A_in > zero) then 
+			if(signed(A_in) > zero) then 
 				outb <= '1';
 			else 	
 				outb <= '0';
