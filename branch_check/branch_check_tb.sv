@@ -19,14 +19,14 @@
 //
 /***************************************************************/
 
-module equal_comparison_tb;
+module branc_check_tb;
 
 	logic[31:0] A_in;
 	logic[31:0] B_in;
 	logic[5:0] ALUControl;
 	logic outb;
 
-equal_comparison L1(
+branch_check L1(
           .A_in(A_in)
          ,.B_in(B_in)
          ,.ALUControl(ALUControl)
