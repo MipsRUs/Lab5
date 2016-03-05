@@ -80,7 +80,7 @@ ENTITY control IS
 		-- "00" (LB/LH, and whatever comes out from memReg)
 		-- "01" for LUI instruction,
 		-- "10" for JAL, saves data of current instruction (or the next one)		 
-		--JALData: OUT std_logic_vector(1 DOWNTO 0);
+		JALDataD: OUT std_logic_vector(1 DOWNTO 0);
 
 		-- '1' if shift, else '0' (SLL, SRL, SRA ONLY)
 		--ShiftControl: OUT std_logic;
@@ -318,6 +318,22 @@ begin
 							(instruction(31 DOWNTO 26) = "100101")
 						)	else 
 					"100";
+
+	JALDataD <= "10" when(
+
+						-- JAL
+						(instruction(31 DOWNTO 26) = "000011") OR
+
+						-- JALR
+						((instruction(31 DOWNTO 26) = "000000") AND
+							(instruction(5 DOWNTO 0) = "001001"))
+					)	else 
+				"01" when (
+
+						-- LUI
+						(instruction(31 DOWNTO 26) = "001111")
+					)	else 
+				"00";
 
 	ALUControlD <= "100000" when (
 

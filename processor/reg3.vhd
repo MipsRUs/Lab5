@@ -31,6 +31,8 @@ ENTITY reg3 IS
 		alu_in:			IN std_logic_vector(31 DOWNTO 0);
 		WriteDataE:		IN std_logic_vector(31 DOWNTO 0);
 		WriteRegE:		IN std_logic_vector(4 DOWNTO 0);
+		SignImmE:		IN std_logic_vector(31 DOWNTO 0);	
+		JALDataE:		IN std_logic_vector(1 DOWNTO 0);	
 
 		RegWriteM : 	OUT std_logic;
 		MemtoRegM : 	OUT std_logic;
@@ -38,7 +40,10 @@ ENTITY reg3 IS
 		LoadControlM:	OUT std_logic_vector(2 DOWNTO 0);
 		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
 		WriteDataM:		OUT std_logic_vector(31 DOWNTO 0);
-		WriteRegM:		OUT std_logic_vector(4 DOWNTO 0)				
+		WriteRegM:		OUT std_logic_vector(4 DOWNTO 0);
+		SignImmM:		OUT std_logic_vector(31 DOWNTO 0);
+		JALDataM: 		OUT std_logic_vector(1 DOWNTO 0)
+
         );
 	end reg3;
 
@@ -52,9 +57,11 @@ begin
 	variable temp_WriteDataE:		std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
 	variable temp_WriteRegE:		std_logic_vector(4 DOWNTO 0) := "00000";
 	variable temp_LoadControlE:		std_logic_vector(2 DOWNTO 0) := "100";
+	variable temp_SignImmE:			std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
+	variable temp_JALDataE:			std_logic_vector(1 DOWNTO 0) := "00";
 	begin
 
-		-- SC 2016-03-03: changed ref_clk='1'
+		-- SC 2016-03-03: changed to ref_clk='1'
 		if(ref_clk'event AND ref_clk='1') then 
 			temp_RegWriteE := RegWriteE;
 			temp_MemtoRegE := MemtoRegE;
@@ -63,6 +70,8 @@ begin
 			temp_WriteDataE := std_logic_vector(unsigned(WriteDataE));
 			temp_WriteRegE := std_logic_vector(unsigned(WriteRegE));
 			temp_LoadControlE := std_logic_vector(unsigned(LoadControlE));
+			temp_SignImmE := std_logic_vector(unsigned(SignImmE));
+			temp_JALDataE := std_logic_vector(unsigned(JALDataE));
 		end if;
 		RegWriteM <= temp_RegWriteE;
 		MemtoRegM <= temp_MemtoRegE;
@@ -71,5 +80,7 @@ begin
 		WriteDataM <= temp_WriteDataE;
 		WriteRegM <= temp_WriteRegE;
 		LoadControlM <= temp_LoadControlE;
+		SignImmM <= temp_SignImmE;
+		JALDataM <= temp_JALDataE;
 	end process;
 end;

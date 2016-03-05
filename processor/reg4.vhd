@@ -30,13 +30,17 @@ PORT (
 		rd_in:			IN std_logic_vector(31 DOWNTO 0);
 		alu_in:			IN std_logic_vector(31 DOWNTO 0);
 		WriteRegM:		IN std_logic_vector(4 DOWNTO 0);
+		SignImmM:		IN std_logic_vector(31 DOWNTO 0);
+		JALDataM:		IN std_logic_vector(1 DOWNTO 0);
 
 		RegWriteW : 	OUT std_logic;
 		MemtoRegW : 	OUT std_logic;
 		LoadControlW : 	OUT std_logic_vector(2 DOWNTO 0);
 		rd_out:			OUT std_logic_vector(31 DOWNTO 0);				
 		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
-		WriteRegW:		OUT std_logic_vector(4 DOWNTO 0)				
+		WriteRegW:		OUT std_logic_vector(4 DOWNTO 0);
+		SignImmW: 		OUT std_logic_vector(31 DOWNTO 0);	
+		JALDataW:		OUT std_logic_vector(1 DOWNTO 0)			
         );
 end reg4;
 architecture behavior of reg4 is
@@ -48,6 +52,9 @@ begin
 	variable temp_alu_in:			std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
 	variable temp_WriteRegM:		std_logic_vector(4 DOWNTO 0) := "00000";
 	variable temp_LoadControlM:		std_logic_vector(2 DOWNTO 0) := "100";
+	variable temp_SignImmM:			std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
+	variable temp_JALDataM:			std_logic_vector(1 DOWNTO 0) := "00";
+
 	begin
 
 		-- SC 2016-03-04: Changed ref_clk='1'
@@ -58,6 +65,8 @@ begin
 			temp_alu_in := std_logic_vector(unsigned(alu_in));
 			temp_WriteRegM := std_logic_vector(unsigned(WriteRegM));
 			temp_LoadControlM := std_logic_vector(unsigned(LoadControlM));
+			temp_SignImmM := std_logic_vector(unsigned(SignImmM));
+			temp_JALDataM := std_logic_vector(unsigned(JALDataM));
 		end if;
 		RegWriteW <= temp_RegWriteM;
 		MemtoRegW <= temp_MemtoRegM;
@@ -65,5 +74,7 @@ begin
 		alu_out <= temp_alu_in;
 		WriteRegW <= temp_WriteRegM;
 		LoadControlW <= temp_LoadControlM;
+		SignImmW <= temp_SignImmM;
+		JALDataW <= JALDataM;
 	end process;
 end;

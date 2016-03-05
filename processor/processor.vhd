@@ -38,6 +38,14 @@ architecture behavior of processor is
 -------------- components -------------
 ---------------------------------------
 
+-- shiftlui
+component shiftlui
+	port(
+		in32: IN std_logic_vector (31 downto 0);
+		out32: OUT std_logic_vector (31 downto 0)
+	);
+end component;
+
 -- shiftextend
 component shiftextend
 	port(
@@ -164,6 +172,7 @@ component reg2
 		RdD:			IN std_logic_vector(15 downto 11);
 		SignImmD:		IN std_logic_vector(31 downto 0);
 		clr:			IN std_logic;
+		JALDataD:		IN std_logic_vector(1 downto 0);
 		RegWriteE:		OUT std_logic;
 		MemtoRegE:		OUT std_logic;
 		MemWriteE:		OUT std_logic;
@@ -176,7 +185,8 @@ component reg2
 		RsE:			OUT std_logic_vector(25 downto 21);
 		RtE:			OUT std_logic_vector(20 downto 16);
 		RdE:			OUT std_logic_vector(15 downto 11);
-		SignImmE:		OUT std_logic_vector(31 downto 0)
+		SignImmE:		OUT std_logic_vector(31 downto 0);
+		JALDataE:		OUT std_logic_vector(1 downto 0)
 	);
 end component;
 
@@ -191,6 +201,8 @@ component reg3
 		alu_in:			IN std_logic_vector(31 DOWNTO 0);
 		WriteDataE:		IN std_logic_vector(31 DOWNTO 0);
 		WriteRegE:		IN std_logic_vector(4 DOWNTO 0);
+		SignImmE:		IN std_logic_vector(31 DOWNTO 0);
+		JALDataE:		IN std_logic_vector(1 DOWNTO 0);	
 
 		RegWriteM : 	OUT std_logic;
 		MemtoRegM : 	OUT std_logic;
@@ -198,7 +210,9 @@ component reg3
 		LoadControlM: 	OUT std_logic_vector(2 DOWNTO 0);
 		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
 		WriteDataM:		OUT std_logic_vector(31 DOWNTO 0);
-		WriteRegM:		OUT std_logic_vector(4 DOWNTO 0)				
+		WriteRegM:		OUT std_logic_vector(4 DOWNTO 0);
+		SignImmM:		OUT std_logic_vector(31 DOWNTO 0);
+		JALDataM: 		OUT std_logic_vector(1 DOWNTO 0)				
 	);
 end component;
 
@@ -212,13 +226,17 @@ component reg4
 		rd_in:			IN std_logic_vector(31 DOWNTO 0);
 		alu_in:			IN std_logic_vector(31 DOWNTO 0);
 		WriteRegM:		IN std_logic_vector(4 DOWNTO 0);
+		SignImmM:		IN std_logic_vector(31 DOWNTO 0);
+		JALDataM:		IN std_logic_vector(1 DOWNTO 0);
 
 		RegWriteW : 	OUT std_logic;
 		MemtoRegW : 	OUT std_logic;
 		LoadControlW : 	OUT std_logic_vector(2 DOWNTO 0);
 		rd_out:			OUT std_logic_vector(31 DOWNTO 0);				
 		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
-		WriteRegW:		OUT std_logic_vector(4 DOWNTO 0)				
+		WriteRegW:		OUT std_logic_vector(4 DOWNTO 0);
+		SignImmW: 		OUT std_logic_vector(31 DOWNTO 0);
+		JALDataW:		OUT std_logic_vector(1 DOWNTO 0)					
     );
 end component;
 
@@ -277,7 +295,7 @@ component control
 		-- "00" (LB/LH, and whatever comes out from memReg)
 		-- "01" for LUI instruction,
 		-- "10" for JAL, saves data of current instruction (or the next one)		 
-		--JALData: OUT std_logic_vector(1 DOWNTO 0);
+		JALDataD: OUT std_logic_vector(1 DOWNTO 0);
 
 		-- '1' if shift, else '0' (SLL, SRL, SRA ONLY)
 		--ShiftControl: OUT std_logic;
@@ -521,6 +539,19 @@ signal emptyWire: std_logic_vector(31 DOWNTO 0);
 
 signal MemtoRegWmuxx_out: std_logic_vector(31 DOWNTO 0);
 
+signal shiftlui_out: std_logic_vector(31 DOWNTO 0);
+
+signal JALDataW_out: std_logic_vector(31 DOWNTO 0);
+
+signal SignImmM: std_logic_vector(31 DOWNTO 0);
+signal SignImmW: std_logic_vector(31 DOWNTO 0);
+
+signal JALDataD: std_logic_vector(1 DOWNTO 0);
+signal JALDataE: std_logic_vector(1 DOWNTO 0);
+signal JALDataM: std_logic_vector(1 DOWNTO 0);
+signal JALDataW: std_logic_vector(1 DOWNTO 0);
+
+
 ------------------- begin --------------------- 
 begin
 
@@ -538,11 +569,12 @@ begin
 	controlx: control PORT MAP(instruction=>InstrD, Op=>InstrD(31 DOWNTO 26), Funct=>InstrD(5 DOWNTO 0),
 					RegWriteD=>RegWriteD, MemtoRegD=>MemtoRegD, MemWriteD=>MemWriteD,
 					ALUControlD=>ALUControlD, ALUSrcD=>ALUSrcD, RegDstD=>RegDstD,
-					BranchD=>BranchD, JumpD=>JumpD);
+					BranchD=>BranchD, JumpD=>JumpD, JALDataD=>JALDataD,
+					LoadControlD=>LoadControlD);
 
 	regfilex: regfile PORT MAP(ref_clk=>ref_clk, we=>RegWriteW, raddr_1=>InstrD(25 DOWNTO 21),
 					raddr_2=>InstrD(20 DOWNTO 16), waddr=>WriteRegW, rdata_1=>RD1_out,
-					rdata_2=>RD2_out, wdata=>ResultW);
+					rdata_2=>RD2_out, wdata=>JALDataW_out);
 
 	sign_extension_16bitx: sign_extension_16bit PORT MAP(immediate=>InstrD(15 DOWNTO 0),
 					sign_extension_out=>SignImmD);
@@ -581,11 +613,12 @@ begin
 					ALUSrcD=>ALUSrcD, RegDstD=>RegDstD, LoadControlD=>LoadControlD, RD1=>RD1_out,
 					RD2=>RD2_out, RsD=>InstrD(25 DOWNTO 21), RtD=>InstrD(20 DOWNTO 16),
 					RdD=>InstrD(15 DOWNTO 11), SignImmD=>SignImmD,
-					clr=>FlushE, RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
+					clr=>FlushE, JALDataD=>JALDataD,
+					RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
 					MemWriteE=>MemWriteE, ALUControlE=>ALUControlE,
 					ALUSrcE=>ALUSrcE, RegDstE=>RegDstE, LoadControlE=>LoadControlE, RD1toMux1=>RD1toMux1,
 					RD2toMux2=>RD2toMux2, RsE=>RsE, RtE=>RtE, RdE=>RdE,
-					SignImmE=>SignImmE);
+					SignImmE=>SignImmE, JALDataE=>JALDataE);
 
 	RegDstEmuxx: mux_5bit PORT MAP(in0=>RtE, in1=>RdE, sel=>RegDstE, outb=>WriteRegE);
 	
@@ -603,17 +636,22 @@ begin
 
 	reg3x: reg3 PORT MAP(ref_clk=>ref_clk, RegWriteE=>RegWriteE, MemtoRegE=>MemtoRegE,
 					MemWriteE=>MemWriteE, LoadControlE=>LoadControlE, alu_in=>ALU_out, WriteDataE=>WriteDataE,
-					WriteRegE=>WriteRegE, RegWriteM=>RegWriteM, MemtoRegM=>MemtoRegM, 
+					WriteRegE=>WriteRegE, SignImmE=>SignImmE, JALDataE=>JALDataE,
+					RegWriteM=>RegWriteM, MemtoRegM=>MemtoRegM, 
 					MemWriteM=>MemWriteM, LoadControlM=>LoadControlM, alu_out=>ALUOutM, WriteDataM=>WriteDataM,
-					WriteRegM=>WriteRegM);
+					WriteRegM=>WriteRegM, SignImmM=>SignImmM, JALDataM=>JALDataM);
 
 	ramx: ram PORT MAP(ref_clk=>ref_clk, we=>MemWriteM, addr=>ALUOutM, 
 					dataI=>WriteDataM, dataO=>ram_data_out);
 
 	reg4x: reg4 PORT MAP(ref_clk=>ref_clk, RegWriteM=>RegWriteM, MemtoRegM=>MemtoRegM, LoadControlM=>LoadControlM,
 					rd_in=>ram_data_out, alu_in=>ALUOutM,
-					WriteRegM=>WriteRegM, RegWriteW=>RegWriteW, MemtoRegW=>MemtoRegW, LoadControlW=>LoadControlW,	
-					rd_out=>ReadDataW, alu_out=>ALUOutW, WriteRegW=>WriteRegW);
+					WriteRegM=>WriteRegM, SignImmM=>SignImmM, JALDataM=>JALDataM,
+					RegWriteW=>RegWriteW, MemtoRegW=>MemtoRegW, LoadControlW=>LoadControlW,	
+					rd_out=>ReadDataW, alu_out=>ALUOutW, WriteRegW=>WriteRegW,
+					SignImmW=>SignImmW, JALDataW=>JALDataW);
+
+	shiftluix: shiftlui PORT MAP(in32=>SignImmW, out32=>shiftlui_out);
 
 	MemtoRegWmuxx: mux PORT MAP(in0=>ALUOutW, in1=>ReadDataW, sel=>MemtoRegW, 
 					outb=>MemtoRegWmuxx_out);
@@ -626,6 +664,10 @@ begin
 					JumpD=>JumpD, StallF=>StallF, StallD=>StallD, ForwardAD=>ForwardAD, 
 					ForwardBD=>ForwardBD, FlushE=>FlushE, ForwardAE=>ForwardAE, 
 					ForwardBE=>ForwardBE);
+
+	-- ******************* fix, in2 for JAL
+	JalDataWmuxx: mux4 PORT MAP(in0=>ResultW, in1=>shiftlui_out, in2=>emptyWire, 
+					in3=>emptyWire, sel=>JALDataW, mux4out=>JALDataW_out);
 
 	shiftextendx: shiftextend PORT MAP(loadcontrol=>LoadControlW, in32=>MemtoRegWmuxx_out,
 					out32=>ResultW);

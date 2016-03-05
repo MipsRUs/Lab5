@@ -37,6 +37,8 @@ PORT (
 		RdD:			IN std_logic_vector(15 downto 11);
 		SignImmD:		IN std_logic_vector(31 downto 0);
 		clr:			IN std_logic;
+		JALDataD:		IN std_logic_vector(1 downto 0);
+
 		RegWriteE:		OUT std_logic;
 		MemtoRegE:		OUT std_logic;
 		MemWriteE:		OUT std_logic;
@@ -49,7 +51,8 @@ PORT (
 		RsE:			OUT std_logic_vector(25 downto 21);
 		RtE:			OUT std_logic_vector(20 downto 16);
 		RdE:			OUT std_logic_vector(15 downto 11);
-		SignImmE:		OUT std_logic_vector(31 downto 0)
+		SignImmE:		OUT std_logic_vector(31 downto 0);
+		JALDataE:		OUT std_logic_vector(1 downto 0)
 	);
 end reg2;
 architecture behavior of reg2 is
@@ -68,6 +71,7 @@ begin
 		variable RdD_tmp:		std_logic_vector(15 downto 11) := "00000";
 		variable SignImmD_tmp:		std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
 		variable LoadControlD_tmp: 	std_logic_vector(2 downto 0) := "100";
+		variable JALDataD_tmp:		std_logic_vector(1 downto 0) := "XX";
 	begin
 		if rising_edge(ref_clk) then
 			if(clr = '1') then
@@ -83,6 +87,7 @@ begin
 				RtD_tmp := "00000";
 				RdD_tmp := "00000";
 				SignImmD_tmp := "00000000000000000000000000000000";
+				JALDataD_tmp := "00";
 			end if;
 			if(clr = '0') then
 				RegWriteD_tmp:= RegWriteD;
@@ -98,6 +103,7 @@ begin
 				RtD_tmp := std_logic_vector(unsigned(RtD));
 				RdD_tmp := std_logic_vector(unsigned(RdD));
 				SignImmD_tmp := std_logic_vector(unsigned(SignImmD));
+				JALDataD_tmp := std_logic_vector(unsigned(JALDataD));
 			end if;
 		RegWriteE <= RegWriteD_tmp;
         MemtoRegE <= MemtoRegD_tmp;
@@ -112,6 +118,7 @@ begin
 		RtE <= RtD_tmp;
 		RdE <= RdD_tmp;
 		SignImmE <= SignImmD_tmp;
+		JALDataE <= JALDataD_tmp;
 		end if;
 	end process;
 end;	
