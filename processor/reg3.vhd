@@ -27,6 +27,7 @@ ENTITY reg3 IS
 		RegWriteE : 	IN std_logic;
 		MemtoRegE : 	IN std_logic;
 		MemWriteE: 	IN std_logic;
+		LoadControlE: IN std_logic_vector(2 DOWNTO 0);
 		alu_in:			IN std_logic_vector(31 DOWNTO 0);
 		WriteDataE:		IN std_logic_vector(31 DOWNTO 0);
 		WriteRegE:		IN std_logic_vector(4 DOWNTO 0);
@@ -34,6 +35,7 @@ ENTITY reg3 IS
 		RegWriteM : 	OUT std_logic;
 		MemtoRegM : 	OUT std_logic;
 		MemWriteM : 	OUT std_logic;
+		LoadControlM:	OUT std_logic_vector(2 DOWNTO 0);
 		alu_out:		OUT std_logic_vector(31 DOWNTO 0);
 		WriteDataM:		OUT std_logic_vector(31 DOWNTO 0);
 		WriteRegM:		OUT std_logic_vector(4 DOWNTO 0)				
@@ -49,6 +51,7 @@ begin
 	variable temp_alu_in:			std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
 	variable temp_WriteDataE:		std_logic_vector(31 DOWNTO 0) := "00000000000000000000000000000000";
 	variable temp_WriteRegE:		std_logic_vector(4 DOWNTO 0) := "00000";
+	variable temp_LoadControlE:		std_logic_vector(2 DOWNTO 0) := "100";
 	begin
 
 		-- SC 2016-03-03: changed ref_clk='1'
@@ -59,6 +62,7 @@ begin
 			temp_alu_in := std_logic_vector(unsigned(alu_in));
 			temp_WriteDataE := std_logic_vector(unsigned(WriteDataE));
 			temp_WriteRegE := std_logic_vector(unsigned(WriteRegE));
+			temp_LoadControlE := std_logic_vector(unsigned(LoadControlE));
 		end if;
 		RegWriteM <= temp_RegWriteE;
 		MemtoRegM <= temp_MemtoRegE;
@@ -66,5 +70,6 @@ begin
 		alu_out <= temp_alu_in;
 		WriteDataM <= temp_WriteDataE;
 		WriteRegM <= temp_WriteRegE;
+		LoadControlM <= temp_LoadControlE;
 	end process;
 end;

@@ -29,6 +29,7 @@ PORT (
 		ALUControlD:	IN std_logic_vector(5 downto 0);
 		ALUSrcD: 		IN std_logic;
 		RegDstD:		IN std_logic;
+		LoadControlD: 	IN std_logic_vector(2 downto 0);
 		RD1:			IN std_logic_vector(31 downto 0);
 		RD2:			IN std_logic_vector(31 downto 0);
 		RsD:			IN std_logic_vector(25 downto 21);
@@ -42,6 +43,7 @@ PORT (
 		ALUControlE:	OUT std_logic_vector(5 downto 0);
 		ALUSrcE: 		OUT std_logic;
 		RegDstE:		OUT std_logic;
+		LoadControlE: 	OUT std_logic_vector(2 downto 0);
 		RD1toMux1:		OUT std_logic_vector(31 downto 0);
 		RD2toMux2:		OUT std_logic_vector(31 downto 0);
 		RsE:			OUT std_logic_vector(25 downto 21);
@@ -65,6 +67,7 @@ begin
 		variable RtD_tmp:		std_logic_vector(20 downto 16) := "00000";
 		variable RdD_tmp:		std_logic_vector(15 downto 11) := "00000";
 		variable SignImmD_tmp:		std_logic_vector(31 downto 0) := "00000000000000000000000000000000";
+		variable LoadControlD_tmp: 	std_logic_vector(2 downto 0) := "100";
 	begin
 		if rising_edge(ref_clk) then
 			if(clr = '1') then
@@ -88,6 +91,7 @@ begin
 				ALUControlD_tmp := ALUControlD;
 				ALUSrcD_tmp := ALUSrcD;
 				RegDstD_tmp := RegDstD;
+				LoadControlD_tmp := std_logic_vector(unsigned(LoadControlD));
 				RD1_tmp := std_logic_vector(unsigned(RD1));
 				RD2_tmp := std_logic_vector(unsigned(RD2));
 				RsD_tmp := std_logic_vector(unsigned(RsD));
@@ -101,6 +105,7 @@ begin
         ALUControlE <= ALUControlD_tmp;
         ALUSrcE <= ALUSrcD_tmp;
         RegDstE <= RegDstD_tmp;
+        LoadControlE <= LoadControlD_tmp;
 		RD1toMux1 <= RD1_tmp;
 		RD2toMux2 <= RD2_tmp;
 		RsE <= RsD_tmp;

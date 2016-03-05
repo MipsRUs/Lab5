@@ -66,7 +66,7 @@ ENTITY control IS
 		-- '1' if branching, '0' if not branching
 		BranchD: OUT std_logic;
 
-		JumpD: OUT std_logic
+		JumpD: OUT std_logic;
 
 		-- '1' if jump instruction, else '0' 
 		--Jump: OUT std_logic;
@@ -87,7 +87,7 @@ ENTITY control IS
 
 		-- "000" if LB; "001" if LH; "010" if LBU; "011" if LHU; 
 		-- "100" if normal, (don't do any manipulation to input) 
-		--LoadControl: OUT std_logic_vector(2 DOWNTO 0);
+		LoadControlD: OUT std_logic_vector(2 DOWNTO 0)
 
 
 		-- to regfile
@@ -297,7 +297,27 @@ begin
 					)	else 
 				'0';
 
+	LoadControlD <= "000" when(
 
+							-- LB
+							(instruction(31 DOWNTO 26) = "100000")
+						) 	else 
+					"001" when (
+
+							-- LH
+							(instruction(31 DOWNTO 26) = "100001")
+						) 	else 
+					"010" when (
+
+							-- LBU
+							(instruction(31 DOWNTO 26) = "100100")
+						) 	else 
+					"011" when (
+
+							-- LHU
+							(instruction(31 DOWNTO 26) = "100101")
+						)	else 
+					"100";
 
 	ALUControlD <= "100000" when (
 
