@@ -162,7 +162,7 @@ begin
 			--branch
 			--BLTZ
 
-			-- SC 2016-03-03: COMMENTE OUT ALL THE BRANCHES FOR NOW BECAUSE DON'T HAVE IT YET
+			-- SC 2016-03-03: COMMENTED OUT ALL THE BRANCHES FOR NOW BECAUSE DON'T HAVE IT YET
 			--when "111000" =>
 			--	O_out <= A_in;
 			--	if(A_in < zero) then 
