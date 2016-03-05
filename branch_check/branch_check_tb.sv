@@ -19,7 +19,7 @@
 //
 /***************************************************************/
 
-module branc_check_tb;
+module branch_check_tb;
 
 	logic[31:0] A_in;
 	logic[31:0] B_in;
