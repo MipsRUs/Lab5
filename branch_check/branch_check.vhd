@@ -34,7 +34,7 @@ END equal_comparison;
 architecture behavior of equal_comparison is
 
 begin
-	process(in0, in1, ALUControl)
+	process(A_in, B_in, ALUControl)
 
 	variable zero : std_logic_vector (31 DOWNTO 0) 
 		:= "00000000000000000000000000000000";
