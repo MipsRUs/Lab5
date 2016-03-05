@@ -39,7 +39,6 @@ begin
 	variable zero : std_logic_vector (31 DOWNTO 0) 
 		:= "00000000000000000000000000000000";
 
-
 	begin
 
 		case ALUControl is
@@ -93,7 +92,7 @@ begin
 			end if;
 			
 			when others =>
-				outb <= zero;
+				outb <= '0';
 
 		end case;
 
