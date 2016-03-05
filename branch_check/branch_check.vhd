@@ -22,16 +22,16 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-ENTITY equal_comparison IS 
+ENTITY branch_check IS 
 	port (
 		A_in : IN std_logic_vector(31 DOWNTO 0);
 		B_in : IN std_logic_vector(31 DOWNTO 0);
 		ALUControl : IN std_logic_vector(5 DOWNTO 0);
 		outb : OUT std_logic
 	);
-END equal_comparison;
+END branch_check;
 
-architecture behavior of equal_comparison is
+architecture behavior of branch_check is
 
 begin
 	process(A_in, B_in, ALUControl)
