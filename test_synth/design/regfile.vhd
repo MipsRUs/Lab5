@@ -51,7 +51,7 @@ begin
 		-- write at rising edge
 		if(ref_clk'event AND ref_clk='1') then
 			if(we='1') then
-				mem_var(to_integer(unsigned(waddr))) <= wdata;
+				mem_var(to_integer(unsigned(waddr))) := wdata;
 			end if;
 		end if;
 	end process;
