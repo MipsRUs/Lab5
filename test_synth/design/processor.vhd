@@ -672,6 +672,5 @@ begin
 	shiftextendx: shiftextend PORT MAP(loadcontrol=>LoadControlW, in32=>MemtoRegWmuxx_out,
 					out32=>ResultW);
 
-	out_b <= ALU_out;
-
+	out_b <= ALU_out; 
 end behavior;
