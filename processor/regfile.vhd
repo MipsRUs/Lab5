@@ -46,7 +46,7 @@ begin
 	regfile_write: process(ref_clk,raddr_1,raddr_2)
 	subtype word is std_logic_vector(31 downto 0);
 	type memory is array(0 to 2**5-1) of word;
-	signal mem_var:memory;
+	variable mem_var:memory;
 
 
 	begin
