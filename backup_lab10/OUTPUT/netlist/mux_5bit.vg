@@ -1,0 +1,16 @@
+
+module mux_5bit ( in0, in1, sel, outb );
+  input [4:0] in0;
+  input [4:0] in1;
+  output [4:0] outb;
+  input sel;
+  wire   n2;
+
+  INVX0_LVT U7 ( .A(sel), .Y(n2) );
+  AO22X1_LVT U8 ( .A1(sel), .A2(in1[0]), .A3(n2), .A4(in0[0]), .Y(outb[0]) );
+  AO22X1_LVT U9 ( .A1(sel), .A2(in1[1]), .A3(n2), .A4(in0[1]), .Y(outb[1]) );
+  AO22X1_LVT U10 ( .A1(sel), .A2(in1[2]), .A3(n2), .A4(in0[2]), .Y(outb[2]) );
+  AO22X1_LVT U11 ( .A1(sel), .A2(in1[3]), .A3(n2), .A4(in0[3]), .Y(outb[3]) );
+  AO22X1_LVT U12 ( .A1(sel), .A2(in1[4]), .A3(n2), .A4(in0[4]), .Y(outb[4]) );
+endmodule
+

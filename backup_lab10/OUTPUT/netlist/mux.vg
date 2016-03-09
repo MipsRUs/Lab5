@@ -1,0 +1,67 @@
+
+module mux ( in0, in1, sel, outb );
+  input [31:0] in0;
+  input [31:0] in1;
+  output [31:0] outb;
+  input sel;
+  wire   n2, n3, n4;
+
+  INVX2_LVT U34 ( .A(sel), .Y(n3) );
+  AO22X1_LVT U35 ( .A1(sel), .A2(in1[0]), .A3(n3), .A4(in0[0]), .Y(outb[0]) );
+  INVX0_LVT U36 ( .A(sel), .Y(n4) );
+  AO22X1_LVT U37 ( .A1(sel), .A2(in1[1]), .A3(n4), .A4(in0[1]), .Y(outb[1]) );
+  AO22X1_LVT U38 ( .A1(sel), .A2(in1[2]), .A3(n3), .A4(in0[2]), .Y(outb[2]) );
+  AO22X1_LVT U39 ( .A1(sel), .A2(in1[3]), .A3(n4), .A4(in0[3]), .Y(outb[3]) );
+  AO22X1_LVT U40 ( .A1(sel), .A2(in1[4]), .A3(n3), .A4(in0[4]), .Y(outb[4]) );
+  AO22X1_LVT U41 ( .A1(sel), .A2(in1[5]), .A3(n4), .A4(in0[5]), .Y(outb[5]) );
+  AO22X1_LVT U42 ( .A1(sel), .A2(in1[6]), .A3(n3), .A4(in0[6]), .Y(outb[6]) );
+  AO22X1_LVT U43 ( .A1(sel), .A2(in1[7]), .A3(n4), .A4(in0[7]), .Y(outb[7]) );
+  AO22X1_LVT U44 ( .A1(sel), .A2(in1[8]), .A3(n3), .A4(in0[8]), .Y(outb[8]) );
+  AO22X1_LVT U45 ( .A1(sel), .A2(in1[9]), .A3(n4), .A4(in0[9]), .Y(outb[9]) );
+  AO22X1_LVT U46 ( .A1(sel), .A2(in1[10]), .A3(n3), .A4(in0[10]), .Y(outb[10])
+         );
+  INVX0_LVT U47 ( .A(sel), .Y(n2) );
+  AO22X1_LVT U48 ( .A1(sel), .A2(in1[11]), .A3(n2), .A4(in0[11]), .Y(outb[11])
+         );
+  AO22X1_LVT U49 ( .A1(sel), .A2(in1[12]), .A3(n2), .A4(in0[12]), .Y(outb[12])
+         );
+  AO22X1_LVT U50 ( .A1(sel), .A2(in1[13]), .A3(n2), .A4(in0[13]), .Y(outb[13])
+         );
+  AO22X1_LVT U51 ( .A1(sel), .A2(in1[14]), .A3(n2), .A4(in0[14]), .Y(outb[14])
+         );
+  AO22X1_LVT U52 ( .A1(sel), .A2(in1[15]), .A3(n2), .A4(in0[15]), .Y(outb[15])
+         );
+  AO22X1_LVT U53 ( .A1(sel), .A2(in1[16]), .A3(n2), .A4(in0[16]), .Y(outb[16])
+         );
+  AO22X1_LVT U54 ( .A1(sel), .A2(in1[17]), .A3(n2), .A4(in0[17]), .Y(outb[17])
+         );
+  AO22X1_LVT U55 ( .A1(sel), .A2(in1[18]), .A3(n2), .A4(in0[18]), .Y(outb[18])
+         );
+  AO22X1_LVT U56 ( .A1(sel), .A2(in1[19]), .A3(n2), .A4(in0[19]), .Y(outb[19])
+         );
+  AO22X1_LVT U57 ( .A1(sel), .A2(in1[20]), .A3(n3), .A4(in0[20]), .Y(outb[20])
+         );
+  AO22X1_LVT U58 ( .A1(sel), .A2(in1[21]), .A3(n3), .A4(in0[21]), .Y(outb[21])
+         );
+  AO22X1_LVT U59 ( .A1(sel), .A2(in1[22]), .A3(n3), .A4(in0[22]), .Y(outb[22])
+         );
+  AO22X1_LVT U60 ( .A1(sel), .A2(in1[23]), .A3(n3), .A4(in0[23]), .Y(outb[23])
+         );
+  AO22X1_LVT U61 ( .A1(sel), .A2(in1[24]), .A3(n3), .A4(in0[24]), .Y(outb[24])
+         );
+  AO22X1_LVT U62 ( .A1(sel), .A2(in1[25]), .A3(n4), .A4(in0[25]), .Y(outb[25])
+         );
+  AO22X1_LVT U63 ( .A1(sel), .A2(in1[26]), .A3(n3), .A4(in0[26]), .Y(outb[26])
+         );
+  AO22X1_LVT U64 ( .A1(sel), .A2(in1[27]), .A3(n4), .A4(in0[27]), .Y(outb[27])
+         );
+  AO22X1_LVT U65 ( .A1(sel), .A2(in1[28]), .A3(n3), .A4(in0[28]), .Y(outb[28])
+         );
+  AO22X1_LVT U66 ( .A1(sel), .A2(in1[29]), .A3(n4), .A4(in0[29]), .Y(outb[29])
+         );
+  AO22X1_LVT U67 ( .A1(sel), .A2(in1[30]), .A3(n3), .A4(in0[30]), .Y(outb[30])
+         );
+  AO22X1_LVT U68 ( .A1(sel), .A2(in1[31]), .A3(n4), .A4(in0[31]), .Y(outb[31])
+         );
+endmodule
+
