@@ -40,40 +40,31 @@ END regfile ;
 
 architecture behavior of regfile is
 
-subtype word is std_logic_vector(31 downto 0);
-type memory is array(0 to 2**5-1) of word;
-signal mem_var:memory;
+
 
 begin
-	regfile_write: process(ref_clk)
+	regfile_write: process(ref_clk,raddr_1,raddr_2)
+	subtype word is std_logic_vector(31 downto 0);
+	type memory is array(0 to 2**5-1) of word;
+	signal mem_var:memory;
+
+
 	begin
 
 		-- write at rising edge
 		if(ref_clk'event AND ref_clk='1') then
 			if(we='1') then
-				mem_var(to_integer(unsigned(waddr))) <= wdata;
+				mem_var(to_integer(unsigned(waddr))) := wdata;
 			end if;
 		end if;
+
+		rdata_1 <= mem_var(to_integer(unsigned(raddr_1)));
+		rdata_2 <= mem_var(to_integer(unsigned(raddr_2)));
+
+
 	end process;
 
-	regfile_read: process(ref_clk,raddr_1, raddr_2) 
-	begin
 
-		-- read at falling edge
-		if (ref_clk'event AND ref_clk='0') then 
-			if(to_integer(unsigned(raddr_1))=0) then
-				rdata_1 <= (others => '0');
-			else 
-				rdata_1 <= mem_var(to_integer(unsigned(raddr_1)));
-			end if;
-
-			if(to_integer(unsigned(raddr_2))=0) then 
-				rdata_2 <= (others => '0');
-			else 	
-				rdata_2 <= mem_var(to_integer(unsigned(raddr_2)));
-			end if;
-		end if;
-	end process;
 
 end behavior;
 
