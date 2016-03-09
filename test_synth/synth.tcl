@@ -5,7 +5,7 @@
 #
 #
 set PROJECT_NAME                "MIPS"
-set TOP                         "equal_comparison"
+set TOP                         "processor"
 set FILES                       "files_mips"
 set clock_period                2.0
 
