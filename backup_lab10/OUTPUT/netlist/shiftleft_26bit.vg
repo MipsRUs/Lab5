@@ -1,0 +1,36 @@
+
+module shiftleft_26bit ( A_in, O_out );
+  input [25:0] A_in;
+  output [27:0] O_out;
+
+  assign O_out[0] = 1'b0;
+  assign O_out[1] = 1'b0;
+  assign O_out[27] = A_in[25];
+  assign O_out[26] = A_in[24];
+  assign O_out[25] = A_in[23];
+  assign O_out[24] = A_in[22];
+  assign O_out[23] = A_in[21];
+  assign O_out[22] = A_in[20];
+  assign O_out[21] = A_in[19];
+  assign O_out[20] = A_in[18];
+  assign O_out[19] = A_in[17];
+  assign O_out[18] = A_in[16];
+  assign O_out[17] = A_in[15];
+  assign O_out[16] = A_in[14];
+  assign O_out[15] = A_in[13];
+  assign O_out[14] = A_in[12];
+  assign O_out[13] = A_in[11];
+  assign O_out[12] = A_in[10];
+  assign O_out[11] = A_in[9];
+  assign O_out[10] = A_in[8];
+  assign O_out[9] = A_in[7];
+  assign O_out[8] = A_in[6];
+  assign O_out[7] = A_in[5];
+  assign O_out[6] = A_in[4];
+  assign O_out[5] = A_in[3];
+  assign O_out[4] = A_in[2];
+  assign O_out[3] = A_in[1];
+  assign O_out[2] = A_in[0];
+
+endmodule
+
