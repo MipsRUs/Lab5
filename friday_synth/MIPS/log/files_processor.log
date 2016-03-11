@@ -1,0 +1,86 @@
+analyze -format vhdl { orgate.vhd shiftleft_26bit.vhd concatenation.vhd mux.vhd mux_5bit.vhd buffer_e.vhd rom.vhd adder.vhd regfile.vhd sign_extension_16bit.vhd shiftleft_32bit.vhd andgate.vhd branch_check.vhd mux4.vhd alu.vhd ram.vhd hazard_unit.vhd control.vhd reg1.vhd reg2.vhd reg3.vhd reg4.vhd shiftextend.vhd shiftlui.vhd processor.vhd }
+Running PRESTO HDLC
+Compiling Entity Declaration ORGATE
+Compiling Architecture BEHAVIORAL of ORGATE
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/orgate.vhd:33: The architecture Behavioral has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration SHIFTLEFT_26BIT
+Compiling Architecture BEHAVIOR of SHIFTLEFT_26BIT
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/shiftleft_26bit.vhd:33: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration CONCATENATION
+Compiling Architecture BEHAVIOR of CONCATENATION
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/concatenation.vhd:34: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration MUX
+Compiling Architecture BEHAVIOR of MUX
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/mux.vhd:36: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration MUX_5BIT
+Compiling Architecture BEHAVIOR of MUX_5BIT
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/mux_5bit.vhd:36: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration BUFFER_E
+Compiling Architecture BEHAVIOR of BUFFER_E
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/buffer_e.vhd:37: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration ROM
+Compiling Architecture BEHAVIOR of ROM
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/rom.vhd:31: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration ADDER
+Compiling Architecture LOGIC of ADDER
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/adder.vhd:33: The architecture logic has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration REGFILE
+Compiling Architecture BEHAVIOR of REGFILE
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/regfile.vhd:42: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration SIGN_EXTENSION_16BIT
+Compiling Architecture BEHAVIORAL of SIGN_EXTENSION_16BIT
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/sign_extension_16bit.vhd:34: The architecture Behavioral has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration SHIFTLEFT_32BIT
+Compiling Architecture BEHAVIOR of SHIFTLEFT_32BIT
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/shiftleft_32bit.vhd:33: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration ANDGATE
+Compiling Architecture BEHAVIORAL of ANDGATE
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/andgate.vhd:33: The architecture Behavioral has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration BRANCH_CHECK
+Compiling Architecture BEHAVIOR of BRANCH_CHECK
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/branch_check.vhd:34: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration MUX4
+Compiling Architecture LOGIC of MUX4
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/mux4.vhd:35: The architecture logic has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration ALU
+Compiling Architecture BEHAVIOR of ALU
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/alu.vhd:37: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration RAM
+Compiling Architecture BEHAVIOR of RAM
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/ram.vhd:37: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration HAZARD_UNIT
+Compiling Architecture BEHAVIOR of HAZARD_UNIT
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/hazard_unit.vhd:51: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration CONTROL
+Compiling Architecture BEHAVIOR of CONTROL
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/control.vhd:114: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration REG1
+Compiling Architecture BEHAVIOR of REG1
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/reg1.vhd:35: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration REG2
+Compiling Architecture BEHAVIOR of REG2
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/reg2.vhd:58: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration REG3
+Compiling Architecture BEHAVIOR of REG3
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/reg3.vhd:50: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration REG4
+Compiling Architecture BEHAVIOR of REG4
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/reg4.vhd:46: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration SHIFTEXTEND
+Compiling Architecture LOGIC of SHIFTEXTEND
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/shiftextend.vhd:34: The architecture logic has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration SHIFTLUI
+Compiling Architecture LOGIC of SHIFTLUI
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/shiftlui.vhd:30: The architecture logic has already been analyzed. It is being replaced. (VHD-4)
+Compiling Entity Declaration PROCESSOR
+Compiling Architecture BEHAVIOR of PROCESSOR
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/processor.vhd:35: The architecture behavior has already been analyzed. It is being replaced. (VHD-4)
+Warning:  The entity 'regfile' has multiple architectures defined. The last defined architecture 'behavior' will be used to build the design by default. (VHD-6)
+Warning:  The entity 'alu' has multiple architectures defined. The last defined architecture 'behavior' will be used to build the design by default. (VHD-6)
+Warning:  The entity 'processor' has multiple architectures defined. The last defined architecture 'behavior' will be used to build the design by default. (VHD-6)
+Presto compilation completed successfully.
+Loading db file '/users/ugrad2/2012/spring/pooriam/libraries/saed32lvt_tt1p05vn40c.db'
+Loading db file '/users/ugrad2/2012/spring/pooriam/libraries/saed32sram_tt1p05vn40c.db'
+Loading db file '/ecelib/linware/synopsys15/dc/libraries/syn/dw_foundation.sldb'
+1
+1

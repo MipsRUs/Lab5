@@ -1,0 +1,45 @@
+
+module adder ( a, b, sum );
+  input [31:0] a;
+  input [31:0] b;
+  output [31:0] sum;
+  wire   n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16,
+         n17, n18, n19, n20, n21, n22, n23, n24, n25, n26, n27, n28, n29, n30,
+         n31, n32, n33;
+
+  INVX0_LVT U2 ( .A(n29), .Y(n28) );
+  NAND2X0_LVT U3 ( .A1(a[0]), .A2(b[0]), .Y(n29) );
+  FADDX1_LVT U4 ( .A(a[27]), .B(b[27]), .CI(n2), .CO(n30), .S(sum[27]) );
+  FADDX1_LVT U5 ( .A(a[26]), .B(b[26]), .CI(n3), .CO(n2), .S(sum[26]) );
+  FADDX1_LVT U6 ( .A(a[25]), .B(b[25]), .CI(n4), .CO(n3), .S(sum[25]) );
+  FADDX1_LVT U7 ( .A(a[24]), .B(b[24]), .CI(n5), .CO(n4), .S(sum[24]) );
+  FADDX1_LVT U8 ( .A(a[23]), .B(b[23]), .CI(n6), .CO(n5), .S(sum[23]) );
+  FADDX1_LVT U9 ( .A(a[22]), .B(b[22]), .CI(n7), .CO(n6), .S(sum[22]) );
+  FADDX1_LVT U10 ( .A(a[21]), .B(b[21]), .CI(n8), .CO(n7), .S(sum[21]) );
+  FADDX1_LVT U11 ( .A(a[20]), .B(b[20]), .CI(n9), .CO(n8), .S(sum[20]) );
+  FADDX1_LVT U12 ( .A(a[19]), .B(b[19]), .CI(n10), .CO(n9), .S(sum[19]) );
+  FADDX1_LVT U13 ( .A(a[18]), .B(b[18]), .CI(n11), .CO(n10), .S(sum[18]) );
+  FADDX1_LVT U14 ( .A(a[17]), .B(b[17]), .CI(n12), .CO(n11), .S(sum[17]) );
+  FADDX1_LVT U15 ( .A(a[16]), .B(b[16]), .CI(n13), .CO(n12), .S(sum[16]) );
+  FADDX1_LVT U16 ( .A(a[15]), .B(b[15]), .CI(n14), .CO(n13), .S(sum[15]) );
+  FADDX1_LVT U17 ( .A(a[14]), .B(b[14]), .CI(n15), .CO(n14), .S(sum[14]) );
+  FADDX1_LVT U18 ( .A(a[13]), .B(b[13]), .CI(n16), .CO(n15), .S(sum[13]) );
+  FADDX1_LVT U19 ( .A(a[12]), .B(b[12]), .CI(n17), .CO(n16), .S(sum[12]) );
+  FADDX1_LVT U20 ( .A(a[11]), .B(b[11]), .CI(n18), .CO(n17), .S(sum[11]) );
+  FADDX1_LVT U21 ( .A(a[10]), .B(b[10]), .CI(n19), .CO(n18), .S(sum[10]) );
+  FADDX1_LVT U22 ( .A(a[9]), .B(b[9]), .CI(n20), .CO(n19), .S(sum[9]) );
+  FADDX1_LVT U23 ( .A(a[8]), .B(b[8]), .CI(n21), .CO(n20), .S(sum[8]) );
+  FADDX1_LVT U24 ( .A(a[7]), .B(b[7]), .CI(n22), .CO(n21), .S(sum[7]) );
+  FADDX1_LVT U25 ( .A(a[6]), .B(b[6]), .CI(n23), .CO(n22), .S(sum[6]) );
+  FADDX1_LVT U26 ( .A(a[5]), .B(b[5]), .CI(n24), .CO(n23), .S(sum[5]) );
+  FADDX1_LVT U27 ( .A(a[4]), .B(b[4]), .CI(n25), .CO(n24), .S(sum[4]) );
+  FADDX1_LVT U28 ( .A(a[3]), .B(b[3]), .CI(n26), .CO(n25), .S(sum[3]) );
+  FADDX1_LVT U29 ( .A(a[2]), .B(b[2]), .CI(n27), .CO(n26), .S(sum[2]) );
+  FADDX1_LVT U30 ( .A(a[1]), .B(b[1]), .CI(n28), .CO(n27), .S(sum[1]) );
+  OA21X1_LVT U31 ( .A1(a[0]), .A2(b[0]), .A3(n29), .Y(sum[0]) );
+  FADDX1_LVT U32 ( .A(a[28]), .B(b[28]), .CI(n30), .CO(n31), .S(sum[28]) );
+  FADDX1_LVT U33 ( .A(a[29]), .B(b[29]), .CI(n31), .CO(n32), .S(sum[29]) );
+  FADDX1_LVT U34 ( .A(a[30]), .B(b[30]), .CI(n32), .CO(n33), .S(sum[30]) );
+  FADDX1_LVT U35 ( .A(n33), .B(b[31]), .CI(a[31]), .S(sum[31]) );
+endmodule
+

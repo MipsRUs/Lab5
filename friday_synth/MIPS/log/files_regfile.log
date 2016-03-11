@@ -1,0 +1,20 @@
+analyze -format vhdl { regfile.vhd }
+Running PRESTO HDLC
+Compiling Entity Declaration REGFILE
+Compiling Architecture BEHAVIOR of REGFILE
+
+-------------------
+    48: 	signal mem_var:memory;
+        	^^^^^^
+[Error] Signal declaration is not allowed in a process declarative part
+
+-------------------
+    67: 
+        ^
+[Failure] End of compilation: error(s) in design unit BEHAVIOR
+*** Presto compilation was unsuccessful. ***
+Loading db file '/users/ugrad2/2012/spring/pooriam/libraries/saed32lvt_tt1p05vn40c.db'
+Loading db file '/users/ugrad2/2012/spring/pooriam/libraries/saed32sram_tt1p05vn40c.db'
+Loading db file '/ecelib/linware/synopsys15/dc/libraries/syn/dw_foundation.sldb'
+0
+0
