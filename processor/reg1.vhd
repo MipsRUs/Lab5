@@ -41,10 +41,7 @@ begin
 	begin
 		-- SC 2016-03-03: Changed ref_clk='1'
 		if(ref_clk'event AND ref_clk='1') then
-			if(clr = '1') then 
-				tmpA := "00000000000000000000000000000000";
-				tmpB := "00000000000000000000000000000000";
-			elsif(en /= '1') then
+			if(en /= '1') then
 				tmpA := std_logic_vector(unsigned(RD));
 				tmpB := std_logic_vector(unsigned(PCPlus4F));
 			end if;
