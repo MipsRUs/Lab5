@@ -1,9 +1,0 @@
-
-module andgate ( IN1, IN2, OUT1 );
-  input IN1, IN2;
-  output OUT1;
-
-
-  AND2X1_LVT U2 ( .A1(IN2), .A2(IN1), .Y(OUT1) );
-endmodule
-
