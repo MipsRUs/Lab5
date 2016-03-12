@@ -50,7 +50,7 @@ begin
 		-- write at rising edge
 		if(ref_clk'event AND ref_clk='1') then
 			if(reset='1') then
-				mem_var <= (others=>(others=>'0'));
+				mem_var := (others=>(others=>'0'));
 			elsif (we='1') then
 				mem_var(to_integer(unsigned(waddr))) := wdata;
 			end if;
