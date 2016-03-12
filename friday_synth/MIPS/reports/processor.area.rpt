@@ -1,0 +1,67 @@
+Warning: duplicate option '-nosplit' overrides previous value. (CMD-018)
+ 
+****************************************
+Report : area
+Design : processor
+Version: J-2014.09-SP4
+Date   : Fri Mar 11 14:08:24 2016
+****************************************
+
+Library(s) Used:
+
+    No libraries used.
+
+Number of ports:                           34
+Number of nets:                            32
+Number of cells:                            0
+Number of combinational cells:              0
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                          0
+Number of references:                       0
+
+Combinational area:                  0.000000
+Buf/Inv area:                        0.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                     0.000000
+Total area:                 undefined
+
+The above information was reported from the logical library. The following are from the physical library:
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  --------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-    Noncombi-  Black-
+                                  Total      Total    national  national   boxes   Design
+--------------------------------  ---------  -------  --------  ---------  ------  ---------
+processor                            0.0000      0.0    0.0000     0.0000  0.0000  processor
+--------------------------------  ---------  -------  --------  ---------  ------  ---------
+Total                                                   0.0000     0.0000  0.0000
+
+
+Area of detected synthetic parts
+--------------------------------
+  No DW parts to report!
+
+Estimated area of ungrouped synthetic parts
+-------------------------------------------
+                                       Estimated  Perc. of
+  Module               Implem.  Count       Area cell area
+  -------------------- -------  ----- ---------- ---------
+  DP_OP_175J2_122_7522     str      1     0.0000      0.0%
+  DW_cmp               apparch     15   162.3472      0.0%
+  DW_leftsh               astr      1   535.9893      0.0%
+  DW_rbsh                 astr      1   412.9844      0.0%
+  DW_rightsh              astr      1   429.7576      0.0%
+  -------------------- -------  ----- ---------- ---------
+  DP_OP Subtotal:                   1     0.0000     -nan%
+  Total:                           19  1541.0784      0.0%
+
+Total synthetic cell area:              1541.0784  0.0%  (estimated)
+
+1

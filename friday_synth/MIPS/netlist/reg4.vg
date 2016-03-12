@@ -1,0 +1,204 @@
+
+module reg4 ( ref_clk, RegWriteM, MemtoRegM, LoadControlM, rd_in, alu_in, 
+        WriteRegM, SignImmM, JALDataM, RegWriteW, MemtoRegW, LoadControlW, 
+        rd_out, alu_out, WriteRegW, SignImmW, JALDataW );
+  input [2:0] LoadControlM;
+  input [31:0] rd_in;
+  input [31:0] alu_in;
+  input [4:0] WriteRegM;
+  input [31:0] SignImmM;
+  input [1:0] JALDataM;
+  output [2:0] LoadControlW;
+  output [31:0] rd_out;
+  output [31:0] alu_out;
+  output [4:0] WriteRegW;
+  output [31:0] SignImmW;
+  output [1:0] JALDataW;
+  input ref_clk, RegWriteM, MemtoRegM;
+  output RegWriteW, MemtoRegW;
+
+  assign JALDataW[1] = JALDataM[1];
+  assign JALDataW[0] = JALDataM[0];
+
+  DFFX1_LVT temp_RegWriteM_reg ( .D(RegWriteM), .CLK(ref_clk), .Q(RegWriteW)
+         );
+  DFFX1_LVT temp_MemtoRegM_reg ( .D(MemtoRegM), .CLK(ref_clk), .Q(MemtoRegW)
+         );
+  DFFX1_LVT \temp_rd_in_reg[31]  ( .D(rd_in[31]), .CLK(ref_clk), .Q(rd_out[31]) );
+  DFFX1_LVT \temp_rd_in_reg[30]  ( .D(rd_in[30]), .CLK(ref_clk), .Q(rd_out[30]) );
+  DFFX1_LVT \temp_rd_in_reg[29]  ( .D(rd_in[29]), .CLK(ref_clk), .Q(rd_out[29]) );
+  DFFX1_LVT \temp_rd_in_reg[28]  ( .D(rd_in[28]), .CLK(ref_clk), .Q(rd_out[28]) );
+  DFFX1_LVT \temp_rd_in_reg[27]  ( .D(rd_in[27]), .CLK(ref_clk), .Q(rd_out[27]) );
+  DFFX1_LVT \temp_rd_in_reg[26]  ( .D(rd_in[26]), .CLK(ref_clk), .Q(rd_out[26]) );
+  DFFX1_LVT \temp_rd_in_reg[25]  ( .D(rd_in[25]), .CLK(ref_clk), .Q(rd_out[25]) );
+  DFFX1_LVT \temp_rd_in_reg[24]  ( .D(rd_in[24]), .CLK(ref_clk), .Q(rd_out[24]) );
+  DFFX1_LVT \temp_rd_in_reg[23]  ( .D(rd_in[23]), .CLK(ref_clk), .Q(rd_out[23]) );
+  DFFX1_LVT \temp_rd_in_reg[22]  ( .D(rd_in[22]), .CLK(ref_clk), .Q(rd_out[22]) );
+  DFFX1_LVT \temp_rd_in_reg[21]  ( .D(rd_in[21]), .CLK(ref_clk), .Q(rd_out[21]) );
+  DFFX1_LVT \temp_rd_in_reg[20]  ( .D(rd_in[20]), .CLK(ref_clk), .Q(rd_out[20]) );
+  DFFX1_LVT \temp_rd_in_reg[19]  ( .D(rd_in[19]), .CLK(ref_clk), .Q(rd_out[19]) );
+  DFFX1_LVT \temp_rd_in_reg[18]  ( .D(rd_in[18]), .CLK(ref_clk), .Q(rd_out[18]) );
+  DFFX1_LVT \temp_rd_in_reg[17]  ( .D(rd_in[17]), .CLK(ref_clk), .Q(rd_out[17]) );
+  DFFX1_LVT \temp_rd_in_reg[16]  ( .D(rd_in[16]), .CLK(ref_clk), .Q(rd_out[16]) );
+  DFFX1_LVT \temp_rd_in_reg[15]  ( .D(rd_in[15]), .CLK(ref_clk), .Q(rd_out[15]) );
+  DFFX1_LVT \temp_rd_in_reg[14]  ( .D(rd_in[14]), .CLK(ref_clk), .Q(rd_out[14]) );
+  DFFX1_LVT \temp_rd_in_reg[13]  ( .D(rd_in[13]), .CLK(ref_clk), .Q(rd_out[13]) );
+  DFFX1_LVT \temp_rd_in_reg[12]  ( .D(rd_in[12]), .CLK(ref_clk), .Q(rd_out[12]) );
+  DFFX1_LVT \temp_rd_in_reg[11]  ( .D(rd_in[11]), .CLK(ref_clk), .Q(rd_out[11]) );
+  DFFX1_LVT \temp_rd_in_reg[10]  ( .D(rd_in[10]), .CLK(ref_clk), .Q(rd_out[10]) );
+  DFFX1_LVT \temp_rd_in_reg[9]  ( .D(rd_in[9]), .CLK(ref_clk), .Q(rd_out[9])
+         );
+  DFFX1_LVT \temp_rd_in_reg[8]  ( .D(rd_in[8]), .CLK(ref_clk), .Q(rd_out[8])
+         );
+  DFFX1_LVT \temp_rd_in_reg[7]  ( .D(rd_in[7]), .CLK(ref_clk), .Q(rd_out[7])
+         );
+  DFFX1_LVT \temp_rd_in_reg[6]  ( .D(rd_in[6]), .CLK(ref_clk), .Q(rd_out[6])
+         );
+  DFFX1_LVT \temp_rd_in_reg[5]  ( .D(rd_in[5]), .CLK(ref_clk), .Q(rd_out[5])
+         );
+  DFFX1_LVT \temp_rd_in_reg[4]  ( .D(rd_in[4]), .CLK(ref_clk), .Q(rd_out[4])
+         );
+  DFFX1_LVT \temp_rd_in_reg[3]  ( .D(rd_in[3]), .CLK(ref_clk), .Q(rd_out[3])
+         );
+  DFFX1_LVT \temp_rd_in_reg[2]  ( .D(rd_in[2]), .CLK(ref_clk), .Q(rd_out[2])
+         );
+  DFFX1_LVT \temp_rd_in_reg[1]  ( .D(rd_in[1]), .CLK(ref_clk), .Q(rd_out[1])
+         );
+  DFFX1_LVT \temp_rd_in_reg[0]  ( .D(rd_in[0]), .CLK(ref_clk), .Q(rd_out[0])
+         );
+  DFFX1_LVT \temp_alu_in_reg[31]  ( .D(alu_in[31]), .CLK(ref_clk), .Q(
+        alu_out[31]) );
+  DFFX1_LVT \temp_alu_in_reg[30]  ( .D(alu_in[30]), .CLK(ref_clk), .Q(
+        alu_out[30]) );
+  DFFX1_LVT \temp_alu_in_reg[29]  ( .D(alu_in[29]), .CLK(ref_clk), .Q(
+        alu_out[29]) );
+  DFFX1_LVT \temp_alu_in_reg[28]  ( .D(alu_in[28]), .CLK(ref_clk), .Q(
+        alu_out[28]) );
+  DFFX1_LVT \temp_alu_in_reg[27]  ( .D(alu_in[27]), .CLK(ref_clk), .Q(
+        alu_out[27]) );
+  DFFX1_LVT \temp_alu_in_reg[26]  ( .D(alu_in[26]), .CLK(ref_clk), .Q(
+        alu_out[26]) );
+  DFFX1_LVT \temp_alu_in_reg[25]  ( .D(alu_in[25]), .CLK(ref_clk), .Q(
+        alu_out[25]) );
+  DFFX1_LVT \temp_alu_in_reg[24]  ( .D(alu_in[24]), .CLK(ref_clk), .Q(
+        alu_out[24]) );
+  DFFX1_LVT \temp_alu_in_reg[23]  ( .D(alu_in[23]), .CLK(ref_clk), .Q(
+        alu_out[23]) );
+  DFFX1_LVT \temp_alu_in_reg[22]  ( .D(alu_in[22]), .CLK(ref_clk), .Q(
+        alu_out[22]) );
+  DFFX1_LVT \temp_alu_in_reg[21]  ( .D(alu_in[21]), .CLK(ref_clk), .Q(
+        alu_out[21]) );
+  DFFX1_LVT \temp_alu_in_reg[20]  ( .D(alu_in[20]), .CLK(ref_clk), .Q(
+        alu_out[20]) );
+  DFFX1_LVT \temp_alu_in_reg[19]  ( .D(alu_in[19]), .CLK(ref_clk), .Q(
+        alu_out[19]) );
+  DFFX1_LVT \temp_alu_in_reg[18]  ( .D(alu_in[18]), .CLK(ref_clk), .Q(
+        alu_out[18]) );
+  DFFX1_LVT \temp_alu_in_reg[17]  ( .D(alu_in[17]), .CLK(ref_clk), .Q(
+        alu_out[17]) );
+  DFFX1_LVT \temp_alu_in_reg[16]  ( .D(alu_in[16]), .CLK(ref_clk), .Q(
+        alu_out[16]) );
+  DFFX1_LVT \temp_alu_in_reg[15]  ( .D(alu_in[15]), .CLK(ref_clk), .Q(
+        alu_out[15]) );
+  DFFX1_LVT \temp_alu_in_reg[14]  ( .D(alu_in[14]), .CLK(ref_clk), .Q(
+        alu_out[14]) );
+  DFFX1_LVT \temp_alu_in_reg[13]  ( .D(alu_in[13]), .CLK(ref_clk), .Q(
+        alu_out[13]) );
+  DFFX1_LVT \temp_alu_in_reg[12]  ( .D(alu_in[12]), .CLK(ref_clk), .Q(
+        alu_out[12]) );
+  DFFX1_LVT \temp_alu_in_reg[11]  ( .D(alu_in[11]), .CLK(ref_clk), .Q(
+        alu_out[11]) );
+  DFFX1_LVT \temp_alu_in_reg[10]  ( .D(alu_in[10]), .CLK(ref_clk), .Q(
+        alu_out[10]) );
+  DFFX1_LVT \temp_alu_in_reg[9]  ( .D(alu_in[9]), .CLK(ref_clk), .Q(alu_out[9]) );
+  DFFX1_LVT \temp_alu_in_reg[8]  ( .D(alu_in[8]), .CLK(ref_clk), .Q(alu_out[8]) );
+  DFFX1_LVT \temp_alu_in_reg[7]  ( .D(alu_in[7]), .CLK(ref_clk), .Q(alu_out[7]) );
+  DFFX1_LVT \temp_alu_in_reg[6]  ( .D(alu_in[6]), .CLK(ref_clk), .Q(alu_out[6]) );
+  DFFX1_LVT \temp_alu_in_reg[5]  ( .D(alu_in[5]), .CLK(ref_clk), .Q(alu_out[5]) );
+  DFFX1_LVT \temp_alu_in_reg[4]  ( .D(alu_in[4]), .CLK(ref_clk), .Q(alu_out[4]) );
+  DFFX1_LVT \temp_alu_in_reg[3]  ( .D(alu_in[3]), .CLK(ref_clk), .Q(alu_out[3]) );
+  DFFX1_LVT \temp_alu_in_reg[2]  ( .D(alu_in[2]), .CLK(ref_clk), .Q(alu_out[2]) );
+  DFFX1_LVT \temp_alu_in_reg[1]  ( .D(alu_in[1]), .CLK(ref_clk), .Q(alu_out[1]) );
+  DFFX1_LVT \temp_alu_in_reg[0]  ( .D(alu_in[0]), .CLK(ref_clk), .Q(alu_out[0]) );
+  DFFX1_LVT \temp_WriteRegM_reg[4]  ( .D(WriteRegM[4]), .CLK(ref_clk), .Q(
+        WriteRegW[4]) );
+  DFFX1_LVT \temp_WriteRegM_reg[3]  ( .D(WriteRegM[3]), .CLK(ref_clk), .Q(
+        WriteRegW[3]) );
+  DFFX1_LVT \temp_WriteRegM_reg[2]  ( .D(WriteRegM[2]), .CLK(ref_clk), .Q(
+        WriteRegW[2]) );
+  DFFX1_LVT \temp_WriteRegM_reg[1]  ( .D(WriteRegM[1]), .CLK(ref_clk), .Q(
+        WriteRegW[1]) );
+  DFFX1_LVT \temp_WriteRegM_reg[0]  ( .D(WriteRegM[0]), .CLK(ref_clk), .Q(
+        WriteRegW[0]) );
+  DFFX1_LVT \temp_LoadControlM_reg[2]  ( .D(LoadControlM[2]), .CLK(ref_clk), 
+        .Q(LoadControlW[2]) );
+  DFFX1_LVT \temp_LoadControlM_reg[1]  ( .D(LoadControlM[1]), .CLK(ref_clk), 
+        .Q(LoadControlW[1]) );
+  DFFX1_LVT \temp_LoadControlM_reg[0]  ( .D(LoadControlM[0]), .CLK(ref_clk), 
+        .Q(LoadControlW[0]) );
+  DFFX1_LVT \temp_SignImmM_reg[31]  ( .D(SignImmM[31]), .CLK(ref_clk), .Q(
+        SignImmW[31]) );
+  DFFX1_LVT \temp_SignImmM_reg[30]  ( .D(SignImmM[30]), .CLK(ref_clk), .Q(
+        SignImmW[30]) );
+  DFFX1_LVT \temp_SignImmM_reg[29]  ( .D(SignImmM[29]), .CLK(ref_clk), .Q(
+        SignImmW[29]) );
+  DFFX1_LVT \temp_SignImmM_reg[28]  ( .D(SignImmM[28]), .CLK(ref_clk), .Q(
+        SignImmW[28]) );
+  DFFX1_LVT \temp_SignImmM_reg[27]  ( .D(SignImmM[27]), .CLK(ref_clk), .Q(
+        SignImmW[27]) );
+  DFFX1_LVT \temp_SignImmM_reg[26]  ( .D(SignImmM[26]), .CLK(ref_clk), .Q(
+        SignImmW[26]) );
+  DFFX1_LVT \temp_SignImmM_reg[25]  ( .D(SignImmM[25]), .CLK(ref_clk), .Q(
+        SignImmW[25]) );
+  DFFX1_LVT \temp_SignImmM_reg[24]  ( .D(SignImmM[24]), .CLK(ref_clk), .Q(
+        SignImmW[24]) );
+  DFFX1_LVT \temp_SignImmM_reg[23]  ( .D(SignImmM[23]), .CLK(ref_clk), .Q(
+        SignImmW[23]) );
+  DFFX1_LVT \temp_SignImmM_reg[22]  ( .D(SignImmM[22]), .CLK(ref_clk), .Q(
+        SignImmW[22]) );
+  DFFX1_LVT \temp_SignImmM_reg[21]  ( .D(SignImmM[21]), .CLK(ref_clk), .Q(
+        SignImmW[21]) );
+  DFFX1_LVT \temp_SignImmM_reg[20]  ( .D(SignImmM[20]), .CLK(ref_clk), .Q(
+        SignImmW[20]) );
+  DFFX1_LVT \temp_SignImmM_reg[19]  ( .D(SignImmM[19]), .CLK(ref_clk), .Q(
+        SignImmW[19]) );
+  DFFX1_LVT \temp_SignImmM_reg[18]  ( .D(SignImmM[18]), .CLK(ref_clk), .Q(
+        SignImmW[18]) );
+  DFFX1_LVT \temp_SignImmM_reg[17]  ( .D(SignImmM[17]), .CLK(ref_clk), .Q(
+        SignImmW[17]) );
+  DFFX1_LVT \temp_SignImmM_reg[16]  ( .D(SignImmM[16]), .CLK(ref_clk), .Q(
+        SignImmW[16]) );
+  DFFX1_LVT \temp_SignImmM_reg[15]  ( .D(SignImmM[15]), .CLK(ref_clk), .Q(
+        SignImmW[15]) );
+  DFFX1_LVT \temp_SignImmM_reg[14]  ( .D(SignImmM[14]), .CLK(ref_clk), .Q(
+        SignImmW[14]) );
+  DFFX1_LVT \temp_SignImmM_reg[13]  ( .D(SignImmM[13]), .CLK(ref_clk), .Q(
+        SignImmW[13]) );
+  DFFX1_LVT \temp_SignImmM_reg[12]  ( .D(SignImmM[12]), .CLK(ref_clk), .Q(
+        SignImmW[12]) );
+  DFFX1_LVT \temp_SignImmM_reg[11]  ( .D(SignImmM[11]), .CLK(ref_clk), .Q(
+        SignImmW[11]) );
+  DFFX1_LVT \temp_SignImmM_reg[10]  ( .D(SignImmM[10]), .CLK(ref_clk), .Q(
+        SignImmW[10]) );
+  DFFX1_LVT \temp_SignImmM_reg[9]  ( .D(SignImmM[9]), .CLK(ref_clk), .Q(
+        SignImmW[9]) );
+  DFFX1_LVT \temp_SignImmM_reg[8]  ( .D(SignImmM[8]), .CLK(ref_clk), .Q(
+        SignImmW[8]) );
+  DFFX1_LVT \temp_SignImmM_reg[7]  ( .D(SignImmM[7]), .CLK(ref_clk), .Q(
+        SignImmW[7]) );
+  DFFX1_LVT \temp_SignImmM_reg[6]  ( .D(SignImmM[6]), .CLK(ref_clk), .Q(
+        SignImmW[6]) );
+  DFFX1_LVT \temp_SignImmM_reg[5]  ( .D(SignImmM[5]), .CLK(ref_clk), .Q(
+        SignImmW[5]) );
+  DFFX1_LVT \temp_SignImmM_reg[4]  ( .D(SignImmM[4]), .CLK(ref_clk), .Q(
+        SignImmW[4]) );
+  DFFX1_LVT \temp_SignImmM_reg[3]  ( .D(SignImmM[3]), .CLK(ref_clk), .Q(
+        SignImmW[3]) );
+  DFFX1_LVT \temp_SignImmM_reg[2]  ( .D(SignImmM[2]), .CLK(ref_clk), .Q(
+        SignImmW[2]) );
+  DFFX1_LVT \temp_SignImmM_reg[1]  ( .D(SignImmM[1]), .CLK(ref_clk), .Q(
+        SignImmW[1]) );
+  DFFX1_LVT \temp_SignImmM_reg[0]  ( .D(SignImmM[0]), .CLK(ref_clk), .Q(
+        SignImmW[0]) );
+endmodule
+

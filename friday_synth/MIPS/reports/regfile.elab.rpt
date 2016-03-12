@@ -1,0 +1,24 @@
+Warning: Detected use of obsolete/unsupported feature.  The following
+	will not be available in a future release of the application:
+	elaborate -update. Use plain elaborate instead (CMD-100)
+Loading db file '/ecelib/linware/synopsys15/dc/libraries/syn/gtech.db'
+Loading db file '/ecelib/linware/synopsys15/dc/libraries/syn/standard.sldb'
+  Loading link library 'saed32lvt_tt1p05vn40c'
+  Loading link library 'saed32sram_tt1p05vn40c'
+  Loading link library 'gtech'
+Information: Re-analyzing the out of date architecture 'REGFILE(BEHAVIOR)'. (LBR-15)
+Information: Re-analyzing the out of date entity 'REGFILE'. (LBR-15)
+Compiling Entity Declaration REGFILE
+Compiling Architecture BEHAVIOR of REGFILE
+
+-------------------
+    48: 	signal mem_var:memory;
+        	^^^^^^
+[Error] Signal declaration is not allowed in a process declarative part
+
+-------------------
+    67: 
+        ^
+[Failure] End of compilation: error(s) in design unit BEHAVIOR
+*** Presto compilation was unsuccessful. ***
+0
