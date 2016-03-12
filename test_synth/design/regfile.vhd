@@ -52,7 +52,7 @@ begin
 			if(reset='1') then
 				mem_var <= (others=>(others=>'0'));
 			elsif (we='1') then
-				mem_var(to_integer(unsigned(waddr))) <= wdata;
+				mem_var(to_integer(unsigned(waddr))) := wdata;
 			end if;
 		end if;
 
