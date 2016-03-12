@@ -31,10 +31,8 @@ entity adder is
 end adder;
 
 architecture logic of adder is
-
 begin
 	sum <= std_logic_vector(signed(a) + signed(b));
-
 end architecture; 
 
 

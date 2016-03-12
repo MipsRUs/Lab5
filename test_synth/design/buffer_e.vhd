@@ -28,7 +28,6 @@ ENTITY buffer_e IS
 		WE : IN std_logic;
 		DataI: IN std_logic_vector(31 DOWNTO 0);
 		DataO: OUT std_logic_vector(31 DOWNTO 0)
-	
 	);
 END buffer_e;
 
@@ -41,12 +40,10 @@ begin
 
 		-- SC 2016-02-20: Changed ref_clk='1' to ref_clk='0'
 		-- EH 2016-03-01: changed from ref_clk'event and ref_clk'0' to rising_edge from TA reg_file example
- 		if rising_edge(ref_clk) then
-			if(WE /= '1') then
+ 		if rising_edge(ref_clk) then				
+ 			if(WE /= '1') then
 				temp := std_logic_vector(unsigned(DataI));
 			end if;
-
-
 		end if;
 		DataO <= temp;
 	end process;

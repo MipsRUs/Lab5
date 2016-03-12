@@ -47,9 +47,7 @@ begin
 	variable sixteen : std_logic_vector (31 downto 0) 
 		:= "00000000000000000000000000010000";
 
-	
 	begin
-	
 		case Func_in is
 		
 			-- ADD

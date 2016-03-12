@@ -1,4 +1,4 @@
-analyze -format vhdl { \ 
+analyze -format vhdl { \
 orgate.vhd \
 shiftleft_26bit.vhd \
 concatenation.vhd \
@@ -19,9 +19,10 @@ hazard_unit.vhd \
 control.vhd \
 reg1.vhd \
 reg2.vhd \
-reg3.vhd \ 
+reg3.vhd \
 reg4.vhd \
 shiftextend.vhd \
 shiftlui.vhd \
-processor.vhd 
+processor.vhd \
 }
+

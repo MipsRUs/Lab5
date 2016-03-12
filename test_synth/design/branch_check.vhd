@@ -35,9 +35,7 @@ architecture behavior of branch_check is
 
 begin
 	process(A_in, B_in, ALUControl)
-
 	begin
-
 		case ALUControl is
 
 		-- BLTZ
@@ -90,19 +88,6 @@ begin
 			
 			when others =>
 				outb <= '0';
-
 		end case;
-
 	end process;
 end;
-
-
-
-
-
-
-
-
-
-
-

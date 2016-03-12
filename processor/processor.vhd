@@ -120,7 +120,6 @@ component buffer_e
 		WE : IN std_logic;
 		DataI: IN std_logic_vector(31 DOWNTO 0);
 		DataO: OUT std_logic_vector(31 DOWNTO 0)
-	
 	);
 end component;
 
@@ -336,7 +335,8 @@ component regfile
 		waddr : IN std_logic_vector (4 DOWNTO 0); -- write address
 		rdata_1 : OUT std_logic_vector (31 DOWNTO 0); -- read data 1
 		rdata_2 : OUT std_logic_vector (31 DOWNTO 0); -- read data 2
-		wdata : IN std_logic_vector (31 DOWNTO 0) -- write data 1
+		wdata : IN std_logic_vector (31 DOWNTO 0); -- write data 1
+		reset: IN std_logic
 	);
 end component;
 
@@ -574,7 +574,7 @@ begin
 
 	regfilex: regfile PORT MAP(ref_clk=>ref_clk, we=>RegWriteW, raddr_1=>InstrD(25 DOWNTO 21),
 					raddr_2=>InstrD(20 DOWNTO 16), waddr=>WriteRegW, rdata_1=>RD1_out,
-					rdata_2=>RD2_out, wdata=>JALDataW_out);
+					rdata_2=>RD2_out, wdata=>JALDataW_out, reset=>reset);
 
 	sign_extension_16bitx: sign_extension_16bit PORT MAP(immediate=>InstrD(15 DOWNTO 0),
 					sign_extension_out=>SignImmD);
