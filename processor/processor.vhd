@@ -449,7 +449,7 @@ signal PCF : std_logic_vector(31 DOWNTO 0);
 signal IR_out : std_logic_vector(31 DOWNTO 0);
 
 -- value '4'
-signal adder_value_4 : std_logic_vector (31 DOWNTO 0) := "00000000000000000000000000000100";
+--signal adder_value_4 : std_logic_vector (31 DOWNTO 0) := "00000000000000000000000000000100";
 
 signal InstrD : std_logic_vector(31 DOWNTO 0);
 
@@ -561,7 +561,7 @@ begin
 
 	IRx: rom PORT MAP(addr=>PCF, dataOut=>IR_out);
 
-	PCadderx: adder PORT MAP(a=>PCF, b=>adder_value_4, sum=>PCPlus4F);
+	PCadderx: adder PORT MAP(a=>PCF, b=>"00000000000000000000000000000100", sum=>PCPlus4F);
 
 	reg1x: reg1 PORT MAP(ref_clk=>ref_clk, RD=>IR_out, PCPlus4F=>PCPlus4F, 
 					en=>stallD, clr=>PCSrcD, InstrD=>InstrD, PCPlus4D=>PCPlus4D);
