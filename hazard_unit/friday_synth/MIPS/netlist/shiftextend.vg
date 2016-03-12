@@ -1,0 +1,79 @@
+
+module shiftextend ( loadcontrol, in32, out32 );
+  input [2:0] loadcontrol;
+  input [31:0] in32;
+  output [31:0] out32;
+  wire   N76, N77, N78, N79, N80, N81, N82, N83, N84, N85, N86, N87, N88, N89,
+         N90, N91, N92, N93, N94, N95, N96, N97, N98, N99, n10, n11, n12, n13,
+         n14, n15, n16, n17, n18, n19, n20;
+
+  LATCHX1_LVT \out32_reg[31]  ( .CLK(n20), .D(N99), .Q(out32[31]) );
+  LATCHX1_LVT \out32_reg[30]  ( .CLK(n20), .D(N98), .Q(out32[30]) );
+  LATCHX1_LVT \out32_reg[29]  ( .CLK(n20), .D(N97), .Q(out32[29]) );
+  LATCHX1_LVT \out32_reg[28]  ( .CLK(n20), .D(N96), .Q(out32[28]) );
+  LATCHX1_LVT \out32_reg[27]  ( .CLK(n20), .D(N95), .Q(out32[27]) );
+  LATCHX1_LVT \out32_reg[26]  ( .CLK(n20), .D(N94), .Q(out32[26]) );
+  LATCHX1_LVT \out32_reg[25]  ( .CLK(n20), .D(N93), .Q(out32[25]) );
+  LATCHX1_LVT \out32_reg[24]  ( .CLK(n20), .D(N92), .Q(out32[24]) );
+  LATCHX1_LVT \out32_reg[23]  ( .CLK(n19), .D(N91), .Q(out32[23]) );
+  LATCHX1_LVT \out32_reg[22]  ( .CLK(n19), .D(N90), .Q(out32[22]) );
+  LATCHX1_LVT \out32_reg[21]  ( .CLK(n19), .D(N89), .Q(out32[21]) );
+  LATCHX1_LVT \out32_reg[20]  ( .CLK(n19), .D(N88), .Q(out32[20]) );
+  LATCHX1_LVT \out32_reg[19]  ( .CLK(n19), .D(N87), .Q(out32[19]) );
+  LATCHX1_LVT \out32_reg[18]  ( .CLK(n19), .D(N86), .Q(out32[18]) );
+  LATCHX1_LVT \out32_reg[17]  ( .CLK(n20), .D(N85), .Q(out32[17]) );
+  LATCHX1_LVT \out32_reg[16]  ( .CLK(n19), .D(N84), .Q(out32[16]) );
+  LATCHX1_LVT \out32_reg[15]  ( .CLK(n20), .D(N83), .Q(out32[15]) );
+  LATCHX1_LVT \out32_reg[14]  ( .CLK(n19), .D(N82), .Q(out32[14]) );
+  LATCHX1_LVT \out32_reg[13]  ( .CLK(n20), .D(N81), .Q(out32[13]) );
+  LATCHX1_LVT \out32_reg[12]  ( .CLK(n19), .D(N80), .Q(out32[12]) );
+  LATCHX1_LVT \out32_reg[11]  ( .CLK(n20), .D(N79), .Q(out32[11]) );
+  LATCHX1_LVT \out32_reg[10]  ( .CLK(n20), .D(N78), .Q(out32[10]) );
+  LATCHX1_LVT \out32_reg[9]  ( .CLK(n20), .D(N77), .Q(out32[9]) );
+  LATCHX1_LVT \out32_reg[8]  ( .CLK(n20), .D(N76), .Q(out32[8]) );
+  LATCHX1_LVT \out32_reg[7]  ( .CLK(n20), .D(in32[7]), .Q(out32[7]) );
+  LATCHX1_LVT \out32_reg[6]  ( .CLK(n20), .D(in32[6]), .Q(out32[6]) );
+  LATCHX1_LVT \out32_reg[5]  ( .CLK(n20), .D(in32[5]), .Q(out32[5]) );
+  LATCHX1_LVT \out32_reg[4]  ( .CLK(n20), .D(in32[4]), .Q(out32[4]) );
+  LATCHX1_LVT \out32_reg[3]  ( .CLK(n20), .D(in32[3]), .Q(out32[3]) );
+  LATCHX1_LVT \out32_reg[2]  ( .CLK(n20), .D(in32[2]), .Q(out32[2]) );
+  LATCHX1_LVT \out32_reg[1]  ( .CLK(n20), .D(in32[1]), .Q(out32[1]) );
+  LATCHX1_LVT \out32_reg[0]  ( .CLK(n19), .D(in32[0]), .Q(out32[0]) );
+  INVX0_LVT U37 ( .A(loadcontrol[1]), .Y(n14) );
+  INVX0_LVT U38 ( .A(loadcontrol[0]), .Y(n10) );
+  INVX0_LVT U39 ( .A(loadcontrol[2]), .Y(n13) );
+  AO21X1_LVT U40 ( .A1(n14), .A2(n10), .A3(n13), .Y(n19) );
+  NBUFFX4_LVT U41 ( .A(n19), .Y(n20) );
+  NAND2X0_LVT U42 ( .A1(n10), .A2(n13), .Y(n17) );
+  INVX0_LVT U43 ( .A(n17), .Y(n11) );
+  NAND3X0_LVT U44 ( .A1(in32[7]), .A2(n11), .A3(n14), .Y(n15) );
+  INVX0_LVT U45 ( .A(n15), .Y(n12) );
+  AO21X1_LVT U46 ( .A1(in32[8]), .A2(n17), .A3(n12), .Y(N76) );
+  AO21X1_LVT U47 ( .A1(in32[9]), .A2(n17), .A3(n12), .Y(N77) );
+  AO21X1_LVT U48 ( .A1(in32[10]), .A2(n17), .A3(n12), .Y(N78) );
+  AO21X1_LVT U49 ( .A1(in32[11]), .A2(n17), .A3(n12), .Y(N79) );
+  AO21X1_LVT U50 ( .A1(in32[12]), .A2(n17), .A3(n12), .Y(N80) );
+  AO21X1_LVT U51 ( .A1(in32[13]), .A2(n17), .A3(n12), .Y(N81) );
+  AO21X1_LVT U52 ( .A1(in32[14]), .A2(n17), .A3(n12), .Y(N82) );
+  NAND4X0_LVT U53 ( .A1(loadcontrol[0]), .A2(in32[15]), .A3(n14), .A4(n13), 
+        .Y(n16) );
+  NAND2X2_LVT U54 ( .A1(n16), .A2(n15), .Y(n18) );
+  AO21X1_LVT U55 ( .A1(in32[15]), .A2(n17), .A3(n18), .Y(N83) );
+  AO21X1_LVT U56 ( .A1(loadcontrol[2]), .A2(in32[16]), .A3(n18), .Y(N84) );
+  AO21X1_LVT U57 ( .A1(loadcontrol[2]), .A2(in32[17]), .A3(n18), .Y(N85) );
+  AO21X1_LVT U58 ( .A1(loadcontrol[2]), .A2(in32[18]), .A3(n18), .Y(N86) );
+  AO21X1_LVT U59 ( .A1(loadcontrol[2]), .A2(in32[19]), .A3(n18), .Y(N87) );
+  AO21X1_LVT U60 ( .A1(loadcontrol[2]), .A2(in32[20]), .A3(n18), .Y(N88) );
+  AO21X1_LVT U61 ( .A1(loadcontrol[2]), .A2(in32[21]), .A3(n18), .Y(N89) );
+  AO21X1_LVT U62 ( .A1(loadcontrol[2]), .A2(in32[22]), .A3(n18), .Y(N90) );
+  AO21X1_LVT U63 ( .A1(loadcontrol[2]), .A2(in32[23]), .A3(n18), .Y(N91) );
+  AO21X1_LVT U64 ( .A1(loadcontrol[2]), .A2(in32[24]), .A3(n18), .Y(N92) );
+  AO21X1_LVT U65 ( .A1(loadcontrol[2]), .A2(in32[25]), .A3(n18), .Y(N93) );
+  AO21X1_LVT U66 ( .A1(loadcontrol[2]), .A2(in32[26]), .A3(n18), .Y(N94) );
+  AO21X1_LVT U67 ( .A1(loadcontrol[2]), .A2(in32[27]), .A3(n18), .Y(N95) );
+  AO21X1_LVT U68 ( .A1(loadcontrol[2]), .A2(in32[28]), .A3(n18), .Y(N96) );
+  AO21X1_LVT U69 ( .A1(loadcontrol[2]), .A2(in32[29]), .A3(n18), .Y(N97) );
+  AO21X1_LVT U70 ( .A1(loadcontrol[2]), .A2(in32[30]), .A3(n18), .Y(N98) );
+  AO21X1_LVT U71 ( .A1(loadcontrol[2]), .A2(in32[31]), .A3(n18), .Y(N99) );
+endmodule
+

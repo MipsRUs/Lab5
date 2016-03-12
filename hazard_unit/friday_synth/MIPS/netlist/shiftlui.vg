@@ -1,0 +1,40 @@
+
+module shiftlui ( in32, out32 );
+  input [31:0] in32;
+  output [31:0] out32;
+
+  assign out32[16] = 1'b0;
+  assign out32[17] = 1'b0;
+  assign out32[18] = 1'b0;
+  assign out32[19] = 1'b0;
+  assign out32[20] = 1'b0;
+  assign out32[21] = 1'b0;
+  assign out32[22] = 1'b0;
+  assign out32[23] = 1'b0;
+  assign out32[24] = 1'b0;
+  assign out32[25] = 1'b0;
+  assign out32[26] = 1'b0;
+  assign out32[27] = 1'b0;
+  assign out32[28] = 1'b0;
+  assign out32[29] = 1'b0;
+  assign out32[30] = 1'b0;
+  assign out32[31] = 1'b0;
+  assign out32[15] = in32[31];
+  assign out32[14] = in32[30];
+  assign out32[13] = in32[29];
+  assign out32[12] = in32[28];
+  assign out32[11] = in32[27];
+  assign out32[10] = in32[26];
+  assign out32[9] = in32[25];
+  assign out32[8] = in32[24];
+  assign out32[7] = in32[23];
+  assign out32[6] = in32[22];
+  assign out32[5] = in32[21];
+  assign out32[4] = in32[20];
+  assign out32[3] = in32[19];
+  assign out32[2] = in32[18];
+  assign out32[1] = in32[17];
+  assign out32[0] = in32[16];
+
+endmodule
+

@@ -1,0 +1,175 @@
+
+module hazard_unit ( BranchD, RsD, RtD, RsE, RtE, WriteRegE, WriteRegM, 
+        WriteRegW, MemtoRegE, RegWriteE, RegWriteM, RegWriteW, JumpD, StallF, 
+        StallD, ForwardAD, ForwardBD, FlushE, ForwardAE, ForwardBE );
+  input [4:0] RsD;
+  input [4:0] RtD;
+  input [4:0] RsE;
+  input [4:0] RtE;
+  input [4:0] WriteRegE;
+  input [4:0] WriteRegM;
+  input [4:0] WriteRegW;
+  output [1:0] ForwardAE;
+  output [1:0] ForwardBE;
+  input BranchD, MemtoRegE, RegWriteE, RegWriteM, RegWriteW, JumpD;
+  output StallF, StallD, ForwardAD, ForwardBD, FlushE;
+  wire   N3, N8, N13, N15, N24, n91, n92, n93, n94, n95, n96, n97, n98, n99,
+         n100, n101, n102, n103, n104, n105, n106, n107, n108, n109, n110,
+         n111, n112, n113, n114, n115, n116, n117, n118, n119, n120, n121,
+         n122, n123, n124, n125, n126, n127, n128, n129, n130, n131, n132,
+         n133, n134, n135, n136, n137, n138, n139, n140, n141, n142, n143,
+         n144, n145, n146, n147, n148, n149, n150, n151, n152, n153, n154,
+         n155, n156, n157, n158, n159, n160, n161, n162, n163, n164, n165,
+         n166, n167, n168, n169, n170, n171, n172, n173, n174, n175, n176,
+         n177, n178, n179, n180, n181, n182, n183, n184, n185, n186;
+  assign ForwardAE[1] = N3;
+  assign ForwardBE[1] = N8;
+  assign ForwardAD = N13;
+  assign ForwardBD = N15;
+  assign FlushE = N24;
+  assign StallD = N24;
+  assign StallF = N24;
+
+  INVX0_LVT U98 ( .A(RtE[1]), .Y(n157) );
+  INVX0_LVT U99 ( .A(RsE[2]), .Y(n177) );
+  INVX0_LVT U100 ( .A(RsE[0]), .Y(n179) );
+  INVX0_LVT U101 ( .A(RtE[3]), .Y(n153) );
+  INVX0_LVT U102 ( .A(RtE[0]), .Y(n152) );
+  INVX0_LVT U103 ( .A(RtE[2]), .Y(n155) );
+  INVX0_LVT U104 ( .A(RtE[4]), .Y(n156) );
+  INVX0_LVT U105 ( .A(WriteRegM[1]), .Y(n163) );
+  INVX0_LVT U106 ( .A(RsE[1]), .Y(n175) );
+  INVX0_LVT U107 ( .A(WriteRegM[4]), .Y(n165) );
+  INVX0_LVT U108 ( .A(WriteRegM[3]), .Y(n166) );
+  INVX0_LVT U109 ( .A(WriteRegM[0]), .Y(n168) );
+  INVX0_LVT U110 ( .A(WriteRegM[2]), .Y(n169) );
+  INVX0_LVT U111 ( .A(JumpD), .Y(n128) );
+  INVX0_LVT U112 ( .A(RsD[4]), .Y(n141) );
+  INVX0_LVT U113 ( .A(RsD[2]), .Y(n121) );
+  AOI22X1_LVT U114 ( .A1(n141), .A2(WriteRegE[4]), .A3(n121), .A4(WriteRegE[2]), .Y(n91) );
+  OA221X1_LVT U115 ( .A1(n141), .A2(WriteRegE[4]), .A3(n121), .A4(WriteRegE[2]), .A5(n91), .Y(n101) );
+  INVX0_LVT U116 ( .A(WriteRegE[3]), .Y(n97) );
+  INVX0_LVT U117 ( .A(RsD[3]), .Y(n139) );
+  INVX0_LVT U118 ( .A(RsD[0]), .Y(n140) );
+  INVX0_LVT U119 ( .A(RsD[1]), .Y(n138) );
+  AOI22X1_LVT U120 ( .A1(n140), .A2(WriteRegE[0]), .A3(n138), .A4(WriteRegE[1]), .Y(n92) );
+  OA221X1_LVT U121 ( .A1(n140), .A2(WriteRegE[0]), .A3(n138), .A4(WriteRegE[1]), .A5(n92), .Y(n93) );
+  OA221X1_LVT U122 ( .A1(RsD[3]), .A2(n97), .A3(n139), .A4(WriteRegE[3]), .A5(
+        n93), .Y(n100) );
+  INVX0_LVT U123 ( .A(RtD[4]), .Y(n133) );
+  INVX0_LVT U124 ( .A(RtD[2]), .Y(n116) );
+  AOI22X1_LVT U125 ( .A1(n133), .A2(WriteRegE[4]), .A3(n116), .A4(WriteRegE[2]), .Y(n94) );
+  OA221X1_LVT U126 ( .A1(n133), .A2(WriteRegE[4]), .A3(n116), .A4(WriteRegE[2]), .A5(n94), .Y(n99) );
+  INVX0_LVT U127 ( .A(RtD[3]), .Y(n131) );
+  INVX0_LVT U128 ( .A(RtD[0]), .Y(n132) );
+  INVX0_LVT U129 ( .A(RtD[1]), .Y(n130) );
+  AOI22X1_LVT U130 ( .A1(n132), .A2(WriteRegE[0]), .A3(n130), .A4(WriteRegE[1]), .Y(n95) );
+  OA221X1_LVT U131 ( .A1(n132), .A2(WriteRegE[0]), .A3(n130), .A4(WriteRegE[1]), .A5(n95), .Y(n96) );
+  OA221X1_LVT U132 ( .A1(RtD[3]), .A2(n97), .A3(n131), .A4(WriteRegE[3]), .A5(
+        n96), .Y(n98) );
+  AO22X1_LVT U133 ( .A1(n101), .A2(n100), .A3(n99), .A4(n98), .Y(n102) );
+  AND3X1_LVT U134 ( .A1(BranchD), .A2(RegWriteE), .A3(n102), .Y(n103) );
+  INVX0_LVT U135 ( .A(n103), .Y(n127) );
+  OA22X1_LVT U136 ( .A1(RtE[3]), .A2(n131), .A3(RtE[1]), .A4(n130), .Y(n104)
+         );
+  OA221X1_LVT U137 ( .A1(n153), .A2(RtD[3]), .A3(n157), .A4(RtD[1]), .A5(n104), 
+        .Y(n105) );
+  OA221X1_LVT U138 ( .A1(RtE[2]), .A2(n116), .A3(n155), .A4(RtD[2]), .A5(n105), 
+        .Y(n106) );
+  OA221X1_LVT U139 ( .A1(RtE[0]), .A2(n132), .A3(n152), .A4(RtD[0]), .A5(n106), 
+        .Y(n110) );
+  OA22X1_LVT U140 ( .A1(RtE[3]), .A2(n139), .A3(RtE[1]), .A4(n138), .Y(n107)
+         );
+  OA221X1_LVT U141 ( .A1(n153), .A2(RsD[3]), .A3(n157), .A4(RsD[1]), .A5(n107), 
+        .Y(n108) );
+  OA221X1_LVT U142 ( .A1(RtE[2]), .A2(n121), .A3(n155), .A4(RsD[2]), .A5(n108), 
+        .Y(n109) );
+  OA221X1_LVT U143 ( .A1(RtE[0]), .A2(n140), .A3(n152), .A4(RsD[0]), .A5(n109), 
+        .Y(n111) );
+  AO22X1_LVT U144 ( .A1(RtD[4]), .A2(n110), .A3(RsD[4]), .A4(n111), .Y(n124)
+         );
+  AO22X1_LVT U145 ( .A1(n141), .A2(n111), .A3(n133), .A4(n110), .Y(n123) );
+  OA22X1_LVT U146 ( .A1(RtD[4]), .A2(n165), .A3(RtD[0]), .A4(n168), .Y(n112)
+         );
+  OA221X1_LVT U147 ( .A1(n133), .A2(WriteRegM[4]), .A3(n132), .A4(WriteRegM[0]), .A5(n112), .Y(n113) );
+  OA221X1_LVT U148 ( .A1(RtD[1]), .A2(n163), .A3(n130), .A4(WriteRegM[1]), 
+        .A5(n113), .Y(n114) );
+  OA221X1_LVT U149 ( .A1(RtD[3]), .A2(n166), .A3(n131), .A4(WriteRegM[3]), 
+        .A5(n114), .Y(n115) );
+  OA221X1_LVT U150 ( .A1(RtD[2]), .A2(n169), .A3(n116), .A4(WriteRegM[2]), 
+        .A5(n115), .Y(n129) );
+  OA22X1_LVT U151 ( .A1(RsD[4]), .A2(n165), .A3(RsD[0]), .A4(n168), .Y(n117)
+         );
+  OA221X1_LVT U152 ( .A1(n141), .A2(WriteRegM[4]), .A3(n140), .A4(WriteRegM[0]), .A5(n117), .Y(n118) );
+  OA221X1_LVT U153 ( .A1(RsD[1]), .A2(n163), .A3(n138), .A4(WriteRegM[1]), 
+        .A5(n118), .Y(n119) );
+  OA221X1_LVT U154 ( .A1(RsD[3]), .A2(n166), .A3(n139), .A4(WriteRegM[3]), 
+        .A5(n119), .Y(n120) );
+  OA221X1_LVT U155 ( .A1(RsD[2]), .A2(n169), .A3(n121), .A4(WriteRegM[2]), 
+        .A5(n120), .Y(n137) );
+  OA21X1_LVT U156 ( .A1(n129), .A2(n137), .A3(BranchD), .Y(n122) );
+  AO221X1_LVT U157 ( .A1(RtE[4]), .A2(n124), .A3(n156), .A4(n123), .A5(n122), 
+        .Y(n125) );
+  NAND2X0_LVT U158 ( .A1(MemtoRegE), .A2(n125), .Y(n126) );
+  NAND3X0_LVT U159 ( .A1(n128), .A2(n127), .A3(n126), .Y(N24) );
+  AND2X1_LVT U160 ( .A1(RegWriteM), .A2(n129), .Y(n136) );
+  NAND4X0_LVT U161 ( .A1(n133), .A2(n132), .A3(n131), .A4(n130), .Y(n134) );
+  OR2X1_LVT U162 ( .A1(n134), .A2(RtD[2]), .Y(n135) );
+  AND2X1_LVT U163 ( .A1(n136), .A2(n135), .Y(N15) );
+  AND2X1_LVT U164 ( .A1(RegWriteM), .A2(n137), .Y(n144) );
+  NAND4X0_LVT U165 ( .A1(n141), .A2(n140), .A3(n139), .A4(n138), .Y(n142) );
+  OR2X1_LVT U166 ( .A1(n142), .A2(RsD[2]), .Y(n143) );
+  AND2X1_LVT U167 ( .A1(n144), .A2(n143), .Y(N13) );
+  OA221X1_LVT U168 ( .A1(RtE[0]), .A2(n168), .A3(n152), .A4(WriteRegM[0]), 
+        .A5(RegWriteM), .Y(n150) );
+  AO22X1_LVT U169 ( .A1(RtE[3]), .A2(WriteRegM[3]), .A3(n153), .A4(n166), .Y(
+        n145) );
+  OA221X1_LVT U170 ( .A1(WriteRegM[2]), .A2(n155), .A3(n169), .A4(RtE[2]), 
+        .A5(n145), .Y(n149) );
+  AO22X1_LVT U171 ( .A1(RtE[1]), .A2(WriteRegM[1]), .A3(n157), .A4(n163), .Y(
+        n146) );
+  OA221X1_LVT U172 ( .A1(WriteRegM[4]), .A2(n156), .A3(n165), .A4(RtE[4]), 
+        .A5(n146), .Y(n148) );
+  AND4X1_LVT U173 ( .A1(n156), .A2(n155), .A3(n153), .A4(n157), .Y(n147) );
+  NAND2X0_LVT U174 ( .A1(n147), .A2(n152), .Y(n159) );
+  AND4X1_LVT U175 ( .A1(n150), .A2(n149), .A3(n148), .A4(n159), .Y(N8) );
+  OAI22X1_LVT U176 ( .A1(WriteRegW[3]), .A2(n153), .A3(n152), .A4(WriteRegW[0]), .Y(n151) );
+  AO221X1_LVT U177 ( .A1(n153), .A2(WriteRegW[3]), .A3(n152), .A4(WriteRegW[0]), .A5(n151), .Y(n162) );
+  AOI22X1_LVT U178 ( .A1(n156), .A2(WriteRegW[4]), .A3(n155), .A4(WriteRegW[2]), .Y(n154) );
+  OA221X1_LVT U179 ( .A1(n156), .A2(WriteRegW[4]), .A3(n155), .A4(WriteRegW[2]), .A5(n154), .Y(n160) );
+  INVX0_LVT U180 ( .A(WriteRegW[1]), .Y(n174) );
+  AO22X1_LVT U181 ( .A1(RtE[1]), .A2(WriteRegW[1]), .A3(n157), .A4(n174), .Y(
+        n158) );
+  NAND4X0_LVT U182 ( .A1(RegWriteW), .A2(n160), .A3(n159), .A4(n158), .Y(n161)
+         );
+  NOR3X0_LVT U183 ( .A1(N8), .A2(n162), .A3(n161), .Y(ForwardBE[0]) );
+  OA221X1_LVT U184 ( .A1(WriteRegM[1]), .A2(n175), .A3(n163), .A4(RsE[1]), 
+        .A5(RegWriteM), .Y(n173) );
+  AOI22X1_LVT U185 ( .A1(n166), .A2(RsE[3]), .A3(n165), .A4(RsE[4]), .Y(n164)
+         );
+  OA221X1_LVT U186 ( .A1(n166), .A2(RsE[3]), .A3(n165), .A4(RsE[4]), .A5(n164), 
+        .Y(n172) );
+  OA22X1_LVT U187 ( .A1(WriteRegM[2]), .A2(n177), .A3(WriteRegM[0]), .A4(n179), 
+        .Y(n167) );
+  OA221X1_LVT U188 ( .A1(n169), .A2(RsE[2]), .A3(n168), .A4(RsE[0]), .A5(n167), 
+        .Y(n171) );
+  OR3X1_LVT U189 ( .A1(RsE[1]), .A2(RsE[0]), .A3(RsE[4]), .Y(n170) );
+  OR3X1_LVT U190 ( .A1(RsE[2]), .A2(RsE[3]), .A3(n170), .Y(n181) );
+  AND4X1_LVT U191 ( .A1(n173), .A2(n172), .A3(n171), .A4(n181), .Y(N3) );
+  HADDX1_LVT U192 ( .A0(WriteRegW[3]), .B0(RsE[3]), .SO(n186) );
+  AO22X1_LVT U193 ( .A1(WriteRegW[1]), .A2(n175), .A3(n174), .A4(RsE[1]), .Y(
+        n185) );
+  INVX0_LVT U194 ( .A(WriteRegW[4]), .Y(n178) );
+  AOI22X1_LVT U195 ( .A1(n178), .A2(RsE[4]), .A3(n177), .A4(WriteRegW[2]), .Y(
+        n176) );
+  OA221X1_LVT U196 ( .A1(n178), .A2(RsE[4]), .A3(n177), .A4(WriteRegW[2]), 
+        .A5(n176), .Y(n183) );
+  INVX0_LVT U197 ( .A(WriteRegW[0]), .Y(n180) );
+  AO22X1_LVT U198 ( .A1(WriteRegW[0]), .A2(RsE[0]), .A3(n180), .A4(n179), .Y(
+        n182) );
+  NAND4X0_LVT U199 ( .A1(RegWriteW), .A2(n183), .A3(n182), .A4(n181), .Y(n184)
+         );
+  NOR4X1_LVT U200 ( .A1(N3), .A2(n186), .A3(n185), .A4(n184), .Y(ForwardAE[0])
+         );
+endmodule
+

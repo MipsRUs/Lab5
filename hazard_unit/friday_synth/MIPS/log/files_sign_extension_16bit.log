@@ -1,0 +1,11 @@
+analyze -format vhdl { sign_extension_16bit.vhd }
+Running PRESTO HDLC
+Compiling Entity Declaration SIGN_EXTENSION_16BIT
+Compiling Architecture BEHAVIORAL of SIGN_EXTENSION_16BIT
+Warning:  /users/ugrad2/2014/spring/stefanc1/test_synth/design/sign_extension_16bit.vhd:34: The architecture Behavioral has already been analyzed. It is being replaced. (VHD-4)
+Presto compilation completed successfully.
+Loading db file '/users/ugrad2/2012/spring/pooriam/libraries/saed32lvt_tt1p05vn40c.db'
+Loading db file '/users/ugrad2/2012/spring/pooriam/libraries/saed32sram_tt1p05vn40c.db'
+Loading db file '/ecelib/linware/synopsys15/dc/libraries/syn/dw_foundation.sldb'
+1
+1

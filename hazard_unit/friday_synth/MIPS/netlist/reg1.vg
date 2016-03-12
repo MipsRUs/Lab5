@@ -1,0 +1,201 @@
+
+module reg1 ( ref_clk, RD, PCPlus4F, en, clr, InstrD, PCPlus4D );
+  input [31:0] RD;
+  input [31:0] PCPlus4F;
+  output [31:0] InstrD;
+  output [31:0] PCPlus4D;
+  input ref_clk, en, clr;
+  wire   n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16,
+         n17, n18, n19, n20, n21, n22, n23, n24, n25, n26, n27, n28, n29, n30,
+         n31, n32, n33, n34, n35, n36, n37, n38, n39, n40, n41, n42, n43, n44,
+         n45, n46, n47, n48, n49, n50, n51, n52, n53, n54, n55, n56, n57, n58,
+         n59, n60, n61, n62, n63, n64, n65, n66, n67, n68, n69;
+
+  DFFX1_LVT \tmpB_reg[31]  ( .D(n65), .CLK(ref_clk), .Q(PCPlus4D[31]) );
+  DFFX1_LVT \tmpB_reg[30]  ( .D(n64), .CLK(ref_clk), .Q(PCPlus4D[30]) );
+  DFFX1_LVT \tmpB_reg[29]  ( .D(n63), .CLK(ref_clk), .Q(PCPlus4D[29]) );
+  DFFX1_LVT \tmpB_reg[28]  ( .D(n62), .CLK(ref_clk), .Q(PCPlus4D[28]) );
+  DFFX1_LVT \tmpB_reg[27]  ( .D(n61), .CLK(ref_clk), .Q(PCPlus4D[27]) );
+  DFFX1_LVT \tmpB_reg[26]  ( .D(n60), .CLK(ref_clk), .Q(PCPlus4D[26]) );
+  DFFX1_LVT \tmpB_reg[25]  ( .D(n59), .CLK(ref_clk), .Q(PCPlus4D[25]) );
+  DFFX1_LVT \tmpB_reg[24]  ( .D(n58), .CLK(ref_clk), .Q(PCPlus4D[24]) );
+  DFFX1_LVT \tmpB_reg[23]  ( .D(n57), .CLK(ref_clk), .Q(PCPlus4D[23]) );
+  DFFX1_LVT \tmpB_reg[22]  ( .D(n56), .CLK(ref_clk), .Q(PCPlus4D[22]) );
+  DFFX1_LVT \tmpB_reg[21]  ( .D(n55), .CLK(ref_clk), .Q(PCPlus4D[21]) );
+  DFFX1_LVT \tmpB_reg[20]  ( .D(n54), .CLK(ref_clk), .Q(PCPlus4D[20]) );
+  DFFX1_LVT \tmpB_reg[19]  ( .D(n53), .CLK(ref_clk), .Q(PCPlus4D[19]) );
+  DFFX1_LVT \tmpB_reg[18]  ( .D(n52), .CLK(ref_clk), .Q(PCPlus4D[18]) );
+  DFFX1_LVT \tmpB_reg[17]  ( .D(n51), .CLK(ref_clk), .Q(PCPlus4D[17]) );
+  DFFX1_LVT \tmpB_reg[16]  ( .D(n50), .CLK(ref_clk), .Q(PCPlus4D[16]) );
+  DFFX1_LVT \tmpB_reg[15]  ( .D(n49), .CLK(ref_clk), .Q(PCPlus4D[15]) );
+  DFFX1_LVT \tmpB_reg[14]  ( .D(n48), .CLK(ref_clk), .Q(PCPlus4D[14]) );
+  DFFX1_LVT \tmpB_reg[13]  ( .D(n47), .CLK(ref_clk), .Q(PCPlus4D[13]) );
+  DFFX1_LVT \tmpB_reg[12]  ( .D(n46), .CLK(ref_clk), .Q(PCPlus4D[12]) );
+  DFFX1_LVT \tmpB_reg[11]  ( .D(n45), .CLK(ref_clk), .Q(PCPlus4D[11]) );
+  DFFX1_LVT \tmpB_reg[10]  ( .D(n44), .CLK(ref_clk), .Q(PCPlus4D[10]) );
+  DFFX1_LVT \tmpB_reg[9]  ( .D(n43), .CLK(ref_clk), .Q(PCPlus4D[9]) );
+  DFFX1_LVT \tmpB_reg[8]  ( .D(n42), .CLK(ref_clk), .Q(PCPlus4D[8]) );
+  DFFX1_LVT \tmpB_reg[7]  ( .D(n41), .CLK(ref_clk), .Q(PCPlus4D[7]) );
+  DFFX1_LVT \tmpB_reg[6]  ( .D(n40), .CLK(ref_clk), .Q(PCPlus4D[6]) );
+  DFFX1_LVT \tmpB_reg[5]  ( .D(n39), .CLK(ref_clk), .Q(PCPlus4D[5]) );
+  DFFX1_LVT \tmpB_reg[4]  ( .D(n38), .CLK(ref_clk), .Q(PCPlus4D[4]) );
+  DFFX1_LVT \tmpB_reg[3]  ( .D(n37), .CLK(ref_clk), .Q(PCPlus4D[3]) );
+  DFFX1_LVT \tmpB_reg[2]  ( .D(n36), .CLK(ref_clk), .Q(PCPlus4D[2]) );
+  DFFX1_LVT \tmpB_reg[1]  ( .D(n35), .CLK(ref_clk), .Q(PCPlus4D[1]) );
+  DFFX1_LVT \tmpB_reg[0]  ( .D(n34), .CLK(ref_clk), .Q(PCPlus4D[0]) );
+  DFFX1_LVT \tmpA_reg[31]  ( .D(n33), .CLK(ref_clk), .Q(InstrD[31]) );
+  DFFX1_LVT \tmpA_reg[30]  ( .D(n32), .CLK(ref_clk), .Q(InstrD[30]) );
+  DFFX1_LVT \tmpA_reg[29]  ( .D(n31), .CLK(ref_clk), .Q(InstrD[29]) );
+  DFFX1_LVT \tmpA_reg[28]  ( .D(n30), .CLK(ref_clk), .Q(InstrD[28]) );
+  DFFX1_LVT \tmpA_reg[27]  ( .D(n29), .CLK(ref_clk), .Q(InstrD[27]) );
+  DFFX1_LVT \tmpA_reg[26]  ( .D(n28), .CLK(ref_clk), .Q(InstrD[26]) );
+  DFFX1_LVT \tmpA_reg[25]  ( .D(n27), .CLK(ref_clk), .Q(InstrD[25]) );
+  DFFX1_LVT \tmpA_reg[24]  ( .D(n26), .CLK(ref_clk), .Q(InstrD[24]) );
+  DFFX1_LVT \tmpA_reg[23]  ( .D(n25), .CLK(ref_clk), .Q(InstrD[23]) );
+  DFFX1_LVT \tmpA_reg[22]  ( .D(n24), .CLK(ref_clk), .Q(InstrD[22]) );
+  DFFX1_LVT \tmpA_reg[21]  ( .D(n23), .CLK(ref_clk), .Q(InstrD[21]) );
+  DFFX1_LVT \tmpA_reg[20]  ( .D(n22), .CLK(ref_clk), .Q(InstrD[20]) );
+  DFFX1_LVT \tmpA_reg[19]  ( .D(n21), .CLK(ref_clk), .Q(InstrD[19]) );
+  DFFX1_LVT \tmpA_reg[18]  ( .D(n20), .CLK(ref_clk), .Q(InstrD[18]) );
+  DFFX1_LVT \tmpA_reg[17]  ( .D(n19), .CLK(ref_clk), .Q(InstrD[17]) );
+  DFFX1_LVT \tmpA_reg[16]  ( .D(n18), .CLK(ref_clk), .Q(InstrD[16]) );
+  DFFX1_LVT \tmpA_reg[15]  ( .D(n17), .CLK(ref_clk), .Q(InstrD[15]) );
+  DFFX1_LVT \tmpA_reg[14]  ( .D(n16), .CLK(ref_clk), .Q(InstrD[14]) );
+  DFFX1_LVT \tmpA_reg[13]  ( .D(n15), .CLK(ref_clk), .Q(InstrD[13]) );
+  DFFX1_LVT \tmpA_reg[12]  ( .D(n14), .CLK(ref_clk), .Q(InstrD[12]) );
+  DFFX1_LVT \tmpA_reg[11]  ( .D(n13), .CLK(ref_clk), .Q(InstrD[11]) );
+  DFFX1_LVT \tmpA_reg[10]  ( .D(n12), .CLK(ref_clk), .Q(InstrD[10]) );
+  DFFX1_LVT \tmpA_reg[9]  ( .D(n11), .CLK(ref_clk), .Q(InstrD[9]) );
+  DFFX1_LVT \tmpA_reg[8]  ( .D(n10), .CLK(ref_clk), .Q(InstrD[8]) );
+  DFFX1_LVT \tmpA_reg[7]  ( .D(n9), .CLK(ref_clk), .Q(InstrD[7]) );
+  DFFX1_LVT \tmpA_reg[6]  ( .D(n8), .CLK(ref_clk), .Q(InstrD[6]) );
+  DFFX1_LVT \tmpA_reg[5]  ( .D(n7), .CLK(ref_clk), .Q(InstrD[5]) );
+  DFFX1_LVT \tmpA_reg[4]  ( .D(n6), .CLK(ref_clk), .Q(InstrD[4]) );
+  DFFX1_LVT \tmpA_reg[3]  ( .D(n5), .CLK(ref_clk), .Q(InstrD[3]) );
+  DFFX1_LVT \tmpA_reg[2]  ( .D(n4), .CLK(ref_clk), .Q(InstrD[2]) );
+  DFFX1_LVT \tmpA_reg[1]  ( .D(n3), .CLK(ref_clk), .Q(InstrD[1]) );
+  DFFX1_LVT \tmpA_reg[0]  ( .D(n2), .CLK(ref_clk), .Q(InstrD[0]) );
+  INVX0_LVT U67 ( .A(en), .Y(n66) );
+  AO22X1_LVT U68 ( .A1(en), .A2(PCPlus4D[31]), .A3(n66), .A4(PCPlus4F[31]), 
+        .Y(n65) );
+  AO22X1_LVT U69 ( .A1(en), .A2(PCPlus4D[30]), .A3(n66), .A4(PCPlus4F[30]), 
+        .Y(n64) );
+  AO22X1_LVT U70 ( .A1(en), .A2(PCPlus4D[29]), .A3(n66), .A4(PCPlus4F[29]), 
+        .Y(n63) );
+  AO22X1_LVT U71 ( .A1(en), .A2(PCPlus4D[28]), .A3(n66), .A4(PCPlus4F[28]), 
+        .Y(n62) );
+  AO22X1_LVT U72 ( .A1(en), .A2(PCPlus4D[27]), .A3(n66), .A4(PCPlus4F[27]), 
+        .Y(n61) );
+  AO22X1_LVT U73 ( .A1(en), .A2(PCPlus4D[26]), .A3(n66), .A4(PCPlus4F[26]), 
+        .Y(n60) );
+  AO22X1_LVT U74 ( .A1(en), .A2(PCPlus4D[25]), .A3(n66), .A4(PCPlus4F[25]), 
+        .Y(n59) );
+  AO22X1_LVT U75 ( .A1(en), .A2(PCPlus4D[24]), .A3(n66), .A4(PCPlus4F[24]), 
+        .Y(n58) );
+  AO22X1_LVT U76 ( .A1(en), .A2(PCPlus4D[23]), .A3(n66), .A4(PCPlus4F[23]), 
+        .Y(n57) );
+  AO22X1_LVT U77 ( .A1(en), .A2(PCPlus4D[22]), .A3(n66), .A4(PCPlus4F[22]), 
+        .Y(n56) );
+  AO22X1_LVT U78 ( .A1(en), .A2(PCPlus4D[21]), .A3(n66), .A4(PCPlus4F[21]), 
+        .Y(n55) );
+  AO22X1_LVT U79 ( .A1(en), .A2(PCPlus4D[20]), .A3(n66), .A4(PCPlus4F[20]), 
+        .Y(n54) );
+  INVX0_LVT U80 ( .A(en), .Y(n67) );
+  AO22X1_LVT U81 ( .A1(en), .A2(PCPlus4D[19]), .A3(n67), .A4(PCPlus4F[19]), 
+        .Y(n53) );
+  AO22X1_LVT U82 ( .A1(en), .A2(PCPlus4D[18]), .A3(n67), .A4(PCPlus4F[18]), 
+        .Y(n52) );
+  AO22X1_LVT U83 ( .A1(en), .A2(PCPlus4D[17]), .A3(n67), .A4(PCPlus4F[17]), 
+        .Y(n51) );
+  AO22X1_LVT U84 ( .A1(en), .A2(PCPlus4D[16]), .A3(n67), .A4(PCPlus4F[16]), 
+        .Y(n50) );
+  AO22X1_LVT U85 ( .A1(en), .A2(PCPlus4D[15]), .A3(n67), .A4(PCPlus4F[15]), 
+        .Y(n49) );
+  AO22X1_LVT U86 ( .A1(en), .A2(PCPlus4D[14]), .A3(n67), .A4(PCPlus4F[14]), 
+        .Y(n48) );
+  AO22X1_LVT U87 ( .A1(en), .A2(PCPlus4D[13]), .A3(n67), .A4(PCPlus4F[13]), 
+        .Y(n47) );
+  AO22X1_LVT U88 ( .A1(en), .A2(PCPlus4D[12]), .A3(n67), .A4(PCPlus4F[12]), 
+        .Y(n46) );
+  AO22X1_LVT U89 ( .A1(en), .A2(PCPlus4D[11]), .A3(n67), .A4(PCPlus4F[11]), 
+        .Y(n45) );
+  AO22X1_LVT U90 ( .A1(en), .A2(PCPlus4D[10]), .A3(n67), .A4(PCPlus4F[10]), 
+        .Y(n44) );
+  AO22X1_LVT U91 ( .A1(en), .A2(PCPlus4D[9]), .A3(n67), .A4(PCPlus4F[9]), .Y(
+        n43) );
+  AO22X1_LVT U92 ( .A1(en), .A2(PCPlus4D[8]), .A3(n67), .A4(PCPlus4F[8]), .Y(
+        n42) );
+  INVX0_LVT U93 ( .A(en), .Y(n68) );
+  AO22X1_LVT U94 ( .A1(en), .A2(PCPlus4D[7]), .A3(n68), .A4(PCPlus4F[7]), .Y(
+        n41) );
+  AO22X1_LVT U95 ( .A1(en), .A2(PCPlus4D[6]), .A3(n68), .A4(PCPlus4F[6]), .Y(
+        n40) );
+  AO22X1_LVT U96 ( .A1(en), .A2(PCPlus4D[5]), .A3(n68), .A4(PCPlus4F[5]), .Y(
+        n39) );
+  AO22X1_LVT U97 ( .A1(en), .A2(PCPlus4D[4]), .A3(n68), .A4(PCPlus4F[4]), .Y(
+        n38) );
+  AO22X1_LVT U98 ( .A1(en), .A2(PCPlus4D[3]), .A3(n68), .A4(PCPlus4F[3]), .Y(
+        n37) );
+  AO22X1_LVT U99 ( .A1(en), .A2(PCPlus4D[2]), .A3(n68), .A4(PCPlus4F[2]), .Y(
+        n36) );
+  AO22X1_LVT U100 ( .A1(en), .A2(PCPlus4D[1]), .A3(n68), .A4(PCPlus4F[1]), .Y(
+        n35) );
+  AO22X1_LVT U101 ( .A1(en), .A2(PCPlus4D[0]), .A3(n68), .A4(PCPlus4F[0]), .Y(
+        n34) );
+  AO22X1_LVT U102 ( .A1(en), .A2(InstrD[31]), .A3(n68), .A4(RD[31]), .Y(n33)
+         );
+  AO22X1_LVT U103 ( .A1(en), .A2(InstrD[30]), .A3(n68), .A4(RD[30]), .Y(n32)
+         );
+  AO22X1_LVT U104 ( .A1(en), .A2(InstrD[29]), .A3(n68), .A4(RD[29]), .Y(n31)
+         );
+  AO22X1_LVT U105 ( .A1(en), .A2(InstrD[28]), .A3(n68), .A4(RD[28]), .Y(n30)
+         );
+  INVX0_LVT U106 ( .A(en), .Y(n69) );
+  AO22X1_LVT U107 ( .A1(en), .A2(InstrD[27]), .A3(n69), .A4(RD[27]), .Y(n29)
+         );
+  AO22X1_LVT U108 ( .A1(en), .A2(InstrD[26]), .A3(n69), .A4(RD[26]), .Y(n28)
+         );
+  AO22X1_LVT U109 ( .A1(en), .A2(InstrD[25]), .A3(n69), .A4(RD[25]), .Y(n27)
+         );
+  AO22X1_LVT U110 ( .A1(en), .A2(InstrD[24]), .A3(n69), .A4(RD[24]), .Y(n26)
+         );
+  AO22X1_LVT U111 ( .A1(en), .A2(InstrD[23]), .A3(n69), .A4(RD[23]), .Y(n25)
+         );
+  AO22X1_LVT U112 ( .A1(en), .A2(InstrD[22]), .A3(n69), .A4(RD[22]), .Y(n24)
+         );
+  AO22X1_LVT U113 ( .A1(en), .A2(InstrD[21]), .A3(n69), .A4(RD[21]), .Y(n23)
+         );
+  AO22X1_LVT U114 ( .A1(en), .A2(InstrD[20]), .A3(n69), .A4(RD[20]), .Y(n22)
+         );
+  AO22X1_LVT U115 ( .A1(en), .A2(InstrD[19]), .A3(n69), .A4(RD[19]), .Y(n21)
+         );
+  AO22X1_LVT U116 ( .A1(en), .A2(InstrD[18]), .A3(n69), .A4(RD[18]), .Y(n20)
+         );
+  AO22X1_LVT U117 ( .A1(en), .A2(InstrD[17]), .A3(n69), .A4(RD[17]), .Y(n19)
+         );
+  AO22X1_LVT U118 ( .A1(en), .A2(InstrD[16]), .A3(n69), .A4(RD[16]), .Y(n18)
+         );
+  AO22X1_LVT U119 ( .A1(en), .A2(InstrD[15]), .A3(n66), .A4(RD[15]), .Y(n17)
+         );
+  AO22X1_LVT U120 ( .A1(en), .A2(InstrD[14]), .A3(n67), .A4(RD[14]), .Y(n16)
+         );
+  AO22X1_LVT U121 ( .A1(en), .A2(InstrD[13]), .A3(n68), .A4(RD[13]), .Y(n15)
+         );
+  AO22X1_LVT U122 ( .A1(en), .A2(InstrD[12]), .A3(n69), .A4(RD[12]), .Y(n14)
+         );
+  AO22X1_LVT U123 ( .A1(en), .A2(InstrD[11]), .A3(n66), .A4(RD[11]), .Y(n13)
+         );
+  AO22X1_LVT U124 ( .A1(en), .A2(InstrD[10]), .A3(n67), .A4(RD[10]), .Y(n12)
+         );
+  AO22X1_LVT U125 ( .A1(en), .A2(InstrD[9]), .A3(n68), .A4(RD[9]), .Y(n11) );
+  AO22X1_LVT U126 ( .A1(en), .A2(InstrD[8]), .A3(n69), .A4(RD[8]), .Y(n10) );
+  AO22X1_LVT U127 ( .A1(en), .A2(InstrD[7]), .A3(n66), .A4(RD[7]), .Y(n9) );
+  AO22X1_LVT U128 ( .A1(en), .A2(InstrD[6]), .A3(n67), .A4(RD[6]), .Y(n8) );
+  AO22X1_LVT U129 ( .A1(en), .A2(InstrD[5]), .A3(n68), .A4(RD[5]), .Y(n7) );
+  AO22X1_LVT U130 ( .A1(en), .A2(InstrD[4]), .A3(n69), .A4(RD[4]), .Y(n6) );
+  AO22X1_LVT U131 ( .A1(en), .A2(InstrD[3]), .A3(n66), .A4(RD[3]), .Y(n5) );
+  AO22X1_LVT U132 ( .A1(en), .A2(InstrD[2]), .A3(n67), .A4(RD[2]), .Y(n4) );
+  AO22X1_LVT U133 ( .A1(en), .A2(InstrD[1]), .A3(n68), .A4(RD[1]), .Y(n3) );
+  AO22X1_LVT U134 ( .A1(en), .A2(InstrD[0]), .A3(n69), .A4(RD[0]), .Y(n2) );
+endmodule
+
